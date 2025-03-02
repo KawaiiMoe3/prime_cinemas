@@ -1,0 +1,60 @@
+body{
+    background: url('../images/1.jpg') rgba(0, 0, 0, 0.3);
+    background-blend-mode: multiply;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.nav-link.dropdown-toggle::after {
+    display: none !important; /* Hide Bootstrap’s default dropdown arrow */
+}
+
+.nav-link {
+    position: relative;
+    text-decoration: none; /* Remove default underline */
+    padding-bottom: 5px; /* Add space between text and underline */
+}
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0%;
+    height: 3px; /* Bold underline */
+    background-color: crimson; /* Underline color */
+    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.nav-link:hover::before {
+    width: 100%; /* Expand from center */
+}
+
+.dropdown-item {
+    color: white !important; /* Default text color */
+    transition: color 0.2s ease-in-out; /* Smooth color change */
+}
+
+.dropdown-item:hover {
+    background-color: black !important; /* Prevents background from changing */
+    color: crimson !important; /* Changes text to crimson on hover */
+}
+
+a.text-white {
+    transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+
+a.text-white:hover {
+    color: crimson !important; /* Changes background to crimson */
+}
+
+@media (max-width: 991px){
+    .sidebar{
+        background-color: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+    }
+}
