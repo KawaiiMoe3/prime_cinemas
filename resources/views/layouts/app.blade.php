@@ -14,16 +14,18 @@
 
     <!-- Header CSS -->
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-
+    {{-- Carousel Slider --}}
+    <link rel="stylesheet" href="{{ asset('css/slider.css') }}">
+    
+    @yield('styles')
+    
     <title>@yield('title')</title>
 </head>
 <body>
     <!-- Include Header Component -->
     <x-header />
 
-    <div class="container">
-        @yield('content')
-    </div>
+    @yield('content')
 
     <!-- jQuery-->
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>

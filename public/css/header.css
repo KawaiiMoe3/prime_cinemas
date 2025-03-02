@@ -15,6 +15,7 @@ body{
     position: relative;
     text-decoration: none; /* Remove default underline */
     padding-bottom: 5px; /* Add space between text and underline */
+    color: white;
 }
 
 .nav-link::before {

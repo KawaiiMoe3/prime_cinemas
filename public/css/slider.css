@@ -1,0 +1,50 @@
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    max-height: 100vh;
+    object-fit: cover;
+    background-color: black;
+}
+
+.carousel-caption .m-title,
+.carousel-caption .m-description{
+    margin: 0 0 5px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8)
+}
+
+.btn-booknow {
+    background: linear-gradient(to right, #ff1e1e, #b50000);
+    color: white;
+    margin: 0 5px 0;
+    padding: 12px 32px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px 25px 8px 25px;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-booknow:hover {
+    background: linear-gradient(to right, #b50000, #ff1e1e);
+    color: white;
+}
+
+.btn-trailer {
+    background: black;
+    color: white;
+    margin: 0 5px 0;
+    padding: 12px 32px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    border-radius: 8px 25px 8px 25px;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-trailer:hover {
+    background: black;
+    color: #ff1e1e;
+    border: 2px solid #ff1e1e;
+}
