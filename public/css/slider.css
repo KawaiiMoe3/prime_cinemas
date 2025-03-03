@@ -38,7 +38,7 @@
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
-    border: 2px solid transparent;
+    border: 2px solid white;
     border-radius: 8px 25px 8px 25px;
     transition: all 0.4s ease-in-out;
 }
