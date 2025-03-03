@@ -22,22 +22,22 @@
             <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
                 <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
                     <li class="nav-item mx-2">
-                        <a class="nav-link text-uppercase" aria-current="page" href="#">Movies</a>
+                        <a class="nav-link header-item text-uppercase" aria-current="page" href="#">Movies</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link text-uppercase" href="#about">Cinemas</a>
+                        <a class="nav-link header-item text-uppercase" href="#about">Cinemas</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link text-uppercase" href="#services">Food & Drinks</a>
+                        <a class="nav-link header-item text-uppercase" href="#services">Food & Drinks</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link text-uppercase" href="#contact">Shop</a>
+                        <a class="nav-link header-item text-uppercase" href="#contact">Shop</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link text-uppercase" href="#contact">Promotions</a>
+                        <a class="nav-link header-item text-uppercase" href="#contact">Promotions</a>
                     </li>
                     <li class="nav-item mx-2 dropdown">
-                        <a class="nav-link dropdown-toggle text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link header-item dropdown-toggle text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             More &#9660
                         </a>
                         <ul class="dropdown-menu bg-black">
