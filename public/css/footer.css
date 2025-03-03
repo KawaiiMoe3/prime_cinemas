@@ -1,0 +1,18 @@
+.footer-top .nav .nav-link.footer-item{
+    color: white !important;
+    text-transform: uppercase;
+    transition: color 0.2s ease-in-out;
+}
+
+.footer-top .nav .nav-link.footer-item:hover{
+    color: crimson !important;
+}
+
+.footer-bottom{
+    padding: 8px 0;
+    background-color: #282828;
+}
+
+.footer-bottom .footer-bottom-cpright{
+    color: white;
+}
