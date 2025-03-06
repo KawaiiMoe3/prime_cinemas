@@ -3,3 +3,30 @@
 #cinemas-cards .cc-descrip{
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8) !important;
 }
+
+#cinemas-cards .cc-content{
+    transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+    cursor: pointer;
+}
+
+#cinemas-cards .cc-content:hover{
+    transform: translateY(-10px);
+    outline: 2px solid crimson;
+    outline-offset: 2px;
+}
+
+.c-promote{
+    padding: 0;
+    background-color: #94201f;
+}
+
+.c-promote .c-promote-title{
+    color: white;
+    font-weight: bold;
+}
+
+.c-promote .c-promote-text{
+    color: white;
+}

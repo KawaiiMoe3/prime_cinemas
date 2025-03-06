@@ -63,8 +63,10 @@
     <h2 class="pb-2 text-white text-center fw-bold text-uppercase cc-title">Experience our halls</h2>
 
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-        <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('../images/imax.jpg'); background-size: cover;">
+        <div class="col cc-col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg cc-content"
+            onclick="window.location.href='#';"
+            style="background-image: url('../images/imax.jpg'); background-size: cover;">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-white">
                     <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold cc-type">IMAX</h3>
                     <h4 class="text-white fw-bold cc-short">Bigger is Better</h4>
@@ -74,7 +76,9 @@
         </div>
 
         <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('../images/deluxe.jpg'); background-size: cover;">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg cc-content"
+            onclick="window.location.href='#';"
+            style="background-image: url('../images/deluxe.jpg'); background-size: cover;">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-white">
                     <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">DELUXE</h3>
                     <h4 class="text-white fw-bold">Comfort, Clarity, Perfection</h4>
@@ -84,12 +88,60 @@
         </div>
 
         <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('../images/indulge.jpg'); background-size: cover;">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg cc-content"
+            onclick="window.location.href='#';"
+            style="background-image: url('../images/indulge.jpg'); background-size: cover;">
                 <div class="d-flex flex-column h-100 p-5 pb-3">
                     <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">INDULGE</h3>
                     <h4 class="text-white fw-bold">Elevate your experience</h4>
                     <p class="text-white">Watch movies while dining in style</p>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container px-4 py-5" id="cinemas-cards">
+    <h2 class="pb-2 text-white text-center fw-bold text-uppercase cc-title">Promotions</h2>
+
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 d-flex justify-content-between">
+        <div class="card cc-content c-promote" 
+            onclick="window.location.href='#';"
+            style="width: 18rem;">
+            <img src="../images/p1.jpg" class="card-img-top" alt="promote pic">
+            <div class="card-body">
+                <h5 class="card-title c-promote-title">Exclusively for IMAX</h5>
+                <p class="card-text c-promote-text">From 13 February 2025, while stocks last</p>
+            </div>
+        </div>
+
+        <div class="card cc-content c-promote" 
+            onclick="window.location.href='#';"
+            style="width: 18rem;">
+            <img src="../images/p2.jpg" class="card-img-top" alt="promote pic">
+            <div class="card-body">
+                <h5 class="card-title c-promote-title">Exclusively for INDULGE</h5>
+                <p class="card-text c-promote-text">From 13 February 2025, while stocks last</p>
+            </div>
+        </div>
+
+        <div class="card cc-content c-promote" 
+            onclick="window.location.href='#';"
+            style="width: 18rem;">
+            <img src="../images/p3.jpg" class="card-img-top" alt="promote pic">
+            <div class="card-body">
+                <h5 class="card-title c-promote-title">Get Your Collectable Legends of the Condor Heroes: The Gallants Merch NOW!</h5>
+                <p class="card-text c-promote-text">From 20 February 2025, while stocks last</p>
+            </div>
+        </div>
+
+        <div class="card cc-content c-promote" 
+            onclick="window.location.href='#';"
+            style="width: 18rem;">
+            <img src="../images/p4.png" class="card-img-top" alt="promote pic">
+            <div class="card-body">
+                <h5 class="card-title c-promote-title">Attack On Titans Is Back With Demand</h5>
+                <p class="card-text c-promote-text">From 20 February 2025, while stocks last</p>
             </div>
         </div>
     </div>
