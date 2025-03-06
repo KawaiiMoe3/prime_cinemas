@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.index')
 
 @section('title', 'PrimeCinemas | Malaysia\'s Ultimate Movie Experience')
 
@@ -17,9 +17,10 @@
                     <p class="fw-bold text-uppercase m-title" style="font-size: 50px">NE ZHA 2 哪吒之魔童闹海</p>
                     <p class="fw-bold fs-2 text-uppercase m-description">showing on 13 Mar 2025 🔥</p>
                     <p>
-                        <a class="btn btn-lg btn-trailer text-uppercase" href="https://youtu.be/axIa5sTi9B4?si=hJRcwn5Kawf1GHGd">
-                            watch trailer
-                        </a>
+                        <!-- Button trigger trailer modal -->
+                        <button type="button" class="btn btn-trailer" data-bs-toggle="modal" data-bs-target="#trailerModal">
+                            Watch Trailer
+                        </button>
                         <a class="btn btn-lg btn-booknow text-uppercase" href="#">remind me</a>
                     </p>
                 </div>
@@ -57,4 +58,34 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
+
+<!-- Trailer Modal -->
+<div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-4 bg-black">
+            <div class="ratio ratio-16x9">
+                <iframe id="youtubePlayer" src="https://www.youtube.com/embed/axIa5sTi9B4?si=GnzuE7a5Vd5uwqLp" 
+                    class="rounded-4"
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stop video when trailer modal closes -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let trailerModal = document.getElementById('trailerModal');
+        let youtubePlayer = document.getElementById('youtubePlayer');
+        
+        trailerModal.addEventListener('hide.bs.modal', function () {
+            youtubePlayer.src = youtubePlayer.src; // Reset the iframe src to stop the video
+        });
+    });
+</script>
 @endsection

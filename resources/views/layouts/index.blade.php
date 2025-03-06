@@ -12,10 +12,10 @@
     {{-- Font Awesome CSS --}}
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
 
-    <!-- Header CSS -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-    {{-- Carousel Slider --}}
     <link rel="stylesheet" href="{{ asset('css/slider.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     
     @yield('styles')
     
@@ -26,6 +26,9 @@
     <x-header />
 
     @yield('content')
+
+    <!-- Include Footer Component -->
+    <x-footer />
 
     <!-- jQuery-->
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>

@@ -11,14 +11,14 @@ body{
     display: none !important; /* Hide Bootstrap’s default dropdown arrow */
 }
 
-.nav-link {
+.nav-link.header-item {
     position: relative;
     text-decoration: none; /* Remove default underline */
     padding-bottom: 5px; /* Add space between text and underline */
     color: white;
 }
 
-.nav-link::before {
+.nav-link.header-item::before {
     content: "";
     position: absolute;
     left: 50%;
@@ -31,7 +31,7 @@ body{
     border-radius: 2px;
 }
 
-.nav-link:hover::before {
+.nav-link.header-item:hover::before {
     width: 100%; /* Expand from center */
 }
 
