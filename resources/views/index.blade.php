@@ -3,11 +3,11 @@
 @section('title', 'PrimeCinemas | Malaysia\'s Ultimate Movie Experience')
 
 @section('content')
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -49,14 +49,50 @@
             </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselCaptions" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
+</div>
+
+<div class="container px-4 py-5" id="cinemas-cards">
+    <h2 class="pb-2 text-white text-center fw-bold text-uppercase cc-title">Experience our halls</h2>
+
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('../images/imax.jpg'); background-size: cover;">
+                <div class="d-flex flex-column h-100 p-5 pb-3 text-white">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold cc-type">IMAX</h3>
+                    <h4 class="text-white fw-bold cc-short">Bigger is Better</h4>
+                    <p class="text-white cc-descrip">Experience immersion beyond imagination</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('../images/deluxe.jpg'); background-size: cover;">
+                <div class="d-flex flex-column h-100 p-5 pb-3 text-white">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">DELUXE</h3>
+                    <h4 class="text-white fw-bold">Comfort, Clarity, Perfection</h4>
+                    <p class="text-white">Elegance in Every Frame, Experience Movies in Style</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('../images/indulge.jpg'); background-size: cover;">
+                <div class="d-flex flex-column h-100 p-5 pb-3">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">INDULGE</h3>
+                    <h4 class="text-white fw-bold">Elevate your experience</h4>
+                    <p class="text-white">Watch movies while dining in style</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Trailer Modal -->

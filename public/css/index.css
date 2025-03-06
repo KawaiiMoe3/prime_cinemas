@@ -1,0 +1,5 @@
+#cinemas-cards .cc-type,
+#cinemas-cards .cc-short,
+#cinemas-cards .cc-descrip{
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8) !important;
+}

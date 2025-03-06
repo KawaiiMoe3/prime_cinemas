@@ -16,6 +16,7 @@ body{
     text-decoration: none; /* Remove default underline */
     padding-bottom: 5px; /* Add space between text and underline */
     color: white;
+    font-weight: bold
 }
 
 .nav-link.header-item::before {
@@ -38,6 +39,7 @@ body{
 .dropdown-item {
     color: white !important; /* Default text color */
     transition: color 0.2s ease-in-out; /* Smooth color change */
+    font-weight: bold
 }
 
 .dropdown-item:hover {

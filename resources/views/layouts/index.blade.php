@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
 
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">

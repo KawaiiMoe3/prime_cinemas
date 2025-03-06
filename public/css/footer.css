@@ -1,5 +1,6 @@
 .footer-top .nav .nav-link.footer-item{
     color: white !important;
+    font-weight: bold;
     text-transform: uppercase;
     transition: color 0.2s ease-in-out;
 }
@@ -15,4 +16,25 @@
 
 .footer-bottom .footer-bottom-cpright{
     color: white;
+}
+
+.qr-box .qr-title{
+    color: white;
+    font-weight: bold;
+}
+
+.qr-box .qr-qr{
+    width: 80px;
+    border-radius: 8px;
+}
+
+.qr-box .qr-store{
+    margin: 0 5px;
+    text-decoration: none;
+    color: white;
+    transition: color 0.2s ease-in-out;
+}
+
+.qr-box .qr-store:hover{
+    color: crimson;
 }
