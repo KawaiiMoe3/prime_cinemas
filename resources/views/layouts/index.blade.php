@@ -12,6 +12,9 @@
     {{-- Font Awesome CSS --}}
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
 
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
@@ -35,5 +38,9 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <!-- Bootstrap JS -->
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Swiper JS -->
+    <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
+    <!-- index JS -->
+    <script src="{{ asset('js/index.js') }}"></script>
 </body>
 </html>

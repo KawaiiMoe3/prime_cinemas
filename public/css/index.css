@@ -30,3 +30,161 @@
 .c-promote .c-promote-text{
     color: white;
 }
+
+.m-tabs .tab-item .btn-tab-item{
+    color: #8e8e8e;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+    border: none;
+    padding-bottom: 5px;
+}
+
+.m-tabs .tab-item .btn-tab-item::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    width: 100%;
+    height: 3px;
+    background-color: crimson;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.m-tabs .tab-item .btn-tab-item:hover{
+    color: crimson;
+}
+
+.m-tabs .tab-item .btn-tab-item.active{
+    color: white;
+}
+
+.m-tabs .tab-item .btn-tab-item.active::after {
+    transform: translateX(-50%) scaleX(1); /* Expands from center */
+}
+
+.btn-viewall {
+    color: white;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.btn-viewall:hover {
+    color: crimson;
+}
+
+.movieSwiper .swiper-slide {
+    width: 250px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.movieSwiper .c-movie-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: black;
+    border: 2px solid #b50000;
+}
+
+.movieSwiper .c-movie-img {
+    height: 370px;
+    background-size: cover;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.movieSwiper .c-movie-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: black;
+    border-radius: 0 0 8px 8px;
+}
+
+.c-movie-title {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    max-height: 3em;
+    margin-bottom: auto;
+}
+
+.c-movie-btn {
+    background-color: white; 
+    color: #ff1e1e;
+    margin-top: auto;
+    padding: 12px 32px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px 25px 8px 25px;
+    transition: 0.2s ease-in-out;
+}
+
+.c-movie-btn:hover {
+    background: linear-gradient(to right, #b50000, #ff1e1e);
+    color: white;
+}
+
+.movieSwiper .swiper-button-next,
+.movieSwiper .swiper-button-prev {
+    background-color: #ff1e1e;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.movieSwiper .swiper-button-next::after,
+.movieSwiper .swiper-button-prev::after {
+    font-size: 14px !important;
+    font-weight: bold;
+    color: white;
+}
+
+.movieSwiper .swiper-button-next:hover,
+.movieSwiper .swiper-button-prev:hover {
+    background-color: #94201f;
+    transform: scale(1.1);
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+.swiper-slide {
+    margin-right: 15px;
+}
+
+@media (max-width: 768px) {
+    .swiper-slide {
+        width: 220px;
+    }
+}
