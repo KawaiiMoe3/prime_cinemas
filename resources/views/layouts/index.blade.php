@@ -30,6 +30,7 @@
     <x-header />
 
     @yield('content')
+    @stack('scripts')
 
     <!-- Include Footer Component -->
     <x-footer />
