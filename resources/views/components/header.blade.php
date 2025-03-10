@@ -48,9 +48,9 @@
                 </ul>
                 {{-- Login --}}
                 <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-                    <a href="#login" class="text-white text-uppercase text-decoration-none px-3 py-1">
-                        <i class="fa-solid fa-user"></i> Sign In
-                    </a>
+                <a href="{{ route('login') }}" class="text-white text-uppercase text-decoration-none px-3 py-1">
+                    <i class="fa-solid fa-user"></i> Sign In
+                </a>
                     <a href="https://github.com/KawaiiMoe3/prime_cinemas" target="_blank" class="text-white text-uppercase text-decoration-none px-3 py-1">
                         <i class="fa-brands fa-github fa-lg"></i>
                     </a>
