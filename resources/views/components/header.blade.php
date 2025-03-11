@@ -46,11 +46,35 @@
                         </ul>
                     </li>
                 </ul>
-                {{-- Login --}}
+                
+                {{-- Login/Logout Section --}}
                 <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-                    <a href="#login" class="text-white text-uppercase fw-bold text-decoration-none px-3 py-1">
-                        <i class="fa-solid fa-user"></i> Sign In
-                    </a>
+                    @if(session()->has('user'))
+                        <div class="dropdown login-dropdown">
+                            <a class="nav-link dropdown-toggle text-white text-uppercase text-decoration-none px-3 py-1" 
+                            href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-user"></i>&nbsp;Hi, {{ session('user')->username ?? session('user')['name'] }}
+                                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+                            </a>
+                            <ul class="dropdown-menu bg-black" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="#">My Orders</a></li>
+                                <li><a class="dropdown-item" href="#">My Rewards</a></li>
+                                <li><a class="dropdown-item" href="#">My Wallet</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <a href="{{ route('login') }}" class="text-white text-uppercase text-decoration-none px-3 py-1">
+                            <i class="fa-solid fa-user"></i> Sign In
+                        </a>
+                    @endif
                     <a href="https://github.com/KawaiiMoe3/prime_cinemas" target="_blank" class="text-white text-uppercase text-decoration-none px-3 py-1">
                         <i class="fa-brands fa-github fa-lg"></i>
                     </a>

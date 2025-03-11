@@ -27,7 +27,9 @@
 </head>
 <body>
     <!-- Include Header Component -->
-    <x-header />
+    @if (!View::hasSection('hideHeader'))
+        <x-header />
+    @endif
 
     @yield('content')
 
