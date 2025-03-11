@@ -61,3 +61,43 @@ a.text-white:hover {
         backdrop-filter: blur(10px);
     }
 }
+
+/* -------------------Login Session -----------------------*/
+/* Custom styles for login dropdown */
+.login-dropdown .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.login-dropdown .dropdown-icon {
+    transition: transform 0.3s ease;
+}
+
+.login-dropdown.show .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu.bg-black {
+    background-color: black !important;
+}
+
+.dropdown-menu .dropdown-item {
+    color: white !important;
+    font-weight: bold;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: black !important;
+    color: red !important;
+}
+
+.login-dropdown .dropdown-toggle:hover {
+    color: red !important;
+}
+
+.login-dropdown .dropdown-toggle:hover .dropdown-icon {
+    transform: rotate(180deg) !important;
+}
+
