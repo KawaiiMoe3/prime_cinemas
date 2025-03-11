@@ -1,0 +1,331 @@
+/* ----------------- Login ----------------- */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    padding: 80px 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.login-box {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    max-width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.login-image {
+    flex: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.login-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-form {
+    flex: 35%;
+    padding: 40px;
+    background: linear-gradient(176deg,#121212 200px,#330004 800px,#630000 1240px,#290608 1600px,#170f10 2070px);
+    color: white;
+    display: block;
+}
+
+.login-form-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form-content {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.nav-pills {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.nav-pills .nav-link {
+    color: white;
+    border-radius: 0;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease;
+}
+
+.nav-pills .nav-link.active {
+    border-bottom: 2px solid crimson;
+    background: transparent;
+}
+
+.login-form .form-control {
+    width: 100%;
+    background: transparent;
+    color: white;
+    border: none;
+    border-bottom: 2px solid white;
+    border-radius: 0;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.login-form .form-control:focus {
+    border-bottom: 2px solid crimson;
+    outline: none;
+    box-shadow: none;
+}
+
+.login-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.login-form .form-control:focus {
+    background: transparent;
+    border-color: crimson;
+    color: white;
+    box-shadow: none;
+}
+
+.login-form p {
+    margin-top: 10px !important;
+}
+
+.email-login-form {
+    margin-top: 0px;
+}
+
+.email-login-form .btn-danger {
+    margin-top: 20px;
+}
+
+
+.btn-danger {
+    background: linear-gradient(to right, #ff1e1e, #b50000);
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+    width: 90%;
+    border-radius: 5px;
+    display: block;
+    margin: 50px auto 20px;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(to right, #b50000, #ff1e1e);
+}
+
+.signup-text {
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.signup-text p a {
+    color: red !important;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.tab-pane {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.email-form .form-label {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    color: white;
+    padding: 0 5px;
+}
+
+.email-form .form-control {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    padding: 10px;
+    color: white;
+}
+
+.email-form .form-control:focus {
+    border-bottom: 2px solid crimson;
+    outline: none;
+    box-shadow: none;
+}
+
+.email-form .mb-3 {
+    position: relative;
+    z-index: 2;
+}
+
+.email-form .btn-danger {
+    margin-top: 30px;
+}
+
+.email-signin-btn {
+    margin-top: 50px !important;
+}
+
+
+/* ----------------- Register ----------------- */
+.register-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    padding: 80px 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.register-box {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background: linear-gradient(176deg,#121212 200px,#330004 800px,#630000 1240px,#290608 1600px,#170f10 2070px);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+}
+
+.register-box h2 {
+    margin-bottom: 20px;
+}
+
+/* .register-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+} */
+
+.register-form {
+    width: 90%;
+    max-width: 550px;
+    margin: auto;
+}
+
+.register-form .form-label {
+    text-align: left;
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.register-form .form-control {
+    width: 100%;
+    background: transparent;
+    color: white;
+    border: none;
+    border-bottom: 2px solid white;
+    padding: 8px;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.register-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.register-form .form-control:focus {
+    border-bottom-color: crimson;
+    color: white;
+    box-shadow: none;
+}
+
+.email-section {
+    margin-top: -180px; /* Adjust this value to move the email section up */
+    position: relative; /* Ensure it doesn't get pushed too far down */
+    z-index: 3; /* Make sure it's above other elements */
+}
+
+.btn-register {
+    background: linear-gradient(to right, #ff1e1e, #b50000);
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 20px;
+    color: white;
+}
+
+.btn-register:hover {
+    background: linear-gradient(to right, #b50000, #ff1e1e);
+}
+
+.error-message {
+    font-size: 14px;
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.input-group {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 5px;
+}
+
+.input-group .form-select {
+    width: 10% !important;
+    min-width: 50px;
+    background: transparent !important;
+    color: white !important;
+    border: none !important;
+    border-bottom: 2px solid white !important;
+    border-radius: 0 !important;
+    padding: 8px !important;
+}
+
+.input-group .form-control {
+    flex-grow: 1 !important;
+    background: transparent !important;
+    color: white !important;
+    border: none !important;
+    border-bottom: 2px solid white !important;
+    border-radius: 0 !important;
+    padding: 8px !important;
+}
+
+#country-code {
+    width: 120px;
+    min-width: 120px;
+    text-align: left;
+    background-color: transparent !important;
+    color: white; /* Word Color*/
+    border: 1px solid white; 
+}
+
+#country-code option {
+    width: 500px !important;
+    color: white !important;
+    background-color: #330004 !important;
+    padding: 10px;
+}
+
