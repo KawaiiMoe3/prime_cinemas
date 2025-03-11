@@ -75,7 +75,11 @@
                             <i class="fa-solid fa-user"></i> Sign In
                         </a>
                     @endif
+                    <a href="https://github.com/KawaiiMoe3/prime_cinemas" target="_blank" class="text-white text-uppercase text-decoration-none px-3 py-1">
+                        <i class="fa-brands fa-github fa-lg"></i>
+                    </a>
                 </div>
+            </div>
         </div>
     </div>
 </nav>
