@@ -1,0 +1,108 @@
+.container.movies-container{
+    margin-top: 100px;
+    margin-bottom: 50px;
+    padding: 0 12px;
+}
+
+.row-top-popular-movies .col-top-popular-movies{
+    cursor: pointer;
+}
+
+.row-top-popular-movies .ct-title{
+    margin: 15px 0 !important;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    max-height: 3em;
+}
+
+.row-top-popular-movies .ct-movie-btn{
+    width: 100%;
+    background-color: white; 
+    color: #ff1e1e;
+    margin-top: auto;
+    padding: 12px 32px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px 25px 8px 25px;
+    transition: 0.2s ease-in-out;
+}
+
+.row-top-popular-movies .ct-movie-btn:hover{
+    background: linear-gradient(to right, #b50000, #ff1e1e);
+    color: white;
+}
+
+.row-normal-movies .c-movie-card {
+    padding: 0;
+    margin: 10px 5px;
+    width: 250px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: black;
+    border: 2px solid #b50000;
+    cursor: pointer;
+}
+
+.row-normal-movies .c-movie-img {
+    height: 370px;
+    background-size: cover;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.row-normal-movies .c-movie-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: black;
+    border-radius: 0 0 8px 8px;
+}
+
+.c-movie-title {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    max-height: 3em;
+    margin-bottom: auto;
+}
+
+.c-movie-btn {
+    background-color: white; 
+    color: #ff1e1e;
+    margin-top: auto;
+    padding: 12px 32px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px 25px 8px 25px;
+    transition: 0.2s ease-in-out;
+}
+
+.c-movie-btn:hover {
+    background: linear-gradient(to right, #b50000, #ff1e1e);
+    color: white;
+}

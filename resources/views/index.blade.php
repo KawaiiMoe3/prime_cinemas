@@ -368,6 +368,7 @@
         </div>
     </div>
 </div>
+<x-go-to-top-button />
 
 <!-- Stop video when trailer modal closes -->
 <script>
