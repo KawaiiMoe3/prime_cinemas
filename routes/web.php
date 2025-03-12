@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MoviesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,8 @@ Route::middleware(['authCheck'])->group(function () {
     })->name('dashboard');
 });
 
+// --------------------- Movies Routes ------------------ //
+Route::get('/movies/listing', [
+    MoviesController::class,
+    'showMovies'
+])->name('movies.listing');

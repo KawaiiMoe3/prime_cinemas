@@ -84,7 +84,7 @@
             </li>
         </ul>
         <div class="view-all-tab">
-            <button class="btn-viewall" onclick="window.location.href='#';">
+            <button class="btn-viewall" onclick="window.location.href='{{ route('movies.listing') }}';">
                 View all &nbsp;
                 <i class="fa-solid fa-greater-than"></i>
             </button>
@@ -368,6 +368,7 @@
         </div>
     </div>
 </div>
+<x-go-to-top-button />
 
 <!-- Stop video when trailer modal closes -->
 <script>

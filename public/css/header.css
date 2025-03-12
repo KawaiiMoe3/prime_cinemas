@@ -36,6 +36,10 @@ body{
     width: 100%; /* Expand from center */
 }
 
+.nav-link.header-item.active::before {
+    width: 100%; /* Full width underline when active */
+}
+
 .dropdown-item {
     color: white !important; /* Default text color */
     transition: color 0.2s ease-in-out; /* Smooth color change */
