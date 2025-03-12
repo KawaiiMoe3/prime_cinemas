@@ -8,6 +8,7 @@
 
 @section('content')
 <div class="container movies-container">
+    <!-- Tabs -->
     <div class="d-flex justify-content-between align-items-center">
         <ul class="nav m-tabs" id="myTab" role="tablist">
             <li class="nav-item tab-item" role="presentation">
@@ -33,205 +34,125 @@
         </ul>
         <div class="view-all-tab">
             <button class="btn-viewall" onclick="window.location.href='#';">
-                View all &nbsp;
-                <i class="fa-solid fa-greater-than"></i>
+                <i class="fa-solid fa-sliders"></i> &nbsp;
+                Filter By
             </button>
         </div>
     </div>
+
     <div class="tab-content py-4" id="myTabContent">
+        <!-- Tabs: Now Showing -->
         <div class="tab-pane fade show active" id="nowshowing-tab-pane" role="tabpanel" aria-labelledby="nowshowing-tab" tabindex="0">
             <!-- Top Popular Movies -->
             <div class="row justify-content-center g-4 row-top-popular-movies">
                 <!-- Left Poster (Bigger) -->
-                <div class="col-md-4 col-top-popular-movies">
-                    <div class="movie-card">
-                        <img src="{{ asset('images/m10.jpg') }}" class="img-fluid rounded" alt="Ne Zha 2">
-                        <p class="text-center fw-bold mt-2 ct-title">NE ZHA 2 哪吒之魔童闹海</p>
-                        <p>
-                            <a href="#" class="btn btn-primary ct-movie-btn">Book Now</a>
-                        </p>
+                @if($nowShowingTopFamousMovies->isNotEmpty())
+                    @foreach($nowShowingTopFamousMovies as $movie)
+                    <div class="col-md-4 col-top-popular-movies">
+                        <div class="movie-card">
+                            <img src="{{ asset('images/'.$movie->poster) }}" class="img-fluid rounded" alt="Ne Zha 2">
+                            <p class="text-center fw-bold mt-2 ct-title">{{ $movie->title }}</p>
+                            <p>
+                                <a href="#" class="btn btn-primary ct-movie-btn">Book Now</a>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 col-top-popular-movies">
-                    <div class="movie-card">
-                        <img src="{{ asset('images/m10.jpg') }}" class="img-fluid rounded" alt="Mickey 17">
-                        <p class="text-center fw-bold mt-2 ct-title">MICKEY 17</p>
-                        <p>
-                            <a href="#" class="btn ct-movie-btn">Book Now</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-top-popular-movies">
-                    <div class="movie-card">
-                        <img src="{{ asset('images/m10.jpg') }}" class="img-fluid rounded" alt="Mickey 17">
-                        <p class="text-center fw-bold mt-2 ct-title">MICKEY 17</p>
-                        <p>
-                            <a href="#" class="btn btn-primary ct-movie-btn">Book Now</a>
-                        </p>
-                    </div>
-                </div>
+                    @endforeach
+                @else
+                <p class="empty-movies">
+                    Top Famous Movies will be release soon. <br>
+                    👉👈
+                </p>
+                @endif
             </div>
 
             <!-- Normal Movies -->
             <div class="row row-normal-movies row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 py-5">
-                <div class="card c-movie-card">
-                    <img src="{{ asset('images/m1.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                    <div class="card-body c-movie-body">
-                        <p class="card-title c-movie-title">
-                            Attack On Titan: The Last Attack
-                        </p>
-                        <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
-                    </div>
-                </div>
-                <div class="card c-movie-card">
-                    <img src="{{ asset('images/m1.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                    <div class="card-body c-movie-body">
-                        <p class="card-title c-movie-title">
-                            Attack On Titan: The Last Attack
-                        </p>
-                        <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
-                    </div>
-                </div>
-                <div class="card c-movie-card">
-                    <img src="{{ asset('images/m1.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                    <div class="card-body c-movie-body">
-                        <p class="card-title c-movie-title">
-                            Attack 
-                        </p>
-                        <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
-                    </div>
-                </div>
-                <div class="card c-movie-card">
-                    <img src="{{ asset('images/m1.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                    <div class="card-body c-movie-body">
-                        <p class="card-title c-movie-title">
-                            Attack On Titan: The Last Attack
-                        </p>
-                        <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
-                    </div>
-                </div>
-                <div class="card c-movie-card">
-                    <img src="{{ asset('images/m1.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                    <div class="card-body c-movie-body">
-                        <p class="card-title c-movie-title">
-                            Attack On Titan: The Last Attack
-                        </p>
-                        <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
-                    </div>
-                </div>
-                <div class="card c-movie-card">
-                    <img src="{{ asset('images/m1.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                    <div class="card-body c-movie-body">
-                        <p class="card-title c-movie-title">
-                            Attack On Titan: The Last Attack
-                        </p>
-                        <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
-                    </div>
-                </div>
-                <div class="card c-movie-card">
-                    <img src="{{ asset('images/m1.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                    <div class="card-body c-movie-body">
-                        <p class="card-title c-movie-title">
-                            Attack On Titan: The Last Attack
-                        </p>
-                        <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
-                    </div>
-                </div>
+                @if($nowShowingMovies->isNotEmpty())
+                    @foreach($nowShowingMovies as $movie)
+                        <div class="card c-movie-card">
+                            <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
+                            <div class="card-body c-movie-body">
+                                <p class="card-title c-movie-title">{{ $movie->title }}</p>
+                                <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p class="empty-movies">
+                        No upcoming movies at the moment. Please wait for further announcements. Thank you. <br>
+                        👉👈
+                    </p>
+                @endif
             </div>
         </div>
+
+        <!-- Tabs: Kid Special -->
         <div class="tab-pane fade" id="kids-special-tab-pane" role="tabpanel" aria-labelledby="kids-special-tab" tabindex="0">
-            <div class="swiper movieSwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+            <!-- Normal Movies -->
+            <div class="row row-normal-movies row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 py-5">
+                @if($kidsSpecialMovies->isNotEmpty())
+                    @foreach($kidsSpecialMovies as $movie)
                         <div class="card c-movie-card">
-                            <img src="{{ asset('images/m6.jpg') }}" class="card-img-top c-movie-img" alt="...">
+                            <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                             <div class="card-body c-movie-body">
-                                <p class="card-title c-movie-title">
-                                    Mobile Suit Gundam GQUUUUUUX - Beginning-
-                                </p>
+                                <p class="card-title c-movie-title">{{ $movie->title }}</p>
                                 <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card c-movie-card">
-                            <img src="{{ asset('images/m4.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                            <div class="card-body c-movie-body">
-                                <p class="card-title c-movie-title">
-                                    Captain America: Brave New World
-                                </p>
-                                <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card c-movie-card">
-                            <img src="{{ asset('images/m9.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                            <div class="card-body c-movie-body">
-                                <p class="card-title c-movie-title">
-                                    Sonic The Hedgehog 3
-                                </p>
-                                <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card c-movie-card">
-                            <img src="{{ asset('images/m8.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                            <div class="card-body c-movie-body">
-                                <p class="card-title c-movie-title">
-                                    Paddington in peru
-                                </p>
-                                <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @else
+                    <p class="empty-movies">
+                        No upcoming movies at the moment. Please wait for further announcements. Thank you. <br>
+                        👉👈
+                    </p>
+                @endif
             </div>
         </div>
+
+        <!-- Tabs: Book Early -->
         <div class="tab-pane fade" id="bookearly-tab-pane" role="tabpanel" aria-labelledby="bookearly-tab" tabindex="0">
-            <div class="swiper movieSwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+            <!-- Normal Movies -->
+            <div class="row row-normal-movies row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 py-5">
+                @if($bookEarlyMovies->isNotEmpty())
+                    @foreach($bookEarlyMovies as $movie)
                         <div class="card c-movie-card">
-                            <img src="{{ asset('images/m9.jpg') }}" class="card-img-top c-movie-img" alt="...">
+                            <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                             <div class="card-body c-movie-body">
-                                <p class="card-title c-movie-title">
-                                    Sonic The Hedgehog 3
-                                </p>
+                                <p class="card-title c-movie-title">{{ $movie->title }}</p>
                                 <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    @endforeach
+                @else
+                    <p class="empty-movies">
+                        No upcoming movies at the moment. Please wait for further announcements. Thank you. <br>
+                        👉👈
+                    </p>
+                @endif
             </div>
         </div>
+
+        <!-- Tabs: Coming Soon -->
         <div class="tab-pane fade" id="comingsoon-tab-pane" role="tabpanel" aria-labelledby="comingsoon-tab" tabindex="0">
-            <div class="swiper movieSwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+            <!-- Normal Movies -->
+            <div class="row row-normal-movies row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 py-5">
+                @if($comingSoonMovies->isNotEmpty())
+                    @foreach($comingSoonMovies as $movie)
                         <div class="card c-movie-card">
-                            <img src="{{ asset('images/m10.jpg') }}" class="card-img-top c-movie-img" alt="...">
+                            <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                             <div class="card-body c-movie-body">
-                                <p class="card-title c-movie-title">
-                                    NE ZHA 2 哪吒之魔童闹海
-                                </p>
+                                <p class="card-title c-movie-title">{{ $movie->title }}</p>
                                 <a href="#" class="btn btn-primary c-movie-btn">More Info</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card c-movie-card">
-                            <img src="{{ asset('images/m11.jpg') }}" class="card-img-top c-movie-img" alt="...">
-                            <div class="card-body c-movie-body">
-                                <p class="card-title c-movie-title">
-                                    DEMON SLAYER: KIMETSU NO YAIBA INFINITY CASTLE
-                                </p>
-                                <a href="#" class="btn btn-primary c-movie-btn">More Info</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @else
+                    <p class="empty-movies">
+                        No upcoming movies at the moment. Please wait for further announcements. Thank you. <br>
+                        👉👈
+                    </p>
+                @endif
             </div>
         </div>
     </div>

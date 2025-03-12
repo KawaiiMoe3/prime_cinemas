@@ -16,7 +16,7 @@
     text-transform: uppercase;
     text-align: center;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -105,4 +105,17 @@
 .c-movie-btn:hover {
     background: linear-gradient(to right, #b50000, #ff1e1e);
     color: white;
+}
+
+.empty-movies{
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 200px; /* Adjust as needed */
+    width: 100%;
 }
