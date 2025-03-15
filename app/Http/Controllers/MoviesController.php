@@ -9,24 +9,22 @@ class MoviesController extends Controller
 {
     // Movies Listing
     function showMovies(){
+        $movies = Movies::whereIn('status', [
+            'now_showing', 
+            'kids_special', 
+            'book_early', 
+            'coming_soon'
+        ])
+        ->where('is_active', true)
+        ->get()
+        ->groupBy('status');
+
         $values = [
-            'nowShowingTopFamousMovies' => Movies::where('status', 'now_showing')
-                                                ->where('is_top_famous', true)
-                                                ->where('is_active', true)
-                                                ->get(),
-            'nowShowingMovies' => Movies::where('status', 'now_showing')
-                                        ->where('is_top_famous', false)
-                                        ->where('is_active', true)
-                                        ->get(),
-            'kidsSpecialMovies' => Movies::where('status', 'kids_special')
-                                        ->where('is_active', true)
-                                        ->get(),
-            'bookEarlyMovies' => Movies::where('status', 'book_early')
-                                        ->where('is_active', true)
-                                        ->get(),
-            'comingSoonMovies' => Movies::where('status', 'coming_soon')
-                                        ->where('is_active', true)
-                                        ->get(),
+            'nowShowingTopFamousMovies' => $movies->get('now_showing', collect())->where('is_top_famous', true),
+            'nowShowingMovies' => $movies->get('now_showing', collect())->where('is_top_famous', false),
+            'kidsSpecialMovies' => $movies->get('kids_special', collect()),
+            'bookEarlyMovies' => $movies->get('book_early', collect()),
+            'comingSoonMovies' => $movies->get('coming_soon', collect()),
         ];
 
         return view('movies.listing', $values);

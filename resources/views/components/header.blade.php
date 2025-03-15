@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-black bg-gradient bg-opacity-50 fixed-top">
     <div class="container">
         {{-- Logo --}}
-        <a class="navbar-brand fs-4" href="/">
+        <a class="navbar-brand fs-4" href="{{ route('index') }}">
             <img src="{{ asset('images/logo.png') }}" class="rounded-pill" style="width: 60px" alt="PrimeCinemas">
         </a>
         {{-- Toggle Btn --}}
@@ -75,7 +75,7 @@
                             </ul>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" class="text-white text-uppercase text-decoration-none px-3 py-1">
+                        <a href="{{ route('login') }}" class="text-white fw-bold text-uppercase text-decoration-none px-3 py-1">
                             <i class="fa-solid fa-user"></i> Sign In
                         </a>
                     @endif
