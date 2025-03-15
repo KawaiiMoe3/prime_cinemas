@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MoviesController;
 
@@ -17,9 +18,11 @@ use App\Http\Controllers\MoviesController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// --------------------- Index Routes ------------------ //
+Route::get('/', [
+    IndexController::class,
+    'index'
+])->name('index');
 
 // --------------------- Authentication Routes ------------------ //
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

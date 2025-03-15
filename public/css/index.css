@@ -188,3 +188,17 @@
         width: 220px;
     }
 }
+
+.empty-movies{
+    margin: 100px 0;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 200px; /* Adjust as needed */
+    width: 100%;
+}
