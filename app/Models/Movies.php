@@ -25,10 +25,11 @@ class Movies extends Model
 
         static::saving(function ($movie) {
             if ($movie->is_top_famous) {
-                // Count current top famous movies
-                $topFamousCount = self::where('is_top_famous', true)->count();
-
-                if ($topFamousCount >= 3 && !$movie->exists) {
+                $topFamousCount = self::where('is_top_famous', true)
+                                      ->where('id', '!=', $movie->id)
+                                      ->count();
+    
+                if ($topFamousCount >= 3) {
                     throw new \Exception('Only 3 movies can be top famous!');
                 }
             }
