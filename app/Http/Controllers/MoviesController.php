@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Movies;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Movies;
 
 class MoviesController extends Controller
 {
@@ -28,5 +29,23 @@ class MoviesController extends Controller
         ];
 
         return view('movies.listing', $values);
+    }
+
+    // Movies Details
+    function showMovieDetails($movieSlug){
+        // Convert slug back to title format and fetch for movie
+        $movie = Movies::get()->first(function ($m) use ($movieSlug) {
+            return Str::slug($m->title) === $movieSlug;
+        });
+
+        // Show 404 if no movie is found
+        if (!$movie) {
+            abort(404); 
+        }
+
+        $values = [
+            'movie' => $movie
+        ];
+        return view('movies.details', $values);
     }
 }

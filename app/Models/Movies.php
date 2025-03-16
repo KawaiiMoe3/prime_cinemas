@@ -14,8 +14,8 @@ class Movies extends Model
 
     protected $fillable = [
         'title', 'description', 'cast', 'director', 'subtitles', 'duration',
-        'release_date', 'language', 'genre', 'poster', 'trailer_url',
-        'status', 'rating', 'is_active', 'is_top_famous'
+        'release_date', 'language', 'genre', 'poster', 'bg_movie',
+        'trailer_url', 'status', 'rating', 'is_active', 'is_top_famous'
     ];
 
     // Maximum of 3 top famous movies

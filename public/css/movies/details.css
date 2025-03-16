@@ -1,0 +1,149 @@
+.movie-banner-bg img {
+    height: 50vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.movie-banner .movie-title{
+    margin: 15px 0;
+    font-weight: bold;
+    color: white;
+    font-size: 50px;
+}
+
+.movie-banner_info-holder{
+    display: flex;
+    align-items: center;
+}
+
+.movie-banner_info-holder .movie-banner_info-rating{
+    width: 32px;
+    height: 32px;
+}
+
+.movie-banner_info-holder .movie-banner_info-rating img{
+    width: 30px;
+    height: 30px;
+}
+
+.movie-banner_info-holder .movie-banner_info-text{
+    margin-left: 16px;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.movie-banner_info-text {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+}
+
+.movie-banner_info-text-group {
+    margin-left: 32px;
+    position: relative;
+}
+
+.movie-banner_info-text-group::before {
+    content: "|"; 
+    position: absolute;
+    left: -16px; /* Half of margin-left to center the separator */
+    color: white; /* Adjust color */
+}
+
+.movie-banner_info-text-group:first-child {
+    margin-left: 0;
+}
+
+.movie-banner_info-text-group:first-child::before {
+    content: none;
+}
+
+.movie-banner_info-cta{
+    margin-top: 40px;
+}
+
+.movie-banner_info-cta .btn-info{
+    background: black;
+    color: white;
+    margin: 0 5px 0;
+    padding: 12px 32px;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px solid white;
+    border-radius: 8px 25px 8px 25px;
+    transition: all 0.4s ease-in-out;
+}
+
+.movie-banner_info-cta .btn-info:hover{
+    background: black;
+    color: #ff1e1e;
+    border: 2px solid #ff1e1e;
+}
+
+.movie-banner_card{
+    margin: 20px 0 0;
+    background-color: transparent !important;
+    border: none;
+    box-shadow: none;
+}
+
+.movie-banner_info-synopsis .movie-banner_info-synopsis-header{
+    margin: 24px 0 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #8e8e8e;
+    font-size: 16px;
+}
+
+.movie-banner_info-synopsis .movie-banner_info-synopsis-content{
+    margin: 6px 0 0;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.movie-banner_info-more-holder{
+    display: flex;
+    gap: 40px;
+}
+
+.movie-banner_info-more-item{
+    width: auto;
+    min-width: 160px;
+}
+
+.movie-banner_info-more-item-header{
+    margin: 32px 0 0;
+    font-size: 16px;
+    color: #8e8e8e;
+    font-weight: bold;
+}
+
+.movie-banner_info-more-item-desc{
+    margin: 6px 0 0;
+    font-size: 16px;
+    color: white;
+}
+
+.btn-trailer-modal {
+    background: black;
+    color: white;
+    margin: 0 5px 0;
+    padding: 12px 32px;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px solid white;
+    border-radius: 8px 25px 8px 25px;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-trailer-modal:hover {
+    background: black;
+    color: #ff1e1e;
+    border: 2px solid #ff1e1e;
+}

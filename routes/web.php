@@ -45,3 +45,9 @@ Route::get('/movies/listing', [
     MoviesController::class,
     'showMovies'
 ])->name('movies.listing');
+
+Route::get('/movies/details/{movieSlug}', [
+    MoviesController::class,
+    'showMovieDetails'
+])->where('movieSlug', '[A-Za-z0-9\-]+')
+    ->name('movies.details');
