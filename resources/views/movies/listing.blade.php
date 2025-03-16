@@ -49,11 +49,13 @@
                 @if($nowShowingTopFamousMovies->isNotEmpty())
                     @foreach($nowShowingTopFamousMovies as $movie)
                     <div class="col-md-4 col-top-popular-movies">
-                        <div class="movie-card">
+                        <div class="movie-card" onclick="window.location.href='{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}'">
                             <img src="{{ asset('images/'.$movie->poster) }}" class="img-fluid rounded" alt="Ne Zha 2">
                             <p class="text-center fw-bold mt-2 ct-title">{{ $movie->title }}</p>
                             <p>
-                                <a href="#" class="btn btn-primary ct-movie-btn">Book Now</a>
+                                <a href="{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}" class="btn btn-primary ct-movie-btn">
+                                    Book Now
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -70,11 +72,11 @@
             <div class="row row-normal-movies row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 py-5">
                 @if($nowShowingMovies->isNotEmpty())
                     @foreach($nowShowingMovies as $movie)
-                        <div class="card c-movie-card">
+                        <div class="card c-movie-card" onclick="window.location.href='{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}'">
                             <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                             <div class="card-body c-movie-body">
                                 <p class="card-title c-movie-title">{{ $movie->title }}</p>
-                                <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
+                                <a href="{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}" class="btn btn-primary c-movie-btn">Book Now</a>
                             </div>
                         </div>
                     @endforeach
@@ -93,11 +95,11 @@
             <div class="row row-normal-movies row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 py-5">
                 @if($kidsSpecialMovies->isNotEmpty())
                     @foreach($kidsSpecialMovies as $movie)
-                        <div class="card c-movie-card">
+                        <div class="card c-movie-card" onclick="window.location.href='{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}'">
                             <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                             <div class="card-body c-movie-body">
                                 <p class="card-title c-movie-title">{{ $movie->title }}</p>
-                                <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
+                                <a href="{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}" class="btn btn-primary c-movie-btn">Book Now</a>
                             </div>
                         </div>
                     @endforeach
@@ -116,11 +118,11 @@
             <div class="row row-normal-movies row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 py-5">
                 @if($bookEarlyMovies->isNotEmpty())
                     @foreach($bookEarlyMovies as $movie)
-                        <div class="card c-movie-card">
+                        <div class="card c-movie-card" onclick="window.location.href='{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}'">
                             <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                             <div class="card-body c-movie-body">
                                 <p class="card-title c-movie-title">{{ $movie->title }}</p>
-                                <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
+                                <a href="{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}" class="btn btn-primary c-movie-btn">Book Now</a>
                             </div>
                         </div>
                     @endforeach
@@ -139,11 +141,11 @@
             <div class="row row-normal-movies row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 py-5">
                 @if($comingSoonMovies->isNotEmpty())
                     @foreach($comingSoonMovies as $movie)
-                        <div class="card c-movie-card">
+                        <div class="card c-movie-card" onclick="window.location.href='{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}'">
                             <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                             <div class="card-body c-movie-body">
                                 <p class="card-title c-movie-title">{{ $movie->title }}</p>
-                                <a href="#" class="btn btn-primary c-movie-btn">More Info</a>
+                                <a href="{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}" class="btn btn-primary c-movie-btn">More Info</a>
                             </div>
                         </div>
                     @endforeach

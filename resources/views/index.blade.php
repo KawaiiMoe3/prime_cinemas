@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
+
 @extends('layouts.index')
 
 @section('title', 'PrimeCinemas | Malaysia\'s Ultimate Movie Experience')
@@ -97,13 +101,15 @@
                     @if($nowShowingMovies->isNotEmpty())
                         @foreach($nowShowingMovies as $movie)
                         <div class="swiper-slide">
-                            <div class="card c-movie-card">
+                            <div class="card c-movie-card" onclick="window.location.href='{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}'">
                                 <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                                 <div class="card-body c-movie-body">
                                     <p class="card-title c-movie-title">
                                         {{ $movie->title }}
                                     </p>
-                                    <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
+                                    <a href="{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}" class="btn btn-primary c-movie-btn">
+                                        Book Now
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +131,7 @@
                     @if($kidsSpecialMovies->isNotEmpty())
                         @foreach($kidsSpecialMovies as $movie)
                         <div class="swiper-slide">
-                            <div class="card c-movie-card">
+                            <div class="card c-movie-card" onclick="window.location.href='{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}'">
                                 <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                                 <div class="card-body c-movie-body">
                                     <p class="card-title c-movie-title">
@@ -151,7 +157,7 @@
                     @if($bookEarlyMovies->isNotEmpty())
                         @foreach($bookEarlyMovies as $movie)
                         <div class="swiper-slide">
-                            <div class="card c-movie-card">
+                            <div class="card c-movie-card" onclick="window.location.href='{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}'">
                                 <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                                 <div class="card-body c-movie-body">
                                     <p class="card-title c-movie-title">
@@ -177,13 +183,13 @@
                     @if($comingSoonMovies->isNotEmpty())
                         @foreach($comingSoonMovies as $movie)
                         <div class="swiper-slide">
-                            <div class="card c-movie-card">
+                            <div class="card c-movie-card" onclick="window.location.href='{{ route('movies.details', ['movieSlug' => Str::slug($movie->title)]) }}'">
                                 <img src="{{ asset('images/'.$movie->poster) }}" class="card-img-top c-movie-img" alt="{{ $movie->title }}">
                                 <div class="card-body c-movie-body">
                                     <p class="card-title c-movie-title">
                                         {{ $movie->title }}
                                     </p>
-                                    <a href="#" class="btn btn-primary c-movie-btn">Book Now</a>
+                                    <a href="#" class="btn btn-primary c-movie-btn">More Info</a>
                                 </div>
                             </div>
                         </div>

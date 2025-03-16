@@ -4,7 +4,7 @@
     padding: 0 12px;
 }
 
-.row-top-popular-movies .col-top-popular-movies{
+.row-top-popular-movies .movie-card{
     cursor: pointer;
 }
 
