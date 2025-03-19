@@ -15,6 +15,9 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
 
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
@@ -42,6 +45,8 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <!-- Swiper JS -->
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <!-- index JS -->
     <script src="{{ asset('js/index.js') }}"></script>
     @yield('scripts')
