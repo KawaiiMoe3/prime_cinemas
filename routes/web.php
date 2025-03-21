@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\CinemasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,9 @@ Route::get('/movies/details/{movieSlug}', [
     'showMovieDetails'
 ])->where('movieSlug', '[A-Za-z0-9\-]+')
     ->name('movies.details');
+
+// --------------------- Cinemas Routes ------------------ //
+Route::get('/cinemas', [
+    CinemasController::class,
+    'showCinemas'
+])->name('cinemas');

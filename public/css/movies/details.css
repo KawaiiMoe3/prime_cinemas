@@ -147,3 +147,68 @@
     color: #ff1e1e;
     border: 2px solid #ff1e1e;
 }
+
+.showtime-container .showtime-tabs{
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.row-showtime-movies{
+    margin-top: 15px;
+}
+
+.showtime-tab-title{
+    color: #8e8e8e;
+    font-weight: bold;
+}
+
+.showtime-container {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.accordion-item {
+    background-color: transparent !important;
+    color: white;
+    border: none;
+}
+
+.accordion-header .accordion-button{
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+}
+
+.accordion-button::after {
+    content: "\f067";
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    background-image: none !important;
+    transform: none !important;
+    transition: none !important;
+    border: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+    content: "\f068";
+}
+
+.showtime-card{
+    display: block;
+    text-decoration: none;
+    background: #454545;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px 25px 8px 25px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.showtime-card:hover{
+    background: #5c5c5c;
+}
+
+.showtime-card-line{
+    border-top: 2px solid white;
+}

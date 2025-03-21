@@ -115,6 +115,154 @@
         </div>
     </div>
 </div>
+
+<!-- Tabs -->
+<div class="container showtime-container">
+    <div class="d-flex justify-content-between align-items-center showtime-tabs">
+        <ul class="nav m-tabs" id="myTab" role="tablist">
+            <li class="nav-item tab-item" role="presentation">
+                <button class="nav-link btn-tab-item active" id="movie-showing-time1-tab" data-bs-toggle="tab" data-bs-target="#movie-showing-time1-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                    Today
+                    20 Mar
+                </button>
+            </li>
+            <li class="nav-item tab-item" role="presentation">
+                <button class="nav-link btn-tab-item" id="movie-showing-time2-tab" data-bs-toggle="tab" data-bs-target="#movie-showing-time2-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+                    Fri
+                    21 Mar
+                </button>
+            </li>
+        </ul>
+    </div>
+
+
+    <p class="showtime-tab-title">Select Cinema & Time</p>
+    <div class="tab-content" id="myTabContent">
+        <!-- Movie Showing Time1 -->
+        <div class="tab-pane fade show active" id="movie-showing-time1-tab-pane" role="tabpanel" aria-labelledby="movie-showing-time1-tab" tabindex="0">
+            <div class="row">
+                <div class="col-12"> <!-- Ensures full width inside the row -->
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Kuala Lumpur - MyTown
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 showtime-container">
+                                        <div class="col">
+                                            <a href="#" class="showtime-card">
+                                                <div>10:10PM</div>
+                                                <hr class="showtime-card-line">
+                                                <div>2D</div>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <div class="showtime-card">
+                                                <div>10:25PM</div>
+                                                <hr class="showtime-card-line">
+                                                <div>PREMIERE</div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="showtime-card">
+                                                <div>11:00PM</div>
+                                                <hr class="showtime-card-line">
+                                                <div>2D</div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="showtime-card">
+                                                <div>11:00PM</div>
+                                                <hr class="showtime-card-line">
+                                                <div>2D</div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="showtime-card">
+                                                <div>11:00PM</div>
+                                                <hr class="showtime-card-line">
+                                                <div>2D</div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="showtime-card">
+                                                <div>11:00PM</div>
+                                                <hr class="showtime-card-line">
+                                                <div>2D</div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="showtime-card">
+                                                <div>11:00PM</div>
+                                                <hr class="showtime-card-line">
+                                                <div>2D</div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="showtime-card">
+                                                <div>11:00PM</div>
+                                                <hr class="showtime-card-line">
+                                                <div>2D</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    Kuala Lumpur - Mid Valley Megamall
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    This is the second item's accordion body. It also starts open but can be collapsed.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Movie Showing Time2 -->
+        <div class="tab-pane fade" id="movie-showing-time2-tab-pane" role="tabpanel" aria-labelledby="movie-showing-time2-tab" tabindex="0">
+            <div class="row">
+                <div class="col-12"> <!-- Ensures full width inside the row -->
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Accordion Item #1
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    This is the first item's accordion body. It starts open, but you can click to collapse it.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    Accordion Item #2
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    This is the second item's accordion body. It also starts open but can be collapsed.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <x-go-to-top-button />
 @endsection
 
