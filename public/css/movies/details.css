@@ -157,6 +157,42 @@
     margin-top: 15px;
 }
 
+.showtime-filter {
+    margin: 0 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #8e8e8e;
+    font-weight: bold;
+}
+
+.region-filter {
+    display: flex;
+    align-items: center;
+}
+
+.region-filter label {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+#region-select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    width: 120px;
+}
+
+#region-select option {
+    background: black;
+    color: white;
+    text-transform: uppercase;
+}
+
 .showtime-tab-title{
     color: #8e8e8e;
     font-weight: bold;

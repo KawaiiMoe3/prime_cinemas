@@ -116,7 +116,7 @@
     </div>
 </div>
 
-<!-- Tabs -->
+<!-- Date Tabs -->
 <div class="container showtime-container">
     <div class="d-flex justify-content-between align-items-center showtime-tabs">
         <ul class="nav m-tabs" id="myTab" role="tablist">
@@ -135,8 +135,25 @@
         </ul>
     </div>
 
-
-    <p class="showtime-tab-title">Select Cinema & Time</p>
+    <!-- Cinemas Filter -->
+    <div class="showtime-filter">
+        <p class="showtime-tab-title">Select Cinemas & Time</p>
+        <div class="region-filter">
+            <label for="region-select">Regions:</label>
+            <select id="region-select">
+                <option value="all">All</option>
+                <option value="north">North</option>
+                <option value="south">South</option>
+                <option value="east">East</option>
+                <option value="west">West</option>
+                <option value="extra1">Extra 1</option>
+                <option value="extra2">Extra 2</option>
+                <option value="extra3">Extra 3</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Movie Showing Times -->
     <div class="tab-content" id="myTabContent">
         <!-- Movie Showing Time1 -->
         <div class="tab-pane fade show active" id="movie-showing-time1-tab-pane" role="tabpanel" aria-labelledby="movie-showing-time1-tab" tabindex="0">

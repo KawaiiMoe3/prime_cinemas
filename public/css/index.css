@@ -189,16 +189,27 @@
     }
 }
 
-.empty-movies{
+.empty-movies {
     margin: 100px 0;
     color: white;
     font-weight: bold;
     font-size: 22px;
     text-transform: uppercase;
     display: flex;
+    flex-direction: column; /* Stack items vertically */
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 200px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
     width: 100%;
+}
+
+.empty-movies img {
+    width: 250px; /* Adjust size as needed */
+    height: 250px;
+    margin-bottom: 10px; /* Adds space between the image and the text */
+}
+
+.empty-movies-content {
+    margin: 0;
 }
