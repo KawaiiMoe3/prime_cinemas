@@ -140,16 +140,20 @@
         <p class="showtime-tab-title">Select Cinemas & Time</p>
         <div class="region-filter">
             <label for="region-select">Regions:</label>
-            <select id="region-select">
-                <option value="all">All</option>
-                <option value="north">North</option>
-                <option value="south">South</option>
-                <option value="east">East</option>
-                <option value="west">West</option>
-                <option value="extra1">Extra 1</option>
-                <option value="extra2">Extra 2</option>
-                <option value="extra3">Extra 3</option>
-            </select>
+            <div class="custom-dropdown">
+                <div class="selected-option">
+                    <span id="selected-text">All</span>
+                    <span class="caret-icon"><i class="fa-solid fa-caret-down"></i></span>
+                </div>
+                <ul class="dropdown-options">
+                    <li data-value="all" class="active">All</li>
+                    <li data-value="east-coast">East Coast</li>
+                    <li data-value="east-malaysia">East Malaysia</li>
+                    <li data-value="klang-valley">Klang Valley</li>
+                    <li data-value="northern">Northern</li>
+                </ul>
+            </div>
+            <input type="hidden" name="region" id="region-select" value="all">
         </div>
     </div>
     

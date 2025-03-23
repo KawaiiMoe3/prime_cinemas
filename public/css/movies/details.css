@@ -166,9 +166,21 @@
     font-weight: bold;
 }
 
+#region-select {
+    position: relative;
+    z-index: 9999;
+}
+
+#region-select option {
+    position: relative;
+    z-index: 9999;
+}
+
 .region-filter {
     display: flex;
     align-items: center;
+    position: relative;
+    z-index: 1000;
 }
 
 .region-filter label {
@@ -176,22 +188,61 @@
     font-size: 16px;
 }
 
-#region-select {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid white;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
-    width: 120px;
+/* Dropdown container */
+.custom-dropdown {
+    position: relative;
+    width: 200px;
+    font-family: Arial, sans-serif;
+    display: inline-block;
 }
 
-#region-select option {
+/* Selected Option */
+.selected-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    color: white;
+    text-transform: uppercase;
+    padding: 0 5px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Dropdown List */
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
     background: black;
     color: white;
     text-transform: uppercase;
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto; /* Enable scrolling */
+    border-radius: 0 0 0 10px;
 }
+
+/* Scrollable Options */
+.dropdown-options li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-options li:hover {
+    background: #5c5c5c;
+}
+
+/* Highlight active selection */
+.dropdown-options .active {
+    background: #ff1e1e;
+    font-weight: bold;
+}
+
 
 .showtime-tab-title{
     color: #8e8e8e;
