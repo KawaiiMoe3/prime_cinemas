@@ -10,6 +10,12 @@
 <div class="movie-banner">
     <div class="movie-banner-bg">
         <img src="{{ asset('images/'.($movie->bg_movie ?? 'bg_movie_default.jpg')) }}" class="d-block w-100">
+        <div class="movie-banner_back-btn">
+            <button class="btn-back" onclick="history.back()">
+                <i class="fa-solid fa-caret-left"></i> &nbsp;
+                Back
+            </button>
+        </div>
     </div>
     <div class="container">
         <p class="movie-title">{{ $movie->title }}</p>
@@ -119,19 +125,8 @@
 <!-- Date Tabs -->
 <div class="container showtime-container">
     <div class="d-flex justify-content-between align-items-center showtime-tabs">
-        <ul class="nav m-tabs" id="myTab" role="tablist">
-            <li class="nav-item tab-item" role="presentation">
-                <button class="nav-link btn-tab-item active" id="movie-showing-time1-tab" data-bs-toggle="tab" data-bs-target="#movie-showing-time1-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                    Today
-                    20 Mar
-                </button>
-            </li>
-            <li class="nav-item tab-item" role="presentation">
-                <button class="nav-link btn-tab-item" id="movie-showing-time2-tab" data-bs-toggle="tab" data-bs-target="#movie-showing-time2-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-                    Fri
-                    21 Mar
-                </button>
-            </li>
+        <ul class="nav m-tabs" id="movieShowtimeDateTab" role="tablist">
+            
         </ul>
     </div>
 

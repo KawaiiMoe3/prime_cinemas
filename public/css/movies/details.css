@@ -1,8 +1,40 @@
+.movie-banner-bg {
+    position: relative; /* Ensures child elements are positioned relative to this */
+}
+
 .movie-banner-bg img {
     height: 50vh;
     width: 100%;
     object-fit: cover;
 }
+
+.movie-banner_back-btn {
+    position: absolute;
+    top: 100px; /* Adjust this to move the button vertically */
+    left: 20px; /* Adjust this to move the button horizontally */
+    z-index: 10; /* Ensure it appears above the image */
+}
+
+.btn-back {
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent black background */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+.btn-back:hover {
+    background: rgba(0, 0, 0, 0.6);
+    color: #ff1e1e;
+}
+
 
 .movie-banner .movie-title{
     margin: 15px 0;

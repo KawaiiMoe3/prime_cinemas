@@ -1,61 +1,103 @@
-// More or Less info button
-document.addEventListener("DOMContentLoaded", function() {
-    const toggleButton = document.getElementById("toggleButton");
-    const btnMoreLessInfo = toggleButton.querySelector(".btn-more-less-info");
-    const btnIcon = toggleButton.querySelector("i");
-
-    document.getElementById("collapseMovieSynopsis").addEventListener("show.bs.collapse", function () {
-        btnMoreLessInfo.textContent = "Less Info";
-        btnIcon.classList.replace("fa-caret-down", "fa-caret-up"); // Change to up arrow
-    });
-
-    document.getElementById("collapseMovieSynopsis").addEventListener("hide.bs.collapse", function () {
-        btnMoreLessInfo.textContent = "More Info";
-        btnIcon.classList.replace("fa-caret-up", "fa-caret-down"); // Change to down arrow
-    });
+$(document).ready(function () {
+    moreLessInfoButton();
+    watchTrailerButton();
+    customDropdown();
+    loadMovieShowtimeDates();
 });
 
-// Watch Trailer button
-document.addEventListener('DOMContentLoaded', function () {
-    let trailerModal = document.getElementById('trailerModal');
-    let youtubePlayer = document.getElementById('youtubePlayer');
-    
-    trailerModal.addEventListener('hide.bs.modal', function () {
-        youtubePlayer.src = youtubePlayer.src; // Reset the iframe src to stop the video
-    });
-});
+// More or Less Info Button
+function moreLessInfoButton() {
+    const $toggleButton = $("#toggleButton");
+    const $btnMoreLessInfo = $toggleButton.find(".btn-more-less-info");
+    const $btnIcon = $toggleButton.find("i");
+    const $collapseMovieSynopsis = $("#collapseMovieSynopsis");
 
-// Custom select options dropdown
-document.addEventListener("DOMContentLoaded", function () {
-    const dropdown = document.querySelector(".custom-dropdown");
-    const selectedOption = dropdown.querySelector(".selected-option");
-    const selectedText = dropdown.querySelector("#selected-text");
-    const optionsList = dropdown.querySelector(".dropdown-options");
-    const hiddenInput = document.getElementById("region-select");
+    $collapseMovieSynopsis.on("show.bs.collapse", function () {
+        $btnMoreLessInfo.text("Less Info");
+        $btnIcon.removeClass("fa-caret-down").addClass("fa-caret-up");
+    });
+
+    $collapseMovieSynopsis.on("hide.bs.collapse", function () {
+        $btnMoreLessInfo.text("More Info");
+        $btnIcon.removeClass("fa-caret-up").addClass("fa-caret-down");
+    });
+}
+
+// Watch Trailer Button
+function watchTrailerButton() {
+    const $trailerModal = $("#trailerModal");
+    const $youtubePlayer = $("#youtubePlayer");
+
+    $trailerModal.on("hide.bs.modal", function () {
+        $youtubePlayer.attr("src", $youtubePlayer.attr("src")); // Reset the iframe src to stop the video
+    });
+}
+
+// Custom Select Options Dropdown
+function customDropdown() {
+    const $dropdown = $(".custom-dropdown");
+    const $selectedOption = $dropdown.find(".selected-option");
+    const $selectedText = $("#selected-text");
+    const $optionsList = $dropdown.find(".dropdown-options");
+    const $hiddenInput = $("#region-select");
 
     // Toggle dropdown on click
-    selectedOption.addEventListener("click", function () {
-        optionsList.style.display = optionsList.style.display === "block" ? "none" : "block";
+    $selectedOption.on("click", function () {
+        $optionsList.fadeToggle(150); // Smooth animation
     });
 
     // Select an option
-    optionsList.querySelectorAll("li").forEach(option => {
-        option.addEventListener("click", function () {
-            selectedText.textContent = this.textContent;
-            hiddenInput.value = this.dataset.value;
+    $optionsList.on("click", "li", function () {
+        $selectedText.text($(this).text());
+        $hiddenInput.val($(this).data("value"));
 
-            // Remove active class from all and add to selected
-            optionsList.querySelectorAll("li").forEach(li => li.classList.remove("active"));
-            this.classList.add("active");
+        $optionsList.find("li").removeClass("active");
+        $(this).addClass("active");
 
-            optionsList.style.display = "none";
-        });
+        $optionsList.fadeOut(150);
     });
 
     // Close dropdown when clicking outside
-    document.addEventListener("click", function (e) {
-        if (!dropdown.contains(e.target)) {
-            optionsList.style.display = "none";
+    $(document).on("click", function (e) {
+        if (!$dropdown.is(e.target) && $dropdown.has(e.target).length === 0) {
+            $optionsList.fadeOut(150);
         }
     });
-});
+}
+
+// Load Movie Showtime Dates from API
+function loadMovieShowtimeDates() {
+    $.ajax({
+        url: "/dates",
+        type: "GET",
+        dataType: "json",
+        success: function (dates) {
+            if (!Array.isArray(dates) || dates.length === 0) {
+                console.warn("No dates available.");
+                $("#movieShowtimeDateTab").html("<li class='nav-item'><span>No showtimes available.</span></li>");
+                return;
+            }
+
+            let html = dates.map((date, index) => `
+                <li class="nav-item tab-item" role="presentation">
+                    <button class="nav-link btn-tab-item ${index === 0 ? 'active' : ''}" 
+                            id="movie-showing-time${index + 1}-tab"
+                            data-bs-toggle="tab" 
+                            data-bs-target="#movie-showing-time${index + 1}-tab-pane"
+                            type="button" 
+                            role="tab" 
+                            aria-controls="movie-showing-time${index + 1}-tab-pane" 
+                            aria-selected="${index === 0 ? 'true' : 'false'}">
+                        ${date.is_today ? "Today" : date.day} <br> ${date.date} ${date.month}
+                    </button>
+                </li>
+            `).join("");
+
+            $("#movieShowtimeDateTab").html(html);
+        },
+        error: function (xhr, status, error) {
+            console.error("Failed to load dates:", status, error);
+            $("#movieShowtimeDateTab").html("<li class='nav-item'><span>Error loading showtimes.</span></li>");
+        }
+    });
+}

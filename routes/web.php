@@ -7,6 +7,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\CinemasController;
+use App\Http\Controllers\DateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,10 @@ Route::get('/cinemas', [
     CinemasController::class,
     'showCinemas'
 ])->name('cinemas');
+
+// --------------------- API Endpoints ------------------ //
+// Movie Showtime Date API
+Route::get('/dates', [
+    DateController::class, 
+    'getDates'
+])->name('dates');
