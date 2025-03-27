@@ -1,0 +1,87 @@
+/* Match the starry background */
+.food-drinks-container {
+    margin-top: 100px;
+    background: url('/images/starry-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    padding: 2rem 0;
+    position: relative;
+}
+
+/* Moon graphic (if desired) */
+.food-drinks-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 500px;
+    height: 500px;
+    background: url('/images/moon.png') no-repeat center;
+    background-size: contain;
+    opacity: 0.3;
+}
+
+/* Style for food cards */
+.c-food-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.c-food-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.c-food-img {
+    aspect-ratio: 1 / 1; /* Square images for food items */
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+}
+
+.c-food-body {
+    padding: 1rem;
+    text-align: center;
+}
+
+.c-food-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.c-food-price {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.c-food-btn {
+    background-color: #e50914; /* Match the red button color */
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.c-food-btn:hover {
+    background-color: #c40812;
+}
+
+/* Empty state message */
+.empty-items {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ccc;
+    padding: 2rem;
+}
+
+/* Ensure filter button is above the moon graphic */
+.view-all-tab {
+    z-index: 10;
+    position: relative;
+}
