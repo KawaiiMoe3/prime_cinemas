@@ -67,8 +67,15 @@ function customDropdown() {
 
 // Load Movie Showtime Dates from API
 function loadMovieShowtimeDates() {
+    const movieId = $("#movieShowtimeWrapper").data("movie-id");
+
+    if (!movieId) {
+        console.warn("Movie ID is missing");
+        return;
+    }
+
     $.ajax({
-        url: "/dates",
+        url: `/dates?movie_id=${movieId}`,
         type: "GET",
         dataType: "json",
         success: function (dates) {
@@ -81,23 +88,94 @@ function loadMovieShowtimeDates() {
             let html = dates.map((date, index) => `
                 <li class="nav-item tab-item" role="presentation">
                     <button class="nav-link btn-tab-item ${index === 0 ? 'active' : ''}" 
-                            id="movie-showing-time${index + 1}-tab"
-                            data-bs-toggle="tab" 
-                            data-bs-target="#movie-showing-time${index + 1}-tab-pane"
-                            type="button" 
-                            role="tab" 
-                            aria-controls="movie-showing-time${index + 1}-tab-pane" 
-                            aria-selected="${index === 0 ? 'true' : 'false'}">
+                            data-date="${date.full_date}"
+                            type="button">
                         ${date.is_today ? "Today" : date.day} <br> ${date.date} ${date.month}
                     </button>
                 </li>
             `).join("");
 
             $("#movieShowtimeDateTab").html(html);
+
+            // Load first tab's showtimes
+            loadShowtimesForDate(movieId, dates[0].full_date);
+
+            // Handle tab click
+            $(".btn-tab-item").click(function () {
+                $(".btn-tab-item").removeClass("active");
+                $(this).addClass("active");
+
+                const selectedDate = $(this).data("date");
+                loadShowtimesForDate(movieId, selectedDate);
+            });
         },
         error: function (xhr, status, error) {
             console.error("Failed to load dates:", status, error);
             $("#movieShowtimeDateTab").html("<li class='nav-item'><span>Error loading showtimes.</span></li>");
         }
     });
+}
+
+function loadShowtimesForDate(movieId, date) {
+    $.ajax({
+        url: `/api/showtimes?movie_id=${movieId}&date=${date}`,
+        type: "GET",
+        dataType: "json",
+        success: function (showtimes) {
+            const filteredShowtimes = showtimes.filter(st => st.show_date === date);
+        
+            if (!filteredShowtimes.length) {
+                const emptyHtml = `
+                    <div class="empty-movies text-center">
+                        <img src="/images/movie-unavailable.svg" alt="No Movies" style="max-width: 250px; margin: 20px auto;">
+                        <p class="empty-movies-content text-white">
+                            Showtimes not available <br>
+                            Please wait for further announcements. Thank you. <br>
+                            👉👈
+                        </p>
+                    </div>
+                `;
+                $("#accordionPanelsStayOpenExample").html(emptyHtml);
+                return;
+            }
+        
+            const accordion = `
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true">
+                            ${date}
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 showtime-container">
+                                ${filteredShowtimes.map(st => `
+                                    <div class="col">
+                                        <a href="#" class="showtime-card text-decoration-none">
+                                            <div>${formatTime(st.show_time)}</div>
+                                            <hr class="showtime-card-line">
+                                            <div class="text-uppercase">${st.hall_type}</div>
+                                        </a>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        
+            $("#accordionPanelsStayOpenExample").html(accordion);
+        },
+        error: function () {
+            $("#accordionPanelsStayOpenExample").html("<p>Error loading showtimes.</p>");
+        }
+    });
+}
+
+function formatTime(timeStr) {
+    const [hour, minute] = timeStr.split(":");
+    let h = parseInt(hour);
+    const ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12 || 12;
+    return `${h}:${minute}${ampm}`;
 }

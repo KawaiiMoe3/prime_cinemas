@@ -61,8 +61,7 @@ Route::get('/cinemas', [
 ])->name('cinemas');
 
 // --------------------- API Endpoints ------------------ //
-// Movie Showtime Date API
-Route::get('/dates', [
-    DateController::class, 
-    'getDates'
-])->name('dates');
+// Dynamic Date Tabs Generated API
+Route::get('/dates', [DateController::class, 'getDates']);
+// Movie Showtimes API
+Route::get('/api/showtimes', [MoviesController::class, 'getShowtimes']);
