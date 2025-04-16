@@ -79,10 +79,3 @@ Route::get('/profile/my-orders', function () {
 })->name('profile.my_orders');
 
 Route::get('/profile/my-orders', [OrderController::class, 'index'])->name('profile.my_orders');
-
-Route::get('/profile/my-wallet', function () {
-    return view('profile.my_wallet');
-})->name('profile.my_wallet');
-
-Route::post('/add-voucher', [VoucherController::class, 'addVoucher'])->name('voucher.add');
-Route::get('/profile/my-wallet', [VoucherController::class, 'index'])->name('profile.my_wallet');

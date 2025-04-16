@@ -63,7 +63,6 @@
                             <ul class="dropdown-menu bg-black" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href=" {{ route('profile.my_profile') }} ">My Profile</a></li>
                                 <li><a class="dropdown-item" href=" {{ route('profile.my_orders') }} ">My Orders</a></li>
-                                <li><a class="dropdown-item" href=" {{ route('profile.my_wallet') }} ">My Wallet</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">

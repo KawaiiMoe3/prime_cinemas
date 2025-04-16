@@ -225,10 +225,54 @@ function initTooltips() {
 }
 
 /* --------------------Profile Edit & Content-------------------- */
+const stateDistrictData = {
+    "Kuala Lumpur": ["Kepong", "Batu", "Cheras"],
+    "Johor": ["Johor Bahru", "Muar", "Batu Pahat"],
+    "Kedah": ["Alor Setar", "Sungai Petani", "Kulim"],
+    "Kelantan": ["Kota Bharu", "Pasir Mas", "Tumpat"],
+    "Melaka": ["Melaka Tengah", "Alor Gajah", "Jasin"],
+    "Negeri Sembilan": ["Seremban", "Port Dickson", "Tampin"],
+    "Pahang": ["Kuantan", "Temerloh", "Bentong"],
+    "Penang": ["George Town", "Seberang Perai", "Bayan Lepas"],
+    "Perak": ["Ipoh", "Taiping", "Batu Gajah"],
+    "Perlis": ["Kangar", "Arau", "Padang Besar"],
+    "Sabah": ["Kota Kinabalu", "Sandakan", "Tawau"],
+    "Sarawak": ["Kuching", "Miri", "Sibu"],
+    "Selangor": ["Shah Alam", "Petaling Jaya", "Klang"],
+    "Terengganu": ["Kuala Terengganu", "Dungun", "Kemaman"]
+};
+
+function updateDistrictOptions() {
+    const stateSelect = document.getElementById("state-input");
+    const districtSelect = document.getElementById("district-input");
+
+    if (!stateSelect || !districtSelect) return;
+
+    districtSelect.innerHTML = '<option value="">Select District</option>';
+    const selectedState = stateSelect.value;
+
+    if (stateDistrictData[selectedState]) {
+        stateDistrictData[selectedState].forEach(district => {
+            districtSelect.innerHTML += `<option value="${district}">${district}</option>`;
+        });
+    } else {
+        console.warn(`No districts found for state: ${selectedState}`);
+        districtSelect.innerHTML = '<option value="">No districts available</option>';
+    }
+
+    if (districtSelect.dataset.selected) {
+        districtSelect.value = districtSelect.dataset.selected;
+    }
+}
+
 function initProfileEdit() {
+    const container = document.getElementById("profile-info");
+    if (!container) return;
+
     const editButton = document.querySelector(".edit-btn");
-    const saveButton = document.getElementById("save-btn");
-    const cancelButton = document.getElementById("cancel-btn");
+    const saveButton = container.querySelector("#save-btn");
+    const cancelButton = container.querySelector("#cancel-btn");
+
     let initialValues = {};
 
     if (editButton) editButton.addEventListener("click", toggleEdit);
@@ -239,32 +283,32 @@ function initProfileEdit() {
         event.preventDefault();
         initialValues = getCurrentValues();
         toggleFields(true);
-        populateFields();
+        populateEditFields();
     }
 
-    function populateFields() {
-        const nameValue = document.getElementById("name-value").textContent.trim();
-        const dobValue = document.getElementById("dob-value").textContent.trim();
-        const stateValue = document.getElementById("state-value").dataset.selected;
-        const districtValue = document.getElementById("district-value").dataset.selected;
-        const genderValue = document.getElementById("gender-value").textContent.trim();
-    
-        document.getElementById("name-input").value = nameValue !== 'N/A' ? nameValue : '';
-        document.getElementById("dob-input").value = dobValue !== 'N/A' ? dobValue : '';
-        
-        document.getElementById("state-input").value = stateValue || '';
-        document.getElementById("district-input").value = districtValue || '';
-    
-        document.querySelectorAll(".gender-btn").forEach(btn => {
+    function populateEditFields() {
+        const usernameDisplay = container.querySelector("#name-value").textContent.trim();
+        const dobDisplay = container.querySelector("#dob-value").textContent.trim();
+        const stateDisplay = container.querySelector("#state-value").dataset.selected;
+        const districtDisplay = container.querySelector("#district-value").dataset.selected;
+        const genderDisplay = container.querySelector("#gender-value").textContent.trim();
+
+        container.querySelector("#name-input").value = usernameDisplay !== 'N/A' ? usernameDisplay : '';
+        container.querySelector("#dob-input").value = dobDisplay !== 'N/A' ? dobDisplay : '';
+        container.querySelector("#state-input").value = stateDisplay || '';
+
+        updateDistrictOptions();
+        container.querySelector("#district-input").value = districtDisplay || '';
+
+        container.querySelectorAll(".gender-btn").forEach(btn => {
             btn.classList.remove("selected-gender");
-            if (btn.textContent.trim() === (genderValue || 'N/A')) {
+            if (btn.textContent.trim() === (genderDisplay || 'N/A')) {
                 btn.classList.add("selected-gender");
             }
         });
     }
 
     function cancelEdit() {
-        restoreValues(initialValues);
         toggleFields(false);
     }
 
@@ -275,58 +319,41 @@ function initProfileEdit() {
         saveToDatabase(updatedValues);
     }
 
-    function getCurrentValues() {
-        return {
-            name: document.getElementById("name-input").value.trim(),
-            dob: document.getElementById("dob-input").value.trim(),
-            state: document.getElementById("state-input").value,
-            district: document.getElementById("district-input").value,
-            gender: document.querySelector(".gender-btn.selected-gender")?.textContent || "N/A"
-        };
-    }
-
-    function restoreValues(values) {
-        document.getElementById("name-input").value = values.name || '';
-        document.getElementById("dob-input").value = values.dob || '';
-    
-        document.getElementById("state-input").value = values.state || '';
-    
-        if (values.state) {
-            updateDistrictOptions();
-            setTimeout(() => { 
-                document.getElementById("district-input").value = values.district || '';
-            }, 50);
-        } else {
-            document.getElementById("district-input").innerHTML = '<option value="">Select District</option>';
-        }
-    
-        document.querySelectorAll(".gender-btn").forEach(btn => {
-            btn.classList.remove("selected-gender");
-            if (btn.textContent === (values.gender || 'N/A')) {
-                btn.classList.add("selected-gender");
-            }
-        });
-    }
-
     function toggleFields(isEditing) {
-        document.querySelectorAll('.profile-contact__block-content-value').forEach(value => 
+        container.querySelectorAll('.profile-contact__block-content-value').forEach(value => 
             value.classList.toggle('d-none', isEditing)
         );
-        document.querySelectorAll('.profile-edit-field, .profile-edit-gender-field').forEach(field => 
+
+        container.querySelectorAll('.profile-edit-field, .profile-edit-gender-field').forEach(field => 
             field.classList.toggle('d-none', !isEditing)
         );
-    
+
         editButton.classList.toggle('d-none', isEditing);
         saveButton.classList.toggle('d-none', !isEditing);
         cancelButton.classList.toggle('d-none', !isEditing);
     }
 
+    function getCurrentValues() {
+        return {
+            username: container.querySelector("#name-input").value.trim(),
+            dob: container.querySelector("#dob-input").value.trim(),
+            state: container.querySelector("#state-input").value,
+            district: container.querySelector("#district-input").value,
+            gender: container.querySelector(".gender-btn.selected-gender")?.dataset.gender || "N/A"
+        };
+    }
+
     function updateDisplayedText(values) {
-        document.getElementById("name-value").textContent = values.name || "N/A";
-        document.getElementById("dob-value").textContent = values.dob || "N/A";
-        document.getElementById("state-value").textContent = values.state || "N/A";
-        document.getElementById("district-value").textContent = values.district || "N/A";
-        document.getElementById("gender-value").textContent = values.gender;
+        container.querySelector("#name-value").textContent = values.username || "N/A";
+        container.querySelector("#dob-value").textContent = values.dob || "N/A";
+        container.querySelector("#state-value").textContent = values.state || "N/A";
+        container.querySelector("#district-value").textContent = values.district || "N/A";
+        container.querySelector("#gender-value").textContent = values.gender;
+        
+        const greetingSpan = document.getElementById("greeting-username");
+        if(greetingSpan) {
+            greetingSpan.textContent = values.username || "Guest";
+        }
     }
 
     function saveToDatabase(data) {
@@ -339,224 +366,27 @@ function initProfileEdit() {
             body: JSON.stringify(data)
         })
         .then(response => response.json())
-        .then(data => console.log(data.success ? "Profile updated successfully!" : "Failed to update profile."))
-        .catch(error => console.error("Error:", error));
-    }
-}
-
-function initProfileContent() {
-    const states = {
-        "Kuala Lumpur": ["Kepong", "Batu", "Cheras"],
-        "Johor": ["Johor Bahru", "Muar", "Batu Pahat"],
-        "Kedah": ["Alor Setar", "Sungai Petani", "Kulim"],
-        "Kelantan": ["Kota Bharu", "Pasir Mas", "Tumpat"],
-        "Melaka": ["Melaka Tengah", "Alor Gajah", "Jasin"],
-        "Negeri Sembilan": ["Seremban", "Port Dickson", "Tampin"],
-        "Pahang": ["Kuantan", "Temerloh", "Bentong"],
-        "Penang": ["George Town", "Seberang Perai", "Bayan Lepas"],
-        "Perak": ["Ipoh", "Taiping", "Batu Gajah"],
-        "Perlis": ["Kangar", "Arau", "Padang Besar"],
-        "Sabah": ["Kota Kinabalu", "Sandakan", "Tawau"],
-        "Sarawak": ["Kuching", "Miri", "Sibu"],
-        "Selangor": ["Shah Alam", "Petaling Jaya", "Klang"],
-        "Terengganu": ["Kuala Terengganu", "Dungun", "Kemaman"]
-    };
-
-    const stateSelect = document.getElementById("state-input");
-    const districtSelect = document.getElementById("district-input");
-
-    function populateStates() {
-        stateSelect.innerHTML = '<option value="">Select State</option>';
-        Object.keys(states).forEach(state => {
-            let option = document.createElement("option");
-            option.value = state;
-            option.textContent = state;
-            stateSelect.appendChild(option);
-        });
-
-        if (stateSelect.dataset.selected) {
-            stateSelect.value = stateSelect.dataset.selected;
-            updateDistrictOptions();
-        }
-    }
-
-    const districtData = {
-        "Kuala Lumpur": ["Kepong", "Batu", "Cheras"],
-        "Johor": ["Johor Bahru", "Muar", "Batu Pahat"],
-        "Kedah": ["Alor Setar", "Sungai Petani", "Kulim"],
-        "Kelantan": ["Kota Bharu", "Pasir Mas", "Tumpat"],
-        "Melaka": ["Melaka Tengah", "Alor Gajah", "Jasin"],
-        "Negeri Sembilan": ["Seremban", "Port Dickson", "Tampin"],
-        "Pahang": ["Kuantan", "Temerloh", "Bentong"],
-        "Penang": ["George Town", "Seberang Perai", "Bayan Lepas"],
-        "Perak": ["Ipoh", "Taiping", "Batu Gajah"],
-        "Perlis": ["Kangar", "Arau", "Padang Besar"],
-        "Sabah": ["Kota Kinabalu", "Sandakan", "Tawau"],
-        "Sarawak": ["Kuching", "Miri", "Sibu"],
-        "Selangor": ["Shah Alam", "Petaling Jaya", "Klang"],
-        "Terengganu": ["Kuala Terengganu", "Dungun", "Kemaman"]
-    };
-    
-    function updateDistrictOptions() {
-        const stateInput = document.getElementById("state-input");
-        const districtInput = document.getElementById("district-input");
-    
-        if (!stateInput || !districtInput) return;
-    
-        const selectedState = stateInput.value;
-        districtInput.innerHTML = '<option value="">Select District</option>';
-    
-        if (districtData[selectedState]) {
-            districtData[selectedState].forEach(district => {
-                districtInput.innerHTML += `<option value="${district}">${district}</option>`;
-            });
-        }
-    }
-
-    document.querySelectorAll(".gender-btn").forEach(button => {
-        button.addEventListener("click", function () {
-            document.querySelectorAll(".gender-btn").forEach(btn => btn.classList.remove("selected-gender"));
-            this.classList.add("selected-gender");
-        });
-    });
-
-    stateSelect.addEventListener("change", updateDistrictOptions);
-    populateStates();
-
-    const dobInput = document.getElementById("dob-input");
-    if (dobInput && dobInput.dataset.value) {
-        dobInput.value = dobInput.dataset.value.split(" ")[0]; // Removes time
-    }
-}
-
-// -------------------- PIN UPDATE FUNCTION --------------------
-function initPinUpdate() {
-    let updatePinBtn = document.querySelector("[data-action='pin']");
-    if (!updatePinBtn) return;
-    updatePinBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        fetch("/check-pin-status")
-            .then(response => response.json())
-            .then(status => {
-                if (status.hasPin) {
-                    Swal.fire({
-                        title: "<span style='color: white;'>Verify your current PIN</span>",
-                        input: "password",
-                        inputAttributes: {
-                            maxlength: 6,
-                            autocapitalize: "off",
-                            autocorrect: "off"
-                        },
-                        inputPlaceholder: "Enter current 6-digit PIN",
-                        background: "#454545",
-                        showCancelButton: true,
-                        confirmButtonText: "NEXT",
-                        customClass: {
-                            popup: 'custom-swal-popup',
-                            confirmButton: 'custom-confirm-button'
-                        },
-                        preConfirm: (inputPin) => {
-                            if (!inputPin || inputPin.length !== 6 || !/^\d+$/.test(inputPin)) {
-                                Swal.showValidationMessage("Invalid PIN format");
-                            }
-                            return inputPin;
-                        }
-                    }).then(result => {
-                        if (result.isConfirmed) {
-                            showNewPinPrompt(result.value);
-                        }
-                    });
-                } else {
-                    showNewPinPrompt();
-                }
-            });
-    });
-}
-
-function showNewPinPrompt(existingPin = null) {
-    Swal.fire({
-        title: "<span class='swal-title'>Enter Your New 6-Digit PIN</span>",
-        imageUrl: "/images/confirm-pin.png",
-        imageWidth: 80,
-        imageHeight: 80,
-        html: `
-            <div class="swal-pin-container">
-                <input type="text" id="pin1" class="swal-pin-input" maxlength="1" autofocus>
-                <input type="text" id="pin2" class="swal-pin-input" maxlength="1">
-                <input type="text" id="pin3" class="swal-pin-input" maxlength="1">
-                <input type="text" id="pin4" class="swal-pin-input" maxlength="1">
-                <input type="text" id="pin5" class="swal-pin-input" maxlength="1">
-                <input type="text" id="pin6" class="swal-pin-input" maxlength="1">
-            </div>
-        `,
-        background: "#121212",
-        customClass: {
-            popup: 'swal-popup-custom',
-            confirmButton: 'swal-btn-confirm',
-            cancelButton: 'swal-btn-cancel'
-        },
-        showCancelButton: true,
-        confirmButtonText: "<span class='swal-confirm-text'>SAVE</span>",
-        cancelButtonText: "<span class='swal-cancel-text'>CANCEL</span>",
-        reverseButtons: true,
-        didOpen: () => {
-            const inputs = document.querySelectorAll(".swal-pin-input");
-            inputs.forEach((input, index) => {
-                input.addEventListener("input", (e) => {
-                    if (e.target.value.length === 1 && index < 5) {
-                        inputs[index + 1].focus();
-                    }
+        .then(data => {
+            if (data.success) {
+                console.log("Profile updated successfully!");
+            } else {
+                Swal.fire({
+                    title: "Error!",
+                    text: "Failed to update profile. Please try again.",
+                    icon: "error",
+                    background: "#454545",
+                    customClass: {
+                        popup: 'custom-swal-popup',
+                        confirmButton: 'custom-confirm-button'
+                    },
+                    confirmButtonText: "OK"
                 });
-                input.addEventListener("keydown", (e) => {
-                    if (e.key === "Backspace" && index > 0 && e.target.value.length === 0) {
-                        inputs[index - 1].focus();
-                    }
-                });
-            });
-        },
-        preConfirm: () => {
-            const pin = Array.from(document.querySelectorAll(".swal-pin-input"))
-                .map(input => input.value)
-                .join("");
-            if (pin.length !== 6 || !/^\d{6}$/.test(pin)) {
-                Swal.showValidationMessage("Please enter a valid 6-digit PIN");
             }
-            return pin;
-        }
-    }).then(result => {
-        if (result.isConfirmed) {
-            updatePin(result.value, existingPin);
-        }
-    });
-}
-
-function updatePin(newPin, existingPin = null) {
-    fetch("/update-pin", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
-        },
-        body: JSON.stringify({ pin: newPin, oldPin: existingPin })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            Swal.fire({
-                title: "<span style='color: white;'>Updated!</span>",
-                text: "Your PIN has been updated.",
-                icon: "success",
-                background: "#454545",
-                customClass: {
-                    popup: 'custom-swal-popup',
-                    confirmButton: 'custom-confirm-button'
-                },
-                confirmButtonText: "CONFIRM"
-            }).then(() => location.reload());
-        } else {
+        })
+        .catch(() => {
             Swal.fire({
                 title: "Error!",
-                text: data.message || "Update failed.",
+                text: "Something went wrong. Try again.",
                 icon: "error",
                 background: "#454545",
                 customClass: {
@@ -565,83 +395,48 @@ function updatePin(newPin, existingPin = null) {
                 },
                 confirmButtonText: "CONFIRM"
             });
-        }
-    })
-    .catch(() => {
-        Swal.fire({
-            title: "Error!",
-            text: "Something went wrong. Try again.",
-            icon: "error",
-            background: "#454545",
-            customClass: {
-                popup: 'custom-swal-popup',
-                confirmButton: 'custom-confirm-button'
-            },
-            confirmButtonText: "CONFIRM"
-        });
-    });
-}
-
-// -------------------- ACCOUNT DELETION FUNCTION --------------------
-function initAccountDeletion() {
-    let deleteAccountBtn = document.querySelector("[data-action='account']");
-    if (deleteAccountBtn) {
-        deleteAccountBtn.addEventListener("click", function () {
-            Swal.fire({
-                title: "<span style='color: white; font-size: 22px;'>Delete your account?</span>",
-                text: "All data will be permanently erased. You will be logged out immediately.",
-                imageUrl: "/images/confirm-account.png",
-                imageWidth: 150,
-                imageHeight: 150,
-                background: "#454545",
-                customClass: { popup: 'custom-swal-popup' },
-                showCancelButton: true,
-                reverseButtons: true,
-                confirmButtonColor: "red",
-                cancelButtonColor: "transparent",
-                cancelButtonText: "<span class='swal-cancel-text'>CANCEL</span>",
-                confirmButtonText: "<span class='swal-confirm-text'>DELETE</span>"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fetch("/delete-account", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            Swal.fire({
-                                title: "<span style='color: white;'>Account Deleted</span>",
-                                text: "Your account has been permanently removed.",
-                                icon: "success",
-                                background: "#454545",
-                                customClass: {
-                                    popup: 'custom-swal-popup',
-                                    confirmButton: 'custom-confirm-button'
-                                },
-                            }).then(() => {
-                                window.location.href = "/logout";
-                            });
-                        } else {
-                            Swal.fire({
-                                title: "Error!",
-                                text: "Something went wrong. Try again.",
-                                icon: "error",
-                                background: "#454545",
-                                customClass: {
-                                    popup: 'custom-swal-popup',
-                                    confirmButton: 'custom-confirm-button'
-                                },
-                                confirmButtonText: "CONFIRM"
-                            });
-                        }
-                    });
-                }
-            });
         });
     }
 }
 
+function initProfileContent() {
+    function populateStates() {
+        const stateSelect = document.getElementById("state-input");
+        if (!stateSelect) return;
+
+        stateSelect.innerHTML = '<option value="">Select State</option>';
+        Object.keys(stateDistrictData).forEach(state => {
+            stateSelect.innerHTML += `<option value="${state}">${state}</option>`;
+        });
+
+        if (stateSelect.dataset.selected) {
+            stateSelect.value = stateSelect.dataset.selected;
+        } else {
+            console.warn("No selected state found in dataset.");
+        }
+    }
+
+    const stateSelect = document.getElementById("state-input");
+    if (stateSelect) {
+        stateSelect.addEventListener("change", updateDistrictOptions);
+    }
+
+    populateStates();
+
+    document.querySelectorAll(".gender-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            document.querySelectorAll(".gender-btn").forEach(btn => btn.classList.remove("selected-gender"));
+            this.classList.add("selected-gender");
+        });
+    });
+
+    const dobInput = document.getElementById("dob-input");
+    if (dobInput && dobInput.dataset.value) {
+        const dateValue = dobInput.dataset.value.split(" ")[0];
+        if (dateValue) {
+            dobInput.value = dateValue;
+        } else {
+            console.warn("Invalid date value in dataset.");
+        }
+    }
+}
