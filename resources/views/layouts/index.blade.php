@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- CSRF Token (Required for Laravel AJAX Requests) -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
     {{-- Bootstrap CSS --}}
@@ -49,6 +53,9 @@
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <!-- index JS -->
     <script src="{{ asset('js/index.js') }}"></script>
+    <!-- Vue JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
     @yield('scripts')
 </body>
 </html>

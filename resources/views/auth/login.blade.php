@@ -5,87 +5,7 @@
 @section('content')
 
 <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let usernameForm = document.querySelector("#username-login");
-        let emailForm = document.querySelector("#email-login");
-
-        if (usernameForm) {
-            let username = usernameForm.querySelector("#username-input");
-            let password1 = usernameForm.querySelector("#password1");
-
-            if (username) {
-                username.addEventListener("input", function () {
-                    if (/\s/.test(username.value)) {
-                        showError(username, "Username cannot contain spaces.");
-                    } else {
-                        clearError(username);
-                    }
-                });
-            }
-
-            if (password1) {
-                password1.addEventListener("input", function () {
-                    validatePassword(password1);
-                });
-            }
-        }
-
-        if (emailForm) {
-            let email = emailForm.querySelector("#email-input");
-            let password2 = emailForm.querySelector("#password2");
-
-            if (email) {
-                email.addEventListener("input", function () {
-                    if (!/^[a-zA-Z0-9._%+-]+@(gmail\.com|mail\.com)$/.test(email.value)) {
-                        showError(email, "Email must be in format example@mail.com or example@gmail.com.");
-                    } else {
-                        clearError(email);
-                    }
-                });
-            }
-
-            if (password2) {
-                password2.addEventListener("input", function () {
-                    validatePassword(password2);
-                });
-            }
-        }
-
-        function validatePassword(passwordField) {
-            if (
-                passwordField &&
-                !/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(passwordField.value)
-            ) {
-                showError(
-                    passwordField,
-                    "Password must have 1 Uppercase, 1 Digit, 1 Special Character and at least 6 characters."
-                );
-            } else {
-                clearError(passwordField);
-            }
-        }
-
-        function showError(input, message) {
-            let error = input.nextElementSibling;
-            if (!error || !error.classList.contains("error-message")) {
-                error = document.createElement("div");
-                error.classList.add("error-message");
-                error.style.color = "red";
-                input.parentNode.appendChild(error);
-            }
-            error.textContent = message;
-        }
-
-        function clearError(input) {
-            let error = input.nextElementSibling;
-            if (error && error.classList.contains("error-message")) {
-                error.remove();
-            }
-        }
-    });
-</script>
+<script src="{{ asset('js/auth.js') }}"></script>
 
 <div class="login-container">
     <div class="login-box">
@@ -110,6 +30,7 @@
             </ul>
 
             <div class="tab-content">
+                <!-- Username Login -->
                 <div class="tab-pane fade show active" id="username-login" role="tabpanel">
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
@@ -120,11 +41,17 @@
                         @endif
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username-input" name="username" placeholder="Enter username">
+                            <input type="text" class="form-control login-username" id="username-input" name="username" placeholder="Enter username">
                         </div>
                         <div class="mb-3">
                             <label for="password1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password1" name="password" placeholder="Enter password">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password1" name="password" placeholder="Enter password">
+                                <button type="button" class="btn btn-outline-secondary toggle-password">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="error-message" style="color: red;"></div>
                         </div>
                         
                         <button type="submit" class="btn btn-danger text-uppercase">Sign In</button>
@@ -132,6 +59,7 @@
                     <p class="text-left mt-3">New User? <a href="{{ route('register') }}" class="text-white fw-bold">Sign Up</a></p>
                 </div>
 
+                <!-- Email Login -->
                 <div class="tab-pane fade email-form" id="email-login" role="tabpanel">
                     <form action="{{ route('login') }}" method="POST" class="email-login-form">
                         @csrf
@@ -142,18 +70,23 @@
                         @endif
                         <div class="mb-3">
                             <label for="email" class="form-label email-label">Email</label>
-                            <input type="email" class="form-control" id="email-input" name="email" placeholder="Enter email">
+                            <input type="email" class="form-control login-email" id="email-input" name="email" placeholder="Enter email">
                         </div>
                         <div class="mb-3">
-                            <label for="password2" class="form-label email-label">Password</label>
-                            <input type="password" class="form-control" id="password2" name="password" placeholder="Enter password">
+                            <label for="password2" class="form-label">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password2" name="password" placeholder="Enter password">
+                                <button type="button" class="btn btn-outline-secondary toggle-password">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="error-message" style="color: red;"></div>
                         </div>
 
                         <button type="submit" class="btn btn-danger text-uppercase email-signin-btn">Sign In</button>
                     </form>
                     <p class="text-left mt-3">New User? <a href="{{ route('register') }}" class="text-white fw-bold">Sign Up</a></p>
                 </div>
-
             </div>
         </div>
     </div>
