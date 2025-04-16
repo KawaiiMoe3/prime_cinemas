@@ -134,17 +134,26 @@
             <p class="showtime-tab-title text-uppercase">Select Cinemas & Time</p>
             <div class="region-filter">
                 <label for="region-select" class="text-uppercase">Regions:</label>
-                <div class="custom-dropdown">
+                <div class="region-dropdown">
                     <div class="selected-option">
                         <span id="selected-text">All</span>
                         <span class="caret-icon"><i class="fa-solid fa-caret-down"></i></span>
                     </div>
                     <ul class="dropdown-options">
                         <li data-value="all" class="active">All</li>
-                        <li data-value="east-coast">East Coast</li>
-                        <li data-value="east-malaysia">East Malaysia</li>
                         <li data-value="klang-valley">Klang Valley</li>
-                        <li data-value="northern">Northern</li>
+                        <li data-value="johor">Johor</li>
+                        <li data-value="perak">Perak</li>
+                        <li data-value="pulau-pinang">Pulau Pinang</li>
+                        <li data-value="melaka">Melaka</li>
+                        <li data-value="negeri-sembilan">Negeri Sembilan</li>
+                        <li data-value="pahang">Pahang</li>
+                        <li data-value="perlis">Perlis</li>
+                        <li data-value="sabah">Sabah</li>
+                        <li data-value="sarawak">Sarawak</li>
+                        <li data-value="kedah">Kedah</li>
+                        <li data-value="labuan">Labuan</li>
+                        <li data-value="putrajaya">Putrajaya</li>
                     </ul>
                 </div>
                 <input type="hidden" name="region" id="region-select" value="all">
@@ -157,7 +166,7 @@
             <div class="tab-pane fade show active" id="movie-showing-time1-tab-pane" role="tabpanel" aria-labelledby="movie-showing-time1-tab" tabindex="0">
                 <div class="row">
                     <div class="col-12"> <!-- Ensures full width inside the row -->
-                        <div class="accordion" id="accordionPanelsStayOpenExample">
+                        <div class="accordion" id="accordionShowtimesPanels">
                             <div class="accordion-item"></div>
                         </div>
                     </div>

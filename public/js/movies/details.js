@@ -1,7 +1,7 @@
 $(document).ready(function () {
     moreLessInfoButton();
     watchTrailerButton();
-    customDropdown();
+    regionFilterDropdown();
     loadMovieShowtimeDates();
 });
 
@@ -33,9 +33,9 @@ function watchTrailerButton() {
     });
 }
 
-// Custom Select Options Dropdown
-function customDropdown() {
-    const $dropdown = $(".custom-dropdown");
+// Regions Filter Dropdown
+function regionFilterDropdown() {
+    const $dropdown = $(".region-dropdown");
     const $selectedOption = $dropdown.find(".selected-option");
     const $selectedText = $("#selected-text");
     const $optionsList = $dropdown.find(".dropdown-options");
@@ -48,14 +48,22 @@ function customDropdown() {
 
     // Select an option
     $optionsList.on("click", "li", function () {
+        const selectedRegion = $(this).data("value");
+    
         $selectedText.text($(this).text());
-        $hiddenInput.val($(this).data("value"));
-
+        $hiddenInput.val(selectedRegion);
+    
         $optionsList.find("li").removeClass("active");
         $(this).addClass("active");
-
+    
         $optionsList.fadeOut(150);
+    
+        // Re-fetch showtimes with region filtering
+        const selectedDate = $(".btn-tab-item.active").data("date");
+        const movieId = $("#movieShowtimeWrapper").data("movie-id");
+        loadShowtimesForDate(movieId, selectedDate, selectedRegion);
     });
+    
 
     // Close dropdown when clicking outside
     $(document).on("click", function (e) {
@@ -98,7 +106,8 @@ function loadMovieShowtimeDates() {
             $("#movieShowtimeDateTab").html(html);
 
             // Load first tab's showtimes
-            loadShowtimesForDate(movieId, dates[0].full_date);
+            const selectedRegion = $("#region-select").val();
+            loadShowtimesForDate(movieId, dates[0].full_date, selectedRegion);
 
             // Handle tab click
             $(".btn-tab-item").click(function () {
@@ -106,7 +115,8 @@ function loadMovieShowtimeDates() {
                 $(this).addClass("active");
 
                 const selectedDate = $(this).data("date");
-                loadShowtimesForDate(movieId, selectedDate);
+                const selectedRegion = $("#region-select").val();
+                loadShowtimesForDate(movieId, selectedDate, selectedRegion);
             });
         },
         error: function (xhr, status, error) {
@@ -116,13 +126,18 @@ function loadMovieShowtimeDates() {
     });
 }
 
-function loadShowtimesForDate(movieId, date) {
+// Load showtimes based on selected date
+function loadShowtimesForDate(movieId, date, region = "all") {
     $.ajax({
         url: `/api/showtimes?movie_id=${movieId}&date=${date}`,
         type: "GET",
         dataType: "json",
         success: function (showtimes) {
-            const filteredShowtimes = showtimes.filter(st => st.show_date === date);
+            const filteredShowtimes = showtimes.filter(st => {
+                const matchDate = st.show_date === date;
+                const matchRegion = region === "all" || st.area.toLowerCase() === region.toLowerCase(); // Display all regions showtimes or filtered by selected regions
+                return matchDate && matchRegion;
+            });
         
             if (!filteredShowtimes.length) {
                 const emptyHtml = `
@@ -135,39 +150,66 @@ function loadShowtimesForDate(movieId, date) {
                         </p>
                     </div>
                 `;
-                $("#accordionPanelsStayOpenExample").html(emptyHtml);
+                $("#accordionShowtimesPanels").html(emptyHtml);
                 return;
             }
         
-            const accordion = `
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true">
-                            ${date}
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
-                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 showtime-container">
-                                ${filteredShowtimes.map(st => `
-                                    <div class="col">
-                                        <a href="#" class="showtime-card text-decoration-none">
-                                            <div>${formatTime(st.show_time)}</div>
-                                            <hr class="showtime-card-line">
-                                            <div class="text-uppercase">${st.hall_type}</div>
-                                        </a>
-                                    </div>
-                                `).join('')}
+            // Sort showtimes by cinema (city-cinema) and then show_time
+            const sortedShowtimes = filteredShowtimes.sort((a, b) => {
+                const cinemaA = `${a.city} - ${a.cinema}`.toLowerCase();
+                const cinemaB = `${b.city} - ${b.cinema}`.toLowerCase();
+
+                if (cinemaA < cinemaB) return -1;
+                if (cinemaA > cinemaB) return 1;
+
+                // If same cinema, sort by show_time
+                return a.show_time.localeCompare(b.show_time);
+            });
+
+            // Group showtimes by city - cinema
+            const groupedByCinema = {};
+            sortedShowtimes.forEach(st => {
+                const key = `${st.city} - ${st.cinema}`;
+                if (!groupedByCinema[key]) {
+                    groupedByCinema[key] = [];
+                }
+                groupedByCinema[key].push(st);
+            });
+
+            // Create accordion HTML
+            let accordion = '';
+            Object.entries(groupedByCinema).forEach(([groupKey, groupShowtimes], index) => {
+                const collapseId = `collapse${index}`;
+                accordion += `
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="true" aria-controls="${collapseId}">
+                                ${groupKey}
+                            </button>
+                        </h2>
+                        <div id="${collapseId}" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 showtime-container">
+                                    ${groupShowtimes.map(st => `
+                                        <div class="col">
+                                            <a href="#" class="showtime-card text-decoration-none">
+                                                <div>${formatTime(st.show_time)}</div>
+                                                <hr class="showtime-card-line">
+                                                <div class="text-uppercase">${st.hall_type}</div>
+                                            </a>
+                                        </div>
+                                    `).join('')}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `;
-        
-            $("#accordionPanelsStayOpenExample").html(accordion);
+                `;
+            });
+
+            $("#accordionShowtimesPanels").html(accordion);
         },
         error: function () {
-            $("#accordionPanelsStayOpenExample").html("<p>Error loading showtimes.</p>");
+            $("#accordionShowtimesPanels").html("<p>Error loading showtimes.</p>");
         }
     });
 }
@@ -175,7 +217,7 @@ function loadShowtimesForDate(movieId, date) {
 function formatTime(timeStr) {
     const [hour, minute] = timeStr.split(":");
     let h = parseInt(hour);
-    const ampm = h >= 12 ? "PM" : "AM";
+    const ampm = h >= 12 ? " PM" : " AM";
     h = h % 12 || 12;
     return `${h}:${minute}${ampm}`;
 }
