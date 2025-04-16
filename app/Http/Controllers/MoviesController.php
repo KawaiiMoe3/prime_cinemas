@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Movies;
+use App\Models\Showtimes;
 
 class MoviesController extends Controller
 {
@@ -43,9 +44,29 @@ class MoviesController extends Controller
             abort(404); 
         }
 
+        $showtimesGrouped = Showtimes::where('movie_id', $movie->id)
+            ->where('is_active', true)
+            ->orderBy('show_date')
+            ->orderBy('show_time')
+            ->get()
+            ->groupBy('show_date');
+
         $values = [
-            'movie' => $movie
+            'movie' => $movie,
+            'showtimesGrouped' => $showtimesGrouped,
         ];
         return view('movies.details', $values);
+    }
+
+    public function getShowtimes(Request $request)
+    {
+        $movieId = $request->query('movie_id');
+        $date = $request->query('date');
+
+        $showtimes = Showtimes::where('movie_id', $movieId)
+                    ->whereDate('show_date', $date)
+                    ->get();
+
+        return response()->json($showtimes);
     }
 }
