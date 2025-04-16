@@ -10,6 +10,12 @@
 <div class="movie-banner">
     <div class="movie-banner-bg">
         <img src="{{ asset('images/'.($movie->bg_movie ?? 'bg_movie_default.jpg')) }}" class="d-block w-100">
+        <div class="movie-banner_back-btn">
+            <button class="btn-back" onclick="history.back()">
+                <i class="fa-solid fa-caret-left"></i> &nbsp;
+                Back
+            </button>
+        </div>
     </div>
     <div class="container">
         <p class="movie-title">{{ $movie->title }}</p>
@@ -108,6 +114,60 @@
                                     {{ $movie->subtitles }}
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Date Tabs -->
+<div id="movieShowtimeWrapper" data-movie-id="{{ $movie->id }}">
+    <div class="container showtime-container">
+        <div class="d-flex justify-content-between align-items-center showtime-tabs">
+            <ul class="nav m-tabs" id="movieShowtimeDateTab" role="tablist"></ul>
+        </div>
+
+        <!-- Regions Filter -->
+        <div class="showtime-filter">
+            <p class="showtime-tab-title text-uppercase">Select Cinemas & Time</p>
+            <div class="region-filter">
+                <label for="region-select" class="text-uppercase">Regions:</label>
+                <div class="region-dropdown">
+                    <div class="selected-option">
+                        <span id="selected-text">All</span>
+                        <span class="caret-icon"><i class="fa-solid fa-caret-down"></i></span>
+                    </div>
+                    <ul class="dropdown-options">
+                        <li data-value="all" class="active">All</li>
+                        <li data-value="klang-valley">Klang Valley</li>
+                        <li data-value="johor">Johor</li>
+                        <li data-value="perak">Perak</li>
+                        <li data-value="pulau-pinang">Pulau Pinang</li>
+                        <li data-value="melaka">Melaka</li>
+                        <li data-value="negeri-sembilan">Negeri Sembilan</li>
+                        <li data-value="pahang">Pahang</li>
+                        <li data-value="perlis">Perlis</li>
+                        <li data-value="sabah">Sabah</li>
+                        <li data-value="sarawak">Sarawak</li>
+                        <li data-value="kedah">Kedah</li>
+                        <li data-value="labuan">Labuan</li>
+                        <li data-value="putrajaya">Putrajaya</li>
+                    </ul>
+                </div>
+                <input type="hidden" name="region" id="region-select" value="all">
+            </div>
+        </div>
+        
+        <!-- Movie Showing Times -->
+        <div class="tab-content" id="myTabContent">
+            <!-- Movie Showing Time1 -->
+            <div class="tab-pane fade show active" id="movie-showing-time1-tab-pane" role="tabpanel" aria-labelledby="movie-showing-time1-tab" tabindex="0">
+                <div class="row">
+                    <div class="col-12"> <!-- Ensures full width inside the row -->
+                        <div class="accordion" id="accordionShowtimesPanels">
+                            <div class="accordion-item"></div>
                         </div>
                     </div>
                 </div>

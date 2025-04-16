@@ -1,8 +1,40 @@
+.movie-banner-bg {
+    position: relative; /* Ensures child elements are positioned relative to this */
+}
+
 .movie-banner-bg img {
     height: 50vh;
     width: 100%;
     object-fit: cover;
 }
+
+.movie-banner_back-btn {
+    position: absolute;
+    top: 100px; /* Adjust this to move the button vertically */
+    left: 20px; /* Adjust this to move the button horizontally */
+    z-index: 10; /* Ensure it appears above the image */
+}
+
+.btn-back {
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent black background */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+.btn-back:hover {
+    background: rgba(0, 0, 0, 0.6);
+    color: #ff1e1e;
+}
+
 
 .movie-banner .movie-title{
     margin: 15px 0;
@@ -146,4 +178,156 @@
     background: black;
     color: #ff1e1e;
     border: 2px solid #ff1e1e;
+}
+
+.showtime-container .showtime-tabs{
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.row-showtime-movies{
+    margin-top: 15px;
+}
+
+.showtime-filter {
+    margin: 0 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #8e8e8e;
+    font-weight: bold;
+}
+
+#region-select {
+    position: relative;
+    z-index: 9999;
+}
+
+#region-select option {
+    position: relative;
+    z-index: 9999;
+}
+
+.region-filter {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+}
+
+.region-filter label {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* Dropdown container */
+.region-dropdown {
+    position: relative;
+    width: 200px;
+    font-family: Arial, sans-serif;
+    display: inline-block;
+}
+
+/* Selected Option */
+.selected-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    color: white;
+    text-transform: uppercase;
+    padding: 0 5px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Dropdown List */
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: black;
+    color: white;
+    text-transform: uppercase;
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto; /* Enable scrolling */
+    border-radius: 0 0 0 10px;
+}
+
+/* Scrollable Options */
+.dropdown-options li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-options li:hover {
+    background: #5c5c5c;
+}
+
+/* Highlight active selection */
+.dropdown-options .active {
+    background: #ff1e1e;
+    font-weight: bold;
+}
+
+
+.showtime-tab-title{
+    color: #8e8e8e;
+    font-weight: bold;
+}
+
+.showtime-container {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.accordion-item {
+    background-color: transparent !important;
+    color: white;
+    border: none;
+}
+
+.accordion-header .accordion-button{
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+}
+
+.accordion-button::after {
+    content: "\f067";
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    background-image: none !important;
+    transform: none !important;
+    transition: none !important;
+    border: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+    content: "\f068";
+}
+
+.showtime-card{
+    display: block;
+    text-decoration: none;
+    background: #454545;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px 25px 8px 25px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.showtime-card:hover{
+    background: #5c5c5c;
+}
+
+.showtime-card-line{
+    border-top: 2px solid white;
 }

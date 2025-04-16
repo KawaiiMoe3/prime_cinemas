@@ -1,12 +1,3 @@
-body{
-    background: url('../images/1.jpg') rgba(0, 0, 0, 0.3);
-    background-blend-mode: multiply;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}
-
 .nav-link.dropdown-toggle::after {
     display: none !important; /* Hide Bootstrap’s default dropdown arrow */
 }

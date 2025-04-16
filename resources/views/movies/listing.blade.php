@@ -61,10 +61,14 @@
                     </div>
                     @endforeach
                 @else
-                <p class="empty-movies">
-                    Top Famous Movies will be release soon. <br>
-                    👉👈
-                </p>
+                <div class="empty-movies">
+                    <img src="{{ asset('images/movie-unavailable.svg') }}" alt="No Movies">
+                    <p class="empty-movies-content">
+                        Top famous movies will be release soon. <br>
+                        Please wait for further announcements. Thank you. <br>
+                        👉👈
+                    </p>
+                </div>
                 @endif
             </div>
 
@@ -81,10 +85,14 @@
                         </div>
                     @endforeach
                 @else
-                    <p class="empty-movies">
-                        No upcoming movies at the moment. Please wait for further announcements. Thank you. <br>
-                        👉👈
-                    </p>
+                    <div class="empty-movies">
+                        <img src="{{ asset('images/movie-unavailable.svg') }}" alt="No Movies">
+                        <p class="empty-movies-content">
+                            No upcoming movies at the moment. <br>
+                            Please wait for further announcements. Thank you. <br>
+                            👉👈
+                        </p>
+                    </div>
                 @endif
             </div>
         </div>
@@ -104,10 +112,14 @@
                         </div>
                     @endforeach
                 @else
-                    <p class="empty-movies">
-                        No upcoming movies at the moment. Please wait for further announcements. Thank you. <br>
-                        👉👈
-                    </p>
+                    <div class="empty-movies">
+                        <img src="{{ asset('images/movie-unavailable.svg') }}" alt="No Movies">
+                        <p class="empty-movies-content">
+                            No upcoming movies at the moment. <br>
+                            Please wait for further announcements. Thank you. <br>
+                            👉👈
+                        </p>
+                    </div>
                 @endif
             </div>
         </div>
@@ -127,10 +139,14 @@
                         </div>
                     @endforeach
                 @else
-                    <p class="empty-movies">
-                        No upcoming movies at the moment. Please wait for further announcements. Thank you. <br>
-                        👉👈
-                    </p>
+                    <div class="empty-movies">
+                        <img src="{{ asset('images/movie-unavailable.svg') }}" alt="No Movies">
+                        <p class="empty-movies-content">
+                            No upcoming movies at the moment. <br>
+                            Please wait for further announcements. Thank you. <br>
+                            👉👈
+                        </p>
+                    </div>
                 @endif
             </div>
         </div>
@@ -150,10 +166,14 @@
                         </div>
                     @endforeach
                 @else
-                    <p class="empty-movies">
-                        No upcoming movies at the moment. Please wait for further announcements. Thank you. <br>
-                        👉👈
-                    </p>
+                    <div class="empty-movies">
+                        <img src="{{ asset('images/movie-unavailable.svg') }}" alt="No Movies">
+                        <p class="empty-movies-content">
+                            No upcoming movies at the moment. <br>
+                            Please wait for further announcements. Thank you. <br>
+                            👉👈
+                        </p>
+                    </div>
                 @endif
             </div>
         </div>

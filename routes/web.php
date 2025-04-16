@@ -11,6 +11,8 @@ use App\Http\Controllers\VoucherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CinemasController;
+use App\Http\Controllers\DateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,3 +81,14 @@ Route::get('/profile/my-orders', function () {
 })->name('profile.my_orders');
 
 Route::get('/profile/my-orders', [OrderController::class, 'index'])->name('profile.my_orders');
+// --------------------- Cinemas Routes ------------------ //
+Route::get('/cinemas', [
+    CinemasController::class,
+    'showCinemas'
+])->name('cinemas');
+
+// --------------------- API Endpoints ------------------ //
+// Dynamic Date Tabs Generated API
+Route::get('/dates', [DateController::class, 'getDates']);
+// Movie Showtimes API
+Route::get('/api/showtimes', [MoviesController::class, 'getShowtimes']);

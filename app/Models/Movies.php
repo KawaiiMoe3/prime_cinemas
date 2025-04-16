@@ -18,6 +18,11 @@ class Movies extends Model
         'trailer_url', 'status', 'rating', 'is_active', 'is_top_famous'
     ];
 
+    public function showtimes()
+    {
+        return $this->hasMany(Showtimes::class);
+    }
+
     // Maximum of 3 top famous movies
     public static function boot()
     {

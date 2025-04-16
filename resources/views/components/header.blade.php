@@ -22,14 +22,17 @@
             <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
                 <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
                     <li class="nav-item mx-2">
-                        <a class="nav-link header-item text-uppercase {{ request()->is('movies/listing') ? 'active' : '' }}"
+                        <a class="nav-link header-item text-uppercase {{ request()->routeIs('movies.listing') ? 'active' : '' }}"
                             aria-current="page" 
                             href="{{ route('movies.listing') }}">
                             Movies
                         </a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link header-item text-uppercase" href="#about">Cinemas</a>
+                        <a class="nav-link header-item text-uppercase {{ request()->routeIs('cinemas') ? 'active' : '' }}" 
+                            href="{{ route('cinemas') }}">
+                            Cinemas
+                        </a>
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link header-item text-uppercase" href="#services">Food & Drinks</a>
