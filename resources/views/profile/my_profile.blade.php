@@ -8,7 +8,7 @@
 @section('content')
 <div class="profile-container">
     <div class="profile-layout">
-        {{-- Left Section --}}
+
         <div class="profile-block profile-user__member">
             <div class="profile-user__member-details">
                 <div class="profile-user__member-details-info">
@@ -24,14 +24,13 @@
             <a href="{{ route('profile.my_orders') }}" class="btn-profile">MY ORDERS</a>
         </div>
 
-        {{-- Right Section --}}
         <div class="profile-user__detail">
             <div class="profile-user__greeting">
                 <i class="fa-solid fa-user profile-icon"></i>
-                <span>Hi, {{ $user->username ?? 'Guest' }}</span>
+                <span id="greeting-username">Hi, {{ $user->username ?? 'Guest' }}</span>
             </div>
             <!-- Contact Info Block -->
-            <div class="profile-block">
+            <div id="contact-info" class="profile-block">
                 <div class="profile-block__title">Contact Info</div>
                 <div class="profile-block__description">Update your contact details for account recovery and notifications.</div>
                 <hr>
@@ -58,7 +57,7 @@
             </div>
 
             <!-- Profile Info Block -->
-            <div class="profile-block">
+            <div id="profile-info" class="profile-block">
                 <div class="profile-block__header">
                     <div class="profile-block__title">Profile Info</div>
                     <div class="profile-block__actions">
@@ -73,8 +72,8 @@
                         <div class="profile-contact__block-content">
                             <div>
                                 <div class="profile-contact__block-content-label">NAME</div>
-                                <div class="profile-contact__block-content-value" id="name-value">{{ $user->name ?? 'N/A' }}</div>
-                                <input type="text" class="profile-input profile-edit-field d-none" id="name-input" value="{{ $user->name ?? '' }}">
+                                <div class="profile-contact__block-content-value" id="name-value">{{ $user->username ?? 'N/A' }}</div>
+                                <input type="text" class="profile-input profile-edit-field d-none" id="name-input" value="{{ $user->username ?? '' }}">
                             </div>
                         </div>
 
@@ -121,33 +120,7 @@
                 </div>
             </div>
 
-            <!-- Account & Security Block -->
-            <div class="profile-block">
-                <div class="profile-block__title">Account & Security</div>
-                <hr>
-                <div class="profile-contact">
-                    <div class="profile-contact__block">
-                        <div class="profile-contact__block-content">
-                            <div>
-                                <div class="profile-contact__block-content-label">PIN</div>
-                                <br>
-                                <a href="#" class="btn-update" data-action="pin">Update</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="profile-contact__block">
-                        <div class="profile-contact__block-content">
-                            <div>
-                                <div class="profile-contact__block-content-label">ACCOUNT</div>
-                                <br>
-                                <a href="#" class="btn-update" data-action="account">Update</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div> <!-- End of profile-layout -->
-</div> <!-- End of profile-container -->
+    </div>
+</div>
 @endsection
