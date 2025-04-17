@@ -61,6 +61,50 @@
                 <span class="movie-banner_info-show-date-time">{{ $formattedShowDate }}, {{ $formattedShowTime }}</span>
             </div>
         </div>
+        <div class="ticketing-journey-select-seats_legends">
+            <div class="ticketing-journey-select-seats_legends-inner">
+                <div class="ticketing-journey-select-seats_legend ng-star-inserted">
+                    <div class="ticketing-journey-select-seats_legend-icon">
+                        <img src="{{ asset('images/selected-seat.png') }}" alt="selected-seat">
+                    </div>
+                    <div class="ticketing-journey-select-seats_legend-text">
+                        Selected
+                    </div>
+                </div>
+                <div class="ticketing-journey-select-seats_legend ng-star-inserted">
+                    <div class="ticketing-journey-select-seats_legend-icon">
+                        <img src="{{ asset('images/sold-seat.png') }}" alt="sold-seat">
+                    </div>
+                    <div class="ticketing-journey-select-seats_legend-text">
+                        Sold
+                    </div>
+                </div>
+                <div class="ticketing-journey-select-seats_legend ng-star-inserted">
+                    <div class="ticketing-journey-select-seats_legend-icon">
+                        <img src="{{ asset('images/single-seat.svg') }}" alt="single-seat">
+                    </div>
+                    <div class="ticketing-journey-select-seats_legend-text">
+                        Single
+                    </div>
+                </div>
+                <div class="ticketing-journey-select-seats_legend ng-star-inserted">
+                    <div class="ticketing-journey-select-seats_legend-icon">
+                        <img src="{{ asset('images/double-seat.svg') }}" alt="double-seat">
+                    </div>
+                    <div class="ticketing-journey-select-seats_legend-text">
+                        Twin
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ticketing-journey-select-seats_screens">
+            <img src="{{ asset('images/screen-desktop.png') }}" alt="screen-desktop">
+        </div>
+        <div class="seat-layout_seats">
+            <div class="seat-layout_row ng-star-inserted">
+                
+            </div> 
+        </div>
     </div>
 </div>
 <x-go-to-top-button />
