@@ -1,0 +1,114 @@
+.movie-banner-bg {
+    position: relative; /* Ensures child elements are positioned relative to this */
+}
+
+.movie-banner-bg img {
+    height: 50vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.movie-banner_back-btn {
+    position: absolute;
+    top: 100px; /* Adjust this to move the button vertically */
+    left: 20px; /* Adjust this to move the button horizontally */
+    z-index: 10; /* Ensure it appears above the image */
+}
+
+.btn-back {
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent black background */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+.btn-back:hover {
+    background: rgba(0, 0, 0, 0.6);
+    color: #ff1e1e;
+}
+
+.movie-banner .movie-title{
+    margin: 15px 0;
+    font-weight: bold;
+    color: white;
+    font-size: 50px;
+}
+
+.movie-banner_info-holder{
+    display: flex;
+    align-items: center;
+}
+
+.movie-banner_info-holder .movie-banner_info-rating{
+    width: 32px;
+    height: 32px;
+}
+
+.movie-banner_info-holder .movie-banner_info-rating img{
+    width: 30px;
+    height: 30px;
+}
+
+.movie-banner_info-holder .movie-banner_info-text{
+    margin-left: 16px;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.movie-banner_info-text {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.movie-banner_info-text-group {
+    margin-left: 32px;
+    position: relative;
+}
+
+.movie-banner_info-text-group::before {
+    content: "|"; 
+    position: absolute;
+    left: -16px; /* Half of margin-left to center the separator */
+    color: white; /* Adjust color */
+}
+
+.movie-banner_info-text-group:first-child {
+    margin-left: 0;
+}
+
+.movie-banner_info-text-group:first-child::before {
+    content: none;
+}
+
+.movie-banner_info-movie{
+    display: flex;
+    align-items: center;
+    margin: 16px 0 0 0;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.movie-banner_info-movie-group {
+    margin-left: 32px;
+    position: relative;
+}
+
+.movie-banner_info-movie-group:first-child {
+    margin-left: 0;
+}
+
+.movie-banner_info-movie-group i{
+    margin-right: 10px;
+}

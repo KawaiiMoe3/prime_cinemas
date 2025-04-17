@@ -42,11 +42,13 @@ Route::middleware(['web'])->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// --------------------- Protected Routes (Only for Logged-in Users) ------------------ //
+// --------------------- Protected Routes (Only Logged-in Users can Access) ------------------ //
 Route::middleware(['authCheck'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Seats Selection for a movie
+    Route::get('/ticketing-journey/select-seats/{movieSlug}/{showDate}/{id}', [
+        MoviesController::class,
+        'showSeats'
+    ]);
 });
 
 // --------------------- Movies Routes ------------------ //
@@ -81,6 +83,7 @@ Route::get('/profile/my-orders', function () {
 })->name('profile.my_orders');
 
 Route::get('/profile/my-orders', [OrderController::class, 'index'])->name('profile.my_orders');
+
 // --------------------- Cinemas Routes ------------------ //
 Route::get('/cinemas', [
     CinemasController::class,
@@ -90,5 +93,5 @@ Route::get('/cinemas', [
 // --------------------- API Endpoints ------------------ //
 // Dynamic Date Tabs Generated API
 Route::get('/dates', [DateController::class, 'getDates']);
-// Movie Showtimes API
+// Movie Showtimes Filter API
 Route::get('/api/showtimes', [MoviesController::class, 'getShowtimes']);
