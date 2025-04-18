@@ -149,58 +149,314 @@
     height: 20px;
 }
 
-.ticketing-journey-select-seats_screens{
-    margin: 60px 0 60px 0;
+.ticketing-journey-select-seats_screens {
+    margin: 60px 0;
 }
 
-.ticketing-journey-select-seats_screens img{
+.ticketing-journey-select-seats_screens img {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.tgv-ticketing-journey-select-seats_layout.ng-star-inserted{
-    flex: 1;
+.screen-mobile {
+    display: none !important;
 }
 
-.seats-wrapper {
+@media (max-width: 1100px) {
+    .screen-desktop {
+        display: none !important;
+    }
+    .screen-mobile {
+        display: block !important;
+    }
+}
+
+.seat-layout_seats{
+    margin: 50px 0 160px 0;
+}
+
+.seat-layout_row{
+    display: flex;
+    position: relative;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    line-height: 1.25;
+    letter-spacing: .75px;
+    transition: none;
+}
+
+.seat-layout_row:first-child{
+    margin-top: 0;
+}
+
+.seat-layout_row-label{
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.seat-layout_row-label:first-child{
+    margin-right: 100px;
+}
+
+.seat-layout_row-label:last-child{
+    margin-left: 100px;
+}
+
+.seat{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.seat::after {
+    content: attr(data-seat);
+    position: absolute;
+    top: 120%;
+    left: 120%;
+    transform: translateX(-50%);
+    background-color: #454545;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease-in-out;
+    z-index: 10;
+}
+
+.seat:hover::after {
+    opacity: 1;
+}
+
+.seat_icon{
+    width: 28px;
+}
+
+.seat-layout_row .ng-star-inserted:nth-of-type(3){
+    margin-right: 25px;
+}
+
+.seat-layout_row .ng-star-inserted:nth-last-of-type(3){
+    margin-left: 25px;
+}
+
+.ticketing-journey-footer_wrapper{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* or match your theme */
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ticketing-journey-footer_inner-seats {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    gap: 0.5rem;
 }
 
-.seat-row {
+.ticketing-journey-footer_seats {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.ticketing-journey-footer_seats-label{
+    display: inline-block;
+}
+
+.ticketing-journey-footer__seat-numbers{
+    margin-left: 10px;
+}
+
+.ticketing-journey-footer_seats-button {
+    background: linear-gradient(to right, #ff1e1e, #b50000);
+    margin: 0 5px 0;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 8px 25px 8px 25px;
+    transition: all 0.1s ease-in-out;
+}
+
+.ticketing-journey-footer_seats-button:hover {
+    background: linear-gradient(to right, #b50000, #ff1e1e);
+    color: white;
+}
+
+.button-content{
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.ticketing-journey-footer_seats-button.disabled {
+    opacity: 0.5;
+}
+
+.swal2-title, .swal2-content, .swal2-html-container {
+    color: white !important;
+}
+
+.swal2-confirm {
+    border: 2px solid transparent !important;
+    border-radius: 8px 20px 8px 20px;
+}
+
+.dark-modal{
+    background-color: #1b1b1b;
+    color: white !important;
+}
+
+.modal-title{
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.movie-banner-bg-modal{
+    position: relative;
+}
+
+.movie-banner-bg-modal img{
+    height: 200px;
+    object-fit: cover;
+}
+
+.movie-banner-bg-modal .movie-title{
+    margin: 0;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.movie-banner_selected-seats{
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.movie-banner_selected-seats img{
+    width: 16px;
+}
+
+.movie-banner_info-selected-seats{
+    margin-left: 10px;
+}
+
+.ticket-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 10px 15px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.ticket-details .item {
     display: flex;
     align-items: center;
-    margin: 5px 0;
+    gap: 5px;
+    font-size: 16px;
 }
 
-.seat {
-    width: 30px;
-    height: 30px;
-    background: #00c6ff;
-    margin: 4px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.2s;
+.ticket-details .item i{
+    margin-right: 10px;
 }
 
-.seat.sold {
-    background: #e74c3c;
-    cursor: not-allowed;
+.ticket-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    color: #d8d8d8;
+    border-radius: 5px;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-.seat.selected {
-    background: #f1c40f;
+.ticket-label .ticket-type {
+    font-weight: bold;
+    color: white;
 }
 
-.seat:hover:not(.sold) {
-    transform: scale(1.1);
+.ticket-label .ticket-price {
+    font-size: 0.9rem;
+    color: #b0b0b0;
 }
 
-.seat-label {
-    width: 20px;
+.ticket-quantity, .ticket-total {
     text-align: center;
     font-weight: bold;
+    color: white;
+}
+
+.ticket-quantity{
+    padding: 4px 8px;
+    background-color: #282828;
+    border-radius: 4px 12px;
+}
+
+.movie-banner_edit-seats{
+    padding: 24px 0 0 10px;
+}
+
+.btn-edit-seat{
+    padding: 0;
+    color: #c20513;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.btn-edit-seat:hover{
+    opacity: 0.8;
+}
+
+.btn-proceed{
+    background: linear-gradient(to right, #ff1e1e, #b50000);
+    margin: 0 5px 0;
+    padding: 12px 32px;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 8px 25px 8px 25px;
+    transition: all 0.1s ease-in-out;
+}
+
+.btn-proceed:hover{
+    background: linear-gradient(to right, #b50000, #ff1e1e);
+    color: white;
 }
