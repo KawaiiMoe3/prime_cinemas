@@ -28,33 +28,6 @@ class ProfileController extends Controller
         return view('profile.edit', compact('user'));
     }
 
-    public function update(Request $request)
-    {
-        $user = User::find(auth()->id());
-    
-        if (!$user) {
-            return redirect()->route('profile')->with('error', 'User not found.');
-        }
-    
-        $request->validate([
-            'name' => 'nullable|string|max:255',
-            'state' => 'nullable|string|max:255',
-            'gender' => 'nullable|in:Male,Female,Other',
-            'dob' => 'nullable|date',
-            'district' => 'nullable|string|max:255',
-        ]);
-    
-        $user->name = $request->name ?? $user->name;
-        $user->state = $request->state ?? $user->state;
-        $user->gender = $request->gender ?? $user->gender;
-        $user->dob = $request->dob ?? $user->dob;
-        $user->district = $request->district ?? $user->district;
-        
-        $user->save();
-    
-        return redirect()->route('profile')->with('success', 'Profile updated successfully!');
-    }
-
     public function updateMobile(Request $request)
     {
         $user = User::find(Auth::id());
@@ -117,6 +90,5 @@ class ProfileController extends Controller
     
         return response()->json(['success' => true, 'message' => 'Profile updated successfully!']);
     }
-
 }
 

@@ -61,7 +61,7 @@
                                 <i class="fa-solid fa-chevron-down dropdown-icon"></i>
                             </a>
                             <ul class="dropdown-menu bg-black" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href=" {{ route('profile.my_profile') }} ">My Profile</a></li>
+                                <li><a class="dropdown-item" href="/profile">My Profile</a></li>
                                 <li><a class="dropdown-item" href=" {{ route('profile.my_orders') }} ">My Orders</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>

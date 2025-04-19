@@ -380,7 +380,7 @@ function initProfileEdit() {
     }
 
     function saveToDatabase(data, vals) {
-        fetch('/update-profile', {
+        fetch('/profile', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
