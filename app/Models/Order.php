@@ -17,4 +17,9 @@ class Order extends Model
     {
         return $this->belongsTo(Movies::class, 'movie_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

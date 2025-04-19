@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initTooltips();
     initProfileEdit();
     initProfileContent();
-    initPinUpdate();
-    initAccountDeletion();
 });
 
 /* --------------------Mobile Function-------------------- */
@@ -313,10 +311,22 @@ function initProfileEdit() {
     }
 
     function saveProfile() {
-        const updatedValues = getCurrentValues();
-        updateDisplayedText(updatedValues);
-        toggleFields(false);
-        saveToDatabase(updatedValues);
+        const vals = getCurrentValues();
+        const payload = { username: vals.username };
+
+        ['dob','state','district','gender'].forEach(key => {
+            if (vals[key]) {
+              payload[key] = vals[key];
+            }
+        });
+
+        if (vals.state && vals.district && stateDistrictData[vals.state]?.includes(vals.district)) {
+            payload.district = vals.district;
+        } else {
+            payload.district = "";
+        }
+
+        saveToDatabase(payload, vals);;
     }
 
     function toggleFields(isEditing) {
@@ -346,18 +356,31 @@ function initProfileEdit() {
     function updateDisplayedText(values) {
         container.querySelector("#name-value").textContent = values.username || "N/A";
         container.querySelector("#dob-value").textContent = values.dob || "N/A";
-        container.querySelector("#state-value").textContent = values.state || "N/A";
-        container.querySelector("#district-value").textContent = values.district || "N/A";
+
+
+        const stateValue = container.querySelector("#state-value");
+        stateValue.textContent = values.state || "N/A";
+        stateValue.dataset.selected = values.state || "";
+
+        const districtValue = container.querySelector("#district-value");
+        districtValue.textContent = values.district || "N/A";
+        districtValue.dataset.selected = values.district || "";
+        
         container.querySelector("#gender-value").textContent = values.gender;
         
         const greetingSpan = document.getElementById("greeting-username");
         if(greetingSpan) {
             greetingSpan.textContent = values.username || "Guest";
         }
+
+        const headerSpan = document.getElementById("header-username");
+        if (headerSpan) {
+          headerSpan.textContent = "Hi, " + (values.username || "Guest");
+        }
     }
 
-    function saveToDatabase(data) {
-        fetch('/update-profile', {
+    function saveToDatabase(data, vals) {
+        fetch('/profile', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -366,13 +389,15 @@ function initProfileEdit() {
             body: JSON.stringify(data)
         })
         .then(response => response.json())
-        .then(data => {
-            if (data.success) {
+        .then(responseData  => {
+            if (responseData .success) {
+                updateDisplayedText(vals);
+                toggleFields(false);
                 console.log("Profile updated successfully!");
             } else {
                 Swal.fire({
                     title: "Error!",
-                    text: "Failed to update profile. Please try again.",
+                    text: responseData.message || "Failed to update profile. Please try again.",
                     icon: "error",
                     background: "#454545",
                     customClass: {
