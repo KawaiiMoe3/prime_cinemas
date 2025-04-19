@@ -62,32 +62,41 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    protected function generateCardNumber()
+    {
+        do {
+            $number = random_int(10000000000000, 99999999999999);
+        } while (User::where('card_number', $number)->exists());
+    
+        return (string) $number;
+    }
+
     public function register(Request $request)
     {
         $request->validate([
             'username' => 'required|string|max:255|unique:users,username',
-            'phone' => 'required|string|max:15',
-            'email' => 'required|email|max:255|unique:users,email',
+            'phone'    => 'required|string|max:15',
+            'email'    => 'required|email|max:255|unique:users,email',
             'password' => [
-                'required', 'string', 'min:6', 'confirmed',
-                'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/'
+                'required','string','min:6','confirmed',
+                'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).+$/'
             ],
         ]);
-    
+
         $phone = $request->phone;
         if ($request->country_code == '+60' && substr($phone, 0, 1) !== '0') {
-            $phone = '0' . $phone;
+            $phone = '0'.$phone;
         }
-    
+
         $user = User::create([
-            'username' => $request->username,
-            'phone' => $phone,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'username'    => $request->username,
+            'phone'       => $phone,
+            'email'       => $request->email,
+            'password'    => Hash::make($request->password),
+            'card_number' => $this->generateCardNumber(),
         ]);
-    
+
         Auth::login($user);
-    
         return redirect()->route('index')->with('success', 'Registration successful!');
     }
 

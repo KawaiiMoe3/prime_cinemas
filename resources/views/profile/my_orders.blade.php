@@ -3,7 +3,6 @@
 @section('title', 'My Orders | PrimeCinemas')
 
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-<script src="{{ asset('js/order.js') }}"></script>
 
 @section('content')
 @php
@@ -34,13 +33,17 @@
                     <div class="order-card-middle">
                         <div class="order-row order-row-1">
                             <div class="order-title">{{ $order->movie->title }}</div>
+                        </div>
+                        
+                        <div class="order-row order-row-2">
                             <div class="order-genre">{{ $order->movie->genre }}</div>
                             <div class="order-duration">
                                 <i class="fa-solid fa-clock"></i> {{ $order->movie->duration }} mins
                             </div>
                             <div class="order-ticket-type">{{ ucfirst($order->movie_type) }}</div>
                         </div>
-                        <div class="order-row order-row-2">
+
+                        <div class="order-row order-row-3">
                             <div class="order-date">
                                 <i class="fa-solid fa-calendar"></i> {{ \Carbon\Carbon::parse($order->selected_movie_date)->format('d M Y') }}
                             </div>
@@ -48,7 +51,8 @@
                                 <i class="fa-solid fa-clock"></i> {{ \Carbon\Carbon::parse($order->selected_movie_time)->format('h:i A') }}
                             </div>
                         </div>
-                        <div class="order-row order-row-3">
+
+                        <div class="order-row order-row-4">
                             <div class="order-seats">
                                 <i class="fa-solid fa-chair"></i> Seats: {{ $order->selected_seats }}
                             </div>
