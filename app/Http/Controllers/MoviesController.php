@@ -144,7 +144,6 @@ class MoviesController extends Controller
         return redirect()->route('movies.checkout', $values);
     }
 
-
     function showCheckout($movieSlug, $showDate, $id){
         $showtime = Showtimes::with('movie') // eager load the movie
             ->where('id', $id)

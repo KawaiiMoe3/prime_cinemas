@@ -21,6 +21,12 @@ class User extends Authenticatable
         'name', 'username', 'phone', 'email', 'password', 'dob', 'state', 'district', 'gender', 'pin'
     ];
 
+    // A user has many orders
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
