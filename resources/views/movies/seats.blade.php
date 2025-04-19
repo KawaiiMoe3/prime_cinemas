@@ -932,9 +932,20 @@
                     </button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-proceed" disabled></button>
-            </div>
+            <form id="seatSelectionForm" method="POST" action="{{ route('proceed') }}">
+                @csrf
+                <input type="hidden" name="selected_seats" id="selected_seats_input">
+                <input type="hidden" name="ticket_quantity" id="ticket_quantity_input">
+                <input type="hidden" name="ticket_total" id="ticket_total_input">
+                <input type="hidden" name="net_total" id="ticket_net_total">
+                <input type="hidden" name="movie_slug" id="movie_slug_input">
+                <input type="hidden" name="show_date" id="show_date_input">
+                <input type="hidden" name="showtime_id" id="showtime_id_input">
+            
+                <div class="modal-footer">
+                    <button type="button" class="btn-proceed" disabled>Proceed</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -947,20 +958,32 @@
 <script>
 $(document).ready(function () {
     const selectedSeats = new Set();
-    const aislePairs = ['A2-A3', 'A14-A16']; // aisle exceptions
+    const aislePairs = ['A2-A3', 'A14-A16'];
     const rowsWithGapRule = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J'];
 
+    // Convert movie title to slug and assign to hidden input
+    const movieTitle = @json($movie->title);
+    const movieSlug = movieTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    $('#movie_slug_input').val(movieSlug); // Fill hidden input
+
+    const showDate = @json($showtime->show_date);
+    const showtimeId = @json($showtime->id);
+    $('#show_date_input').val(showDate);
+    $('#showtime_id_input').val(showtimeId);
+
+    // Handle seat click
     $('.seat').on('click', function () {
         const $button = $(this);
         const seatInfo = $button.data('seat');
-        const seatName = seatInfo.split(',')[0].trim(); // "A1, SINGLE" -> "A1"
+        const seatName = seatInfo.split(',')[0].trim();
         const $img = $button.find('img');
 
-        // Check selected seats
+        // Deselect if already selected
         if (selectedSeats.has(seatName)) {
             selectedSeats.delete(seatName);
             $img.attr('src', "{{ asset('images/single-seat.svg') }}");
         } else {
+            // Limit selection to max 10 seats
             if (selectedSeats.size >= 10) {
                 Swal.fire({
                     icon: 'warning',
@@ -971,7 +994,7 @@ $(document).ready(function () {
                 return;
             }
 
-            // Check the seats of gap
+            // Gap rule validation
             const testSet = new Set(selectedSeats);
             testSet.add(seatName);
 
@@ -985,13 +1008,15 @@ $(document).ready(function () {
                 return;
             }
 
+            // Add to selected seats
             selectedSeats.add(seatName);
             $img.attr('src', "{{ asset('images/selected-seat.png') }}");
         }
 
-        updateFooter();
+        updateFooter(); // Update UI footer
     });
 
+    // Update footer and price/seat summary
     function updateFooter() {
         const $seatLabel = $('.ticketing-journey-footer_seats-label');
         const $seatDisplay = $('.ticketing-journey-footer__seat-numbers');
@@ -1001,13 +1026,12 @@ $(document).ready(function () {
         const $ticketQuantity = $('.ticket-quantity');
         const ticketPrice = parseFloat($('.ticket-price').data('ticket-price')) || 0;
         const $ticketTotal = $('.ticket-total');
-
         const $proceedBtn = $('.btn-proceed');
 
         const selectedCount = selectedSeats.size;
         const totalPrice = selectedCount * ticketPrice;
-        let grandTotal = 0;
-        grandTotal += totalPrice;
+        let netTotal = 0;
+        netTotal += totalPrice
 
         if (selectedCount > 0) {
             const sortedSeats = getSortedSeats(Array.from(selectedSeats));
@@ -1015,28 +1039,28 @@ $(document).ready(function () {
             $seatDisplay.text(sortedSeats.join(', '));
             $bookButton.prop('disabled', false).css('cursor', 'pointer').removeClass('disabled');
             $seatSelected.text(sortedSeats.join(', '));
+            $('#selected_seats_input').val(Array.from(sortedSeats).join(','));
 
             // Update quantity and total price
             $ticketQuantity.text(selectedCount);
+            $('#ticket_quantity_input').val(selectedCount);
             $ticketTotal.text('RM ' + totalPrice.toFixed(2));
-
-            // Update Proceed button
-            $proceedBtn.text('Proceed - RM ' + grandTotal.toFixed(2)).prop('disabled', false).removeClass('disabled');
+            $('#ticket_total_input').val(totalPrice.toFixed(2));
+            $('#ticket_net_total').val(netTotal.toFixed(2));
+            $proceedBtn.text('Proceed - RM ' + netTotal.toFixed(2)).prop('disabled', false).removeClass('disabled');
         } else {
             $seatLabel.hide();
             $seatDisplay.text('');
             $bookButton.prop('disabled', true).css('cursor', 'not-allowed').addClass('disabled');
             $seatSelected.text('');
 
-            // Reset quantity and total
             $ticketQuantity.text('0');
             $ticketTotal.text('RM 0.00');
-
-            // Disable Proceed button
             $proceedBtn.text('Proceed - RM 0.00').prop('disabled', true).addClass('disabled');
         }
     }
 
+    // Sorting seats by row and column
     function getSortedSeats(seats) {
         return seats.sort((a, b) => {
             const [rowA, numA] = a.match(/([A-Z]+)(\d+)/).slice(1);
@@ -1047,6 +1071,7 @@ $(document).ready(function () {
         });
     }
 
+    // Gap rule check
     function isValidSeatGap(seatSet) {
         const sorted = getSortedSeats(Array.from(seatSet));
         const seatMap = {};
@@ -1067,7 +1092,6 @@ $(document).ready(function () {
                 const next = cols[i + 1];
                 const gap = next - current;
 
-                // Only apply rule if seats are within range (3–14)
                 if (
                     gap === 2 &&
                     current >= 3 && current <= 14 &&
@@ -1076,7 +1100,6 @@ $(document).ready(function () {
                     const middle = current + 1;
                     const middleSeat = `${row}${middle}`;
                     const pairId = `${row}${current}-${row}${next}`;
-
                     if (!seatSet.has(middleSeat) && !aislePairs.includes(pairId)) {
                         return false;
                     }
@@ -1087,6 +1110,13 @@ $(document).ready(function () {
     }
 
     updateFooter(); // Initial update on page load
+
+    // Proceed button click triggers form submit
+    $('.btn-proceed').on('click', function (e) {
+        e.preventDefault();
+        $('#seatSelectionForm').submit();
+    });
+    
 });
 </script>
 @endsection

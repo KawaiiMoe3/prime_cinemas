@@ -48,7 +48,14 @@ Route::middleware(['authCheck'])->group(function () {
     Route::get('/ticketing-journey/select-seats/{movieSlug}/{showDate}/{id}', [
         MoviesController::class,
         'showSeats'
-    ]);
+    ])->name('movies.seats');
+
+    Route::post('/proceed', [MoviesController::class, 'proceed'])->name('proceed');
+
+    Route::get('/ticketing-journey/checkout/{movieSlug}/{showDate}/{id}', [
+        MoviesController::class,
+        'showCheckout'
+    ])->name('movies.checkout');
 });
 
 // --------------------- Movies Routes ------------------ //
@@ -62,6 +69,19 @@ Route::get('/movies/details/{movieSlug}', [
     'showMovieDetails'
 ])->where('movieSlug', '[A-Za-z0-9\-]+')
     ->name('movies.details');
+
+Route::get('/session/expired', function () {
+    session()->forget([
+        'selected_seats',
+        'ticket_quantity',
+        'ticket_total',
+        'net_total',
+        'seat_selection_time'
+    ]);
+
+    return redirect()->route('movies.listing')
+        ->with('timeout', true);
+})->name('session.expired');
 
 // --------------------- Profile Routes ------------------ //
 Route::get('/profile/my-profile', function () {

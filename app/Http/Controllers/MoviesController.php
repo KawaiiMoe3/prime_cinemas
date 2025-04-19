@@ -123,4 +123,86 @@ class MoviesController extends Controller
         // Proceed to seat selection view
         return view('movies.seats', $values);
     }
+
+    function proceed(Request $request){
+        // Store the values in the session
+        session([
+            'selected_seats' => $request->selected_seats,
+            'ticket_quantity' => $request->ticket_quantity,
+            'ticket_total' => $request->ticket_total,
+            'net_total' => $request->net_total,
+            'seat_selection_time' => now(),
+        ]);
+
+        // Pass the values to the route
+        $values = [
+            'movieSlug' => $request->movie_slug,
+            'showDate' => $request->show_date,
+            'id' => $request->showtime_id,
+        ];
+
+        return redirect()->route('movies.checkout', $values);
+    }
+
+
+    function showCheckout($movieSlug, $showDate, $id){
+        $showtime = Showtimes::with('movie') // eager load the movie
+            ->where('id', $id)
+            ->whereDate('show_date', $showDate)
+            ->firstOrFail();
+
+        // Get the movie from the showtime relationship
+        $movie = $showtime->movie;
+
+        // Check if the movie title matches the slug
+        $slugFromTitle = Str::slug($movie->title);
+
+        if ($slugFromTitle !== $movieSlug) {
+            abort(404); // Slug doesn't match
+        }
+
+        // Format the date and time 
+        $formattedShowDate = Carbon::parse($showtime->show_date)->format('d M Y');
+        $formattedShowTime = Carbon::parse($showtime->show_time)->format('h:i A');
+
+        // Handle processing fee
+        $netTotal = (float) session('net_total'); // ensure it's a float
+        $processingFee = 0.50;
+        $grandTotal = number_format($netTotal + $processingFee, 2); // format to 2 decimal places
+
+        // Every RM 1 spent will be converted into 5 points
+        $movieMoney = round($netTotal * 5); // Rounded to nearest whole number
+
+        // Handle session timeout
+        $startTime = session('seat_selection_time');
+        $expiryDuration = 420; // 7 minutes in seconds
+        $remainingSeconds = 0;
+
+        if ($startTime) {
+            $now = Carbon::now();
+            $start = Carbon::parse($startTime);
+            $elapsed = $now->diffInSeconds($start);
+            $remainingSeconds = max($expiryDuration - $elapsed, 0);
+        }
+
+        $values = [
+            'movie' => $movie,
+            'showtime' => $showtime,
+            'formattedShowDate' => $formattedShowDate,
+            'formattedShowTime' => $formattedShowTime,
+            'movieSlug' => $movieSlug,
+            'showDate' => $showDate,
+            'id' => $id,
+            'seats' => session('selected_seats'),
+            'quantity' => session('ticket_quantity'),
+            'total' => session('ticket_total'),
+            'netTotal' => $netTotal,
+            'processingFee' => $processingFee,
+            'grandTotal' => $grandTotal,
+            'movieMoney' => $movieMoney,
+            'remainingSeconds' => $remainingSeconds,
+        ];
+
+        return view('movies.checkout', $values);
+    }
 }
