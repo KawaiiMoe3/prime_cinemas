@@ -28,33 +28,6 @@ class ProfileController extends Controller
         return view('profile.edit', compact('user'));
     }
 
-    public function update(Request $request)
-    {
-        $user = User::find(auth()->id());
-    
-        if (!$user) {
-            return redirect()->route('profile')->with('error', 'User not found.');
-        }
-    
-        $request->validate([
-            'name' => 'nullable|string|max:255',
-            'state' => 'nullable|string|max:255',
-            'gender' => 'nullable|in:Male,Female,Other',
-            'dob' => 'nullable|date',
-            'district' => 'nullable|string|max:255',
-        ]);
-    
-        $user->name = $request->name ?? $user->name;
-        $user->state = $request->state ?? $user->state;
-        $user->gender = $request->gender ?? $user->gender;
-        $user->dob = $request->dob ?? $user->dob;
-        $user->district = $request->district ?? $user->district;
-        
-        $user->save();
-    
-        return redirect()->route('profile')->with('success', 'Profile updated successfully!');
-    }
-
     public function updateMobile(Request $request)
     {
         $user = User::find(Auth::id());
@@ -98,79 +71,24 @@ class ProfileController extends Controller
             return response()->json(['success' => false, 'message' => 'User not authenticated']);
         }
     
-        $request->validate([
+        $validated = $request->validate([
             'username' => 'required|string|max:255|unique:users,username,' . $user->id,
-            'dob'      => 'nullable|date',
-            'state'    => 'nullable|string|max:255',
-            'district' => 'nullable|string|max:255',
-            'gender'   => 'nullable|in:Male,Female,Other',
+            'dob'      => 'sometimes|nullable|date',
+            'state'    => 'sometimes|nullable|string|max:255',
+            'district' => 'sometimes|nullable|string|max:255',
+            'gender'   => 'sometimes|nullable|in:Male,Female',
         ]);
+
+        $updateData = ['username' => $validated['username']];
+        foreach (['dob','state','district','gender'] as $field) {
+            if (array_key_exists($field, $validated)) {
+                $updateData[$field] = $validated[$field];
+            }
+        }
     
-        $user->username = $request->username;
-        $user->dob      = $request->dob;
-        $user->state    = $request->state;
-        $user->district = $request->district;
-        $user->gender   = $request->gender;
-        $user->save();
+        $user->update($updateData);
     
         return response()->json(['success' => true, 'message' => 'Profile updated successfully!']);
     }
-
-    public function updatePin(Request $request)
-    {
-        $newPin = trim($request->input('pin'));
-    
-        $request->merge(['pin' => $newPin]);
-        
-        $request->validate([
-            'pin' => 'required|digits:6',
-        ]);
-    
-        $user = auth()->user();
-        if (!$user) {
-            return response()->json([
-                'success' => false,
-                'message' => 'User not authenticated'
-            ]);
-        }
-    
-        if (!is_null($user->pin) && Hash::check($newPin, $user->pin)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'New PIN cannot be the same as the current PIN.'
-            ]);
-        }
-    
-        $user->pin = bcrypt($newPin);
-        $user->save();
-    
-        return response()->json([
-            'success' => true,
-            'message' => 'PIN updated successfully.'
-        ]);
-    }
-    
-    public function checkPinStatus(Request $request)
-    {
-        $user = auth()->user();
-        return response()->json([
-            'hasPin' => !is_null($user->pin),
-        ]);
-    }
-
-    public function deleteAccount()
-    {
-        $user = Auth::user();
-    
-        if (!$user) {
-            return response()->json(['success' => false, 'message' => 'User not authenticated']);
-        }
-    
-        Auth::logout();
-        $user->delete();
-    
-        return response()->json(['success' => true, 'message' => 'Account deleted successfully!']);
-    }
-
 }
 
