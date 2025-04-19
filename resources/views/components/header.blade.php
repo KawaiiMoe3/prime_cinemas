@@ -57,7 +57,7 @@
                         <div class="dropdown login-dropdown">
                             <a class="nav-link dropdown-toggle text-white text-uppercase text-decoration-none px-3 py-1" 
                             href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-user"></i>&nbsp;<span class="fw-bold">Hi, {{ Auth::user()->username }}</span>
+                                <i class="fa-solid fa-user"></i>&nbsp;<span id="header-username" class="fw-bold">Hi, {{ Auth::user()->username }}</span>
                                 <i class="fa-solid fa-chevron-down dropdown-icon"></i>
                             </a>
                             <ul class="dropdown-menu bg-black" aria-labelledby="userDropdown">
