@@ -76,7 +76,7 @@ class ProfileController extends Controller
             'dob'      => 'sometimes|nullable|date',
             'state'    => 'sometimes|nullable|string|max:255',
             'district' => 'sometimes|nullable|string|max:255',
-            'gender'   => 'sometimes|nullable|in:Male,Female,Other',
+            'gender'   => 'sometimes|nullable|in:Male,Female',
         ]);
 
         $updateData = ['username' => $validated['username']];
