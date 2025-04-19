@@ -94,26 +94,24 @@ class ProfileController extends Controller
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
-    
         if (!$user) {
             return response()->json(['success' => false, 'message' => 'User not authenticated']);
         }
     
         $request->validate([
-            'name' => 'nullable|string|max:255',
-            'state' => 'nullable|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
+            'dob'      => 'nullable|date',
+            'state'    => 'nullable|string|max:255',
             'district' => 'nullable|string|max:255',
-            'gender' => 'nullable|in:Male,Female,Other',
-            'dob' => 'nullable|date',
+            'gender'   => 'nullable|in:Male,Female,Other',
         ]);
     
-        $user->update([
-            'name' => $request->name,
-            'dob' => $request->dob,
-            'state' => $request->state,
-            'district' => $request->district,
-            'gender' => $request->gender,
-        ]);
+        $user->username = $request->username;
+        $user->dob      = $request->dob;
+        $user->state    = $request->state;
+        $user->district = $request->district;
+        $user->gender   = $request->gender;
+        $user->save();
     
         return response()->json(['success' => true, 'message' => 'Profile updated successfully!']);
     }

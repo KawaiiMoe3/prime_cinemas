@@ -354,6 +354,11 @@ function initProfileEdit() {
         if(greetingSpan) {
             greetingSpan.textContent = values.username || "Guest";
         }
+
+        const headerSpan = document.getElementById("header-username");
+        if (headerSpan) {
+          headerSpan.textContent = "Hi, " + (values.username || "Guest");
+        }
     }
 
     function saveToDatabase(data) {
