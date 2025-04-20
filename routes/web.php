@@ -81,6 +81,16 @@ Route::get('/cinemas', [
     'showCinemas'
 ])->name('cinemas');
 
+// --------------------- More Routes ------------------ //
+Route::get('/more/aboutUs', function () {
+    return view('more.about');
+})->name('about');
+
+Route::get('/more/support', function () {
+    return view('more.support');
+})->name('support');
+
+
 // --------------------- API Endpoints ------------------ //
 // Dynamic Date Tabs Generated API
 Route::get('/dates', [DateController::class, 'getDates']);
