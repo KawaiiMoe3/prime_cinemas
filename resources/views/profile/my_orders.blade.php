@@ -21,7 +21,7 @@
                 <img src="{{ asset('images/no-order.png') }}" alt="No Orders" class="zero-state-img">
                 <h2 class="zero-state-title">No Orders Yet</h2>
                 <p class="zero-state-description">It's time to treat yourself!</p>
-                <a href="{{ route('index') }}" class="btn-confirm-style">BOOK NOW</a>
+                <a href="{{ route('movies.listing') }}" class="btn-confirm-style">BOOK NOW</a>
             </div>
         @else
         <div class="my-orders__wrapper">
