@@ -13,8 +13,8 @@
             <div class="col-6 col-md-2 mb-3">
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><a href="#" class="nav-link footer-item p-0 text-body-secondary">PROMOTION</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link footer-item p-0 text-body-secondary">ABOUT US</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link footer-item p-0 text-body-secondary">SUPPORT</a></li>
+                    <li class="nav-item mb-2"><a href="/more/aboutUs" class="nav-link footer-item p-0 text-body-secondary">ABOUT US</a></li>
+                    <li class="nav-item mb-2"><a href="/more/support" class="nav-link footer-item p-0 text-body-secondary">SUPPORT</a></li>
                     <li class="nav-item mb-2"><a href="#" class="nav-link footer-item p-0 text-body-secondary">CONTACT US</a></li>
                 </ul>
             </div>
