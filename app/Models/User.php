@@ -21,6 +21,12 @@ class User extends Authenticatable
         'username', 'phone', 'email', 'password', 'dob', 'state', 'district', 'gender','card_number'
     ];
 
+    // A user has many orders
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -39,9 +45,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'dob' => 'date',
     ];
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class, 'user_id');
-    }
 }

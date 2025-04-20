@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class DateController extends Controller
 {
     /**
-     * Movie Showtime Date API
+     * Dynamic Date Tabs Generated API
      * 
      * This API dynamically generates the next 12 days, including today.
      * The first date is labeled as "Today" while the rest show the day and date.

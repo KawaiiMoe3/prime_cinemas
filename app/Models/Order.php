@@ -7,19 +7,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = [
-        'user_id', 'movie_id', 'booking_id', 'ticket_qr', 'movie_type',
-        'selected_movie_date', 'selected_movie_time', 'selected_seats',
-        'adults', 'children'
-    ];
-    
-    public function movie()
-    {
-        return $this->belongsTo(Movies::class, 'movie_id');
-    }
+    use HasFactory;
 
+    protected $table = 'orders';
+
+    protected $fillable = [
+        'user_id', 'movie_id', 'showtime_id', 'ticket_quantity',
+        'selected_seats', 'ticket_total', 'net_total',
+        'grand_total', 'movie_money', 'status'
+    ];
+
+    // A user has an order
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
+
+    // A movie has an order
+    public function movie()
+    {
+        return $this->belongsTo(Movies::class);
+    }
+
+    // A showtime has an order
+    public function showtime()
+    {
+        return $this->belongsTo(Showtimes::class);
+    }
+
 }

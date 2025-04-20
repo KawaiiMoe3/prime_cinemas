@@ -73,7 +73,7 @@ function regionFilterDropdown() {
     });
 }
 
-// Load Movie Showtime Dates from API
+// Dynamic Date Tabs Generated API
 function loadMovieShowtimeDates() {
     const movieId = $("#movieShowtimeWrapper").data("movie-id");
 
@@ -126,7 +126,7 @@ function loadMovieShowtimeDates() {
     });
 }
 
-// Load showtimes based on selected date
+// Movie Showtimes Filter API
 function loadShowtimesForDate(movieId, date, region = "all") {
     $.ajax({
         url: `/api/showtimes?movie_id=${movieId}&date=${date}`,
@@ -154,10 +154,10 @@ function loadShowtimesForDate(movieId, date, region = "all") {
                 return;
             }
         
-            // Sort showtimes by cinema (city-cinema) and then show_time
+            // Sort showtimes by cinema (area-cinema) and then show_time
             const sortedShowtimes = filteredShowtimes.sort((a, b) => {
-                const cinemaA = `${a.city} - ${a.cinema}`.toLowerCase();
-                const cinemaB = `${b.city} - ${b.cinema}`.toLowerCase();
+                const cinemaA = `${a.area} - ${a.cinema}`.toLowerCase();
+                const cinemaB = `${b.area} - ${b.cinema}`.toLowerCase();
 
                 if (cinemaA < cinemaB) return -1;
                 if (cinemaA > cinemaB) return 1;
@@ -166,10 +166,10 @@ function loadShowtimesForDate(movieId, date, region = "all") {
                 return a.show_time.localeCompare(b.show_time);
             });
 
-            // Group showtimes by city - cinema
+            // Group showtimes by area - cinema
             const groupedByCinema = {};
             sortedShowtimes.forEach(st => {
-                const key = `${st.city} - ${st.cinema}`;
+                const key = `${st.area} - ${st.cinema}`;
                 if (!groupedByCinema[key]) {
                     groupedByCinema[key] = [];
                 }
@@ -190,15 +190,18 @@ function loadShowtimesForDate(movieId, date, region = "all") {
                         <div id="${collapseId}" class="accordion-collapse collapse show">
                             <div class="accordion-body">
                                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 showtime-container">
-                                    ${groupShowtimes.map(st => `
-                                        <div class="col">
-                                            <a href="#" class="showtime-card text-decoration-none">
-                                                <div>${formatTime(st.show_time)}</div>
-                                                <hr class="showtime-card-line">
-                                                <div class="text-uppercase">${st.hall_type}</div>
-                                            </a>
-                                        </div>
-                                    `).join('')}
+                                    ${groupShowtimes.map(st => {
+                                        const movieSlug = slugify(st.movie_title);
+                                        return `
+                                            <div class="col">
+                                                <a href="/ticketing-journey/select-seats/${movieSlug}/${st.show_date}/${st.id}" class="showtime-card text-decoration-none">
+                                                    <div>${formatTime(st.show_time)}</div>
+                                                    <hr class="showtime-card-line">
+                                                    <div class="text-uppercase">${st.hall_type}</div>
+                                                </a>
+                                            </div>
+                                        `;
+                                    }).join('')}
                                 </div>
                             </div>
                         </div>
@@ -220,4 +223,16 @@ function formatTime(timeStr) {
     const ampm = h >= 12 ? " PM" : " AM";
     h = h % 12 || 12;
     return `${h}:${minute}${ampm}`;
+}
+
+function slugify(text) {
+    return text
+        .toString()
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')       // Remove non-word characters (but allow spaces and hyphens)
+        .replace(/_/g, '-')             // Replace underscores with hyphens
+        .replace(/\s+/g, '-')           // Replace spaces with hyphens
+        .replace(/--+/g, '-')           // Replace multiple hyphens with single
+        .replace(/^-+|-+$/g, '');       // Remove leading or trailing hyphens
 }

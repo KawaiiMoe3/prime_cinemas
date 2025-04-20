@@ -22,8 +22,15 @@ class Showtimes extends Model
         'is_active',
     ];
 
+    // A showtime has a movie
     public function movie()
     {
         return $this->belongsTo(Movies::class);
+    }
+
+    // A showtime has an order
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }
