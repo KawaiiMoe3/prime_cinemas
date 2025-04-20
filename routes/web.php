@@ -62,20 +62,14 @@ Route::get('/movies/details/{movieSlug}', [
     ->name('movies.details');
 
 // --------------------- Profile Routes ------------------ //
-Route::get('/profile/my-profile', function () {
-    return view('profile.my_profile');
-})->name('profile.my_profile');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
+    Route::post('/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/profile/mobile',  [ProfileController::class, 'updateMobile'])->name('profile.updateMobile');
+    Route::post('/profile/email',   [ProfileController::class, 'updateEmail']);
+});
 
-Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-Route::get('/profile/my-profile', [ProfileController::class, 'showProfile'])->name('profile.my_profile')->middleware('auth');
-Route::post('/update-mobile', [ProfileController::class, 'updateMobile'])->name('profile.updateMobile');
-Route::post('/update-email', [ProfileController::class, 'updateEmail']);
-Route::post('/update-profile', [ProfileController::class, 'updateProfile']);
-Route::post('/update-pin', [ProfileController::class, 'updatePin'])->name('update.pin');
-Route::get('/check-pin-status', [ProfileController::class, 'checkPinStatus']);
-Route::post('/delete-account', [ProfileController::class, 'deleteAccount'])->name('delete.account');
-
+// --------------------- Order Routes ------------------ //
 Route::get('/profile/my-orders', function () {
     return view('profile.my_orders');
 })->name('profile.my_orders');

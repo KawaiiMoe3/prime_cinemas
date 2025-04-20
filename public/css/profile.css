@@ -59,6 +59,10 @@
     margin-top: 8px;
 }
 
+.profile-user__qrcode {
+    padding-left: 10px;
+}
+
 .profile-user__qrcode img {
     width: 150px;
     height: 150px;
@@ -646,6 +650,13 @@ select {
 }
 
 /* Order Page css */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
 .orders-page {
     display: flex;
     flex-direction: column;
@@ -721,16 +732,19 @@ select {
     row-gap: 10px;  
     column-gap: 24px;
     padding: 0 70px;
+    flex-direction: column;
 }
 
 .order-card {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
     background-color: #8c0404;
     color: white;
     flex: 0 0 calc(50% - 24px);
-    display: flex;
     border-radius: 10px;
     overflow: hidden;
-}
+  }
 
 @media (max-width: 768px) {
     .order-card {
@@ -744,11 +758,12 @@ select {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    align-items: stretch;
 }
 
 .order-poster {
     width: 200px;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
 }
 

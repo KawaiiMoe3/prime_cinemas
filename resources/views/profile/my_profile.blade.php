@@ -2,6 +2,8 @@
 
 @section('title', 'My Profile | PrimeCinemas')
 
+@php use SimpleSoftwareIO\QrCode\Facades\QrCode; @endphp
+
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 <script src="{{ asset('js/profile.js') }}"></script>
 
@@ -16,7 +18,7 @@
                     <p class="card-number">Card No.: {{ $user->card_number ?? 'N/A' }}</p>
                 </div>
                 <div class="profile-user__qrcode">
-                    <img src="{{ asset('images/qr.jpg') }}" alt="QR Code" class="profile-qr">
+                    {!! QrCode::size(150)->generate($user->card_number) !!}
                 </div>
             </div>
             <hr class="profile-divider">
