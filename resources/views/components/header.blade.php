@@ -48,8 +48,8 @@
                             More &#9660
                         </a>
                         <ul class="dropdown-menu bg-black">
-                            <li><a class="dropdown-item text-white text-uppercase" href="#">About Us</a></li>
-                            <li><a class="dropdown-item text-white text-uppercase" href="#">Support</a></li>
+                            <li><a class="dropdown-item text-white text-uppercase" href="/more/aboutUs">About Us</a></li>
+                            <li><a class="dropdown-item text-white text-uppercase" href="/more/support">Support</a></li>
                         </ul>
                     </li>
                 </ul>
