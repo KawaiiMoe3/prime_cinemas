@@ -12,9 +12,8 @@
     <div class="movie-banner-bg">
         <img src="{{ asset('images/'.($movie->bg_movie ?? 'bg_movie_default.jpg')) }}" class="d-block w-100">
         <div class="movie-banner_back-btn">
-            <button class="btn-back" onclick="history.back()">
-                <i class="fa-solid fa-caret-left"></i> &nbsp;
-                Back
+            <button class="btn-back">
+                <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
     </div>
@@ -148,10 +147,24 @@
                 <span class="countdown-text">Time Left:</span>
                 <span id="time-remaining" class="countdown-time">07:00</span>
             </div>
-            <!-- Checkout Button -->
-            <button id="checkout-button" type="button" class="ticketing-journey-footer_checkout-button ng-star-inserted">
-                <span class="button-content">Checkout - RM {{ $grandTotal }}</span>
-            </button>
+            <form id="checkoutForm" action="{{ route('checkout') }}" method="POST">
+                @csrf
+
+                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                <input type="hidden" name="movie_id" value="{{ $showtime->movie_id }}">
+                <input type="hidden" name="showtime_id" value="{{ $showtime->id }}">
+                <input type="hidden" name="ticket_quantity" value="{{ $quantity }}">
+                <input type="hidden" name="selected_seats" value="{{ $seats }}">
+                <input type="hidden" name="ticket_total" value="{{ $total }}">
+                <input type="hidden" name="net_total" value="{{ $netTotal }}">
+                <input type="hidden" name="processing_fee" value="{{ $processingFee }}">
+                <input type="hidden" name="grand_total" value="{{ $grandTotal }}">
+                <input type="hidden" name="movie_money" value="{{ $movieMoney }}">
+                <!-- Checkout Button -->
+                <button id="checkout-button" type="button" class="ticketing-journey-footer_checkout-button ng-star-inserted">
+                    <span class="button-content">Checkout - RM {{ $grandTotal }}</span>
+                </button>
+            </form>
         </div>
     </div>
 </div>
@@ -162,6 +175,25 @@
 @section('scripts')
 <script>
 $(document).ready(function(){
+    // Clear session after cancel checkout
+    $('.btn-back').on('click', function(){
+        Swal.fire({
+            title: 'Leaving so soon?',
+            text: "Any details entered will be lost.",
+            imageUrl: "/images/leave.png",
+            background: "#454545",
+            showCancelButton: true,
+            confirmButtonText: 'Leave This Page',
+            cancelButtonText: 'Stay On This Page',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to route that clears session
+                window.location.href = "{{ route('session.expired') }}";
+            }
+        });
+    });
+
     // Go back to select-seats page
     $('.btn-edit-seats').on('click', function(){
         const url = $(this).data('url');
@@ -201,6 +233,12 @@ $(document).ready(function(){
             updateTimerDisplay();
         }
     }, 1000);
+
+    // Checkout form submission
+    $('#checkout-button').on('click', function (e) {
+        e.preventDefault();
+        $('#checkoutForm').submit();
+    });
 });
 </script>
 @endsection

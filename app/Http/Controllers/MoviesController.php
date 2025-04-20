@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Movies;
 use App\Models\Showtimes;
+use App\Models\Order;
 
 class MoviesController extends Controller
 {
@@ -169,7 +170,7 @@ class MoviesController extends Controller
         $processingFee = 0.50;
         $grandTotal = number_format($netTotal + $processingFee, 2); // format to 2 decimal places
 
-        // Every RM 1 spent will be converted into 5 points
+        // For every RM 1 spent will earn 5 MovieMoney
         $movieMoney = round($netTotal * 5); // Rounded to nearest whole number
 
         // Handle session timeout
@@ -203,5 +204,45 @@ class MoviesController extends Controller
         ];
 
         return view('movies.checkout', $values);
+    }
+
+    function checkout(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'movie_id' => 'required|exists:movies,id',
+            'showtime_id' => 'required|exists:showtimes,id',
+            'ticket_quantity' => 'required|integer|min:1',
+            'selected_seats' => 'required|string',
+            'ticket_total' => 'required|numeric',
+            'net_total' => 'required|numeric',
+            'processing_fee' => 'required|numeric',
+            'grand_total' => 'required|numeric',
+            'movie_money' => 'required|integer',
+        ]);
+
+        // Create a new Order
+        Order::create([
+            'user_id' => $validated['user_id'],
+            'movie_id' => $validated['movie_id'],
+            'showtime_id' => $validated['showtime_id'],
+            'ticket_quantity' => $validated['ticket_quantity'],
+            'selected_seats' => json_encode(explode(',', $validated['selected_seats'])),
+            'ticket_total' => $validated['ticket_total'],
+            'net_total' => $validated['net_total'],
+            'processing_fee' => $validated['processing_fee'],
+            'grand_total' => $validated['grand_total'],
+            'movie_money' => $validated['movie_money'],
+        ]);
+
+        // Clear session data after checkout successful
+        session()->forget([
+            'selected_seats',
+            'ticket_quantity',
+            'ticket_total',
+            'net_total',
+            'seat_selection_time',
+        ]);
+
+        return redirect()->route('profile.my_orders')->with('success', 'Your order has been placed successfully!');
     }
 }

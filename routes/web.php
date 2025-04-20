@@ -49,13 +49,18 @@ Route::middleware(['authCheck'])->group(function () {
         MoviesController::class,
         'showSeats'
     ])->name('movies.seats');
-
+    
+    // Proceed button after seats selection
     Route::post('/proceed', [MoviesController::class, 'proceed'])->name('proceed');
-
+    
+    // Display checkout details of a movie
     Route::get('/ticketing-journey/checkout/{movieSlug}/{showDate}/{id}', [
         MoviesController::class,
         'showCheckout'
     ])->name('movies.checkout');
+
+    // Checkout booking
+    Route::post('/checkout', [MoviesController::class, 'checkout'])->name('checkout');
 });
 
 // --------------------- Movies Routes ------------------ //
@@ -98,11 +103,7 @@ Route::post('/update-pin', [ProfileController::class, 'updatePin'])->name('updat
 Route::get('/check-pin-status', [ProfileController::class, 'checkPinStatus']);
 Route::post('/delete-account', [ProfileController::class, 'deleteAccount'])->name('delete.account');
 
-Route::get('/profile/my-orders', function () {
-    return view('profile.my_orders');
-})->name('profile.my_orders');
-
-Route::get('/profile/my-orders', [OrderController::class, 'index'])->name('profile.my_orders');
+Route::get('/my-orders', [OrderController::class, 'index'])->name('profile.my_orders');
 
 // --------------------- Cinemas Routes ------------------ //
 Route::get('/cinemas', [
