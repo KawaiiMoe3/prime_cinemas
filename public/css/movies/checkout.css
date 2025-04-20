@@ -40,6 +40,7 @@
     font-weight: bold;
     color: white;
     font-size: 50px;
+    text-transform: uppercase;
 }
 
 .movie-banner_info-holder{
@@ -383,8 +384,10 @@
 }
 
 .swal2-cancel{
-    background: black;
+    background: transparent;
+    border: 2px solid white;
     color: white;
+    font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 4px 12px !important;
@@ -392,5 +395,7 @@
 }
 
 .swal2-cancel:hover{
-    color: #ff1e1e;
+    color: #ff0013;
+    border-color: #ff0013;
+    background-color: rgba(255, 0, 19, 0.2);
 }

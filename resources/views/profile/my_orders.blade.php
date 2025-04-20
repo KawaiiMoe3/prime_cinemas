@@ -63,7 +63,7 @@
                             <button class="order-card__action-buy-button">
                                 <p class="button__content">Get More</p>
                             </button>
-                            <button class="tgv-order-card__action-qr-button">
+                            <button class="order-card__action-qr-button">
                                 <span class="button__inner">
                                     <p class="button__content">
                                         <i class="fa-solid fa-qrcode"></i>

@@ -670,7 +670,7 @@ select {
 }
 
 .orders-empty {
-    margin-top: 60px;
+    margin: 30px 0 60px;
     text-align: center;
     align-self: center;
 }
@@ -796,6 +796,7 @@ select {
 .movie-title {
     font-size: 20px;
     font-weight: bold;
+    text-transform: uppercase;
     text-transform: uppercase;
 }
 

@@ -40,6 +40,7 @@
     font-weight: bold;
     color: white;
     font-size: 50px;
+    text-transform: uppercase;
 }
 
 .movie-banner_info-holder{
@@ -242,6 +243,10 @@
     opacity: 1;
 }
 
+.seat:disabled {
+    cursor: not-allowed;
+}
+
 .seat_icon{
     width: 28px;
 }
@@ -327,6 +332,10 @@
 .dark-modal{
     background-color: #1b1b1b;
     color: white !important;
+}
+
+.btn-close {
+    filter: invert(1);
 }
 
 .modal-title{

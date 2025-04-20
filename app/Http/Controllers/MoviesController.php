@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Movies;
@@ -110,6 +111,21 @@ class MoviesController extends Controller
             abort(404); // Slug doesn't match
         }
 
+        // Get all booked seats for the showtime
+        $allBookedSeats = Order::where('showtime_id', $showtime->id)
+            ->pluck('selected_seats')
+            ->map(fn($seats) => json_decode($seats, true))
+            ->flatten()
+            ->toArray();
+
+        // Fetch only the current user's booked seats
+        $myBookedSeats = Order::where('user_id', Auth::id())
+            ->where('showtime_id', $showtime->id)
+            ->pluck('selected_seats')
+            ->map(fn($seats) => json_decode($seats, true))
+            ->flatten()
+            ->toArray();
+
         // Format the date and time 
         $formattedShowDate = Carbon::parse($showtime->show_date)->format('d M Y');
         $formattedShowTime = Carbon::parse($showtime->show_time)->format('h:i A');
@@ -119,6 +135,8 @@ class MoviesController extends Controller
             'showtime' => $showtime,
             'formattedShowDate' => $formattedShowDate,
             'formattedShowTime' => $formattedShowTime,
+            'myBookedSeats' => $myBookedSeats,
+            'allBookedSeats' => $allBookedSeats,
         ];
 
         // Proceed to seat selection view

@@ -130,7 +130,7 @@
     transition: background-color 0.3s;
 }
 
-.tgv-order-card__action-qr-button{
+.order-card__action-qr-button{
     border: none;
     outline: none;
     background-color: transparent;
@@ -142,11 +142,11 @@
     transition: all 0.2s ease-in-out;
 }
 
-.tgv-order-card__action-qr-button img{
+.order-card__action-qr-button img{
     width: 24px;
 }
 
-.tgv-order-card__action-qr-button:hover {
+.order-card__action-qr-button:hover {
     color: #ff0013;
 }
 
