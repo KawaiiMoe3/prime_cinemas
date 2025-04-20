@@ -1,0 +1,169 @@
+.my-orders-banner{
+    margin: 32px 0 !important;
+}
+
+.my-orders-banner .orders-title{
+    padding: 70px 32px 0 30px;
+}
+
+.my-orders__wrapper {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    gap: 1.5rem;
+    margin-bottom: 70px;
+    padding: 2rem;
+}
+  
+.my-orders__upcoming-order {
+    width: 100%; 
+}
+  
+.order-card {
+    width: 100%;
+    background: #fafafa;
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+  
+/* Inner Details */
+.order-card__details {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    cursor: pointer;
+}
+  
+/* Poster Image */
+.order-card__details img {
+    width: 130px;
+    height: 130px;
+    border-radius: 0.5rem;
+    background-color: #ccc;
+    object-fit: cover;
+}
+  
+/* Movie Info Block */
+.order-card__details-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+  
+/* Header Row */
+.order-card__details-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.order-card__details-info-header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ff0013;
+    transition: all 0.3s ease-in-out;
+}
+
+.order-card__details-info-header-title-label{
+    font-size: 16px !important;
+    margin: 0;
+    font-weight: bold;
+}
+
+.order-card__details:hover .order-card__details-info-header-title {
+    color: #af161e;
+  }  
+  
+.order-card__details-info-header-status-inner {
+    background-color: #3da758;
+    padding: 0.3rem 0.75rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    color: #fafafa;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+  
+/* Content */
+.order-card__details-info-content {
+    color: #131313;
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+  
+/* Price and Points */
+.order-card__details-info-price-points {
+    margin-top: 0.5rem;
+    color: #454545;
+}
+  
+/* Action Footer */
+.order-card__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, #851015, #49060b);
+    padding: 1rem;
+    border-top: 1px solid #fafafa;
+}
+  
+/* Buttons */
+.order-card__action-buy-button{
+    background-color: transparent;
+    border: 2px solid #fafafa;
+    padding: 4px 20px;
+    border-radius: 4px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    color: #fafafa;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.order-card__action-qr-button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    color: #fafafa;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+}
+
+.order-card__action-qr-button img{
+    width: 24px;
+}
+
+.order-card__action-qr-button:hover {
+    color: #ff0013;
+}
+
+p.button__content{
+    margin: 3px 0 !important;
+}
+  
+.order-card__action-buy-button:hover{
+    color: #ff0013;
+    border-color: #ff0013;
+    background-color: rgba(255, 0, 19, 0.2);
+}
+  
+/* QR Button Content */
+.button__content {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+  

@@ -41,7 +41,9 @@
     @yield('content')
 
     <!-- Include Footer Component -->
-    <x-footer />
+    @if (!View::hasSection('hideFooter'))
+        <x-footer />
+    @endif
 
     <!-- jQuery-->
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>

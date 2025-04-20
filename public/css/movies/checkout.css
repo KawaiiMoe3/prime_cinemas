@@ -1,0 +1,401 @@
+.movie-banner-bg {
+    position: relative; /* Ensures child elements are positioned relative to this */
+}
+
+.movie-banner-bg img {
+    height: 50vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.movie-banner_back-btn {
+    position: absolute;
+    top: 100px; /* Adjust this to move the button vertically */
+    left: 20px; /* Adjust this to move the button horizontally */
+    z-index: 10; /* Ensure it appears above the image */
+}
+
+.btn-back {
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent black background */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+.btn-back:hover {
+    background: rgba(0, 0, 0, 0.6);
+    color: #ff1e1e;
+}
+
+.movie-banner .movie-title{
+    margin: 15px 0;
+    font-weight: bold;
+    color: white;
+    font-size: 50px;
+    text-transform: uppercase;
+}
+
+.movie-banner_info-holder{
+    display: flex;
+    align-items: center;
+}
+
+.movie-banner_info-holder .movie-banner_info-rating{
+    width: 32px;
+    height: 32px;
+}
+
+.movie-banner_info-holder .movie-banner_info-rating img{
+    width: 30px;
+    height: 30px;
+}
+
+.movie-banner_info-holder .movie-banner_info-text{
+    margin-left: 16px;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.movie-banner_info-text {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.movie-banner_info-text-group {
+    margin-left: 32px;
+    position: relative;
+}
+
+.movie-banner_info-text-group::before {
+    content: "|"; 
+    position: absolute;
+    left: -16px; /* Half of margin-left to center the separator */
+    color: white; /* Adjust color */
+}
+
+.movie-banner_info-text-group:first-child {
+    margin-left: 0;
+}
+
+.movie-banner_info-text-group:first-child::before {
+    content: none;
+}
+
+.movie-banner_info-movie{
+    display: flex;
+    align-items: center;
+    margin: 16px 0 0 0;
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.movie-banner_info-movie-group {
+    margin-left: 32px;
+    position: relative;
+}
+
+.movie-banner_info-movie-group:first-child {
+    margin-left: 0;
+}
+
+.movie-banner_info-movie-group i{
+    margin-right: 10px;
+}
+
+.movie-banner_selected-seats{
+    margin-top: 16px;
+}
+
+.movie-banner_selected-seats{
+    text-transform: uppercase;
+    color: white;
+    font-size: 18px;
+}
+
+.movie-banner_selected-seats img{
+    width: 20px;
+    margin-right: 10px;
+}
+
+.checkout_wrapper {
+    max-width: 100%;
+    margin: 50px auto 150px;
+    padding: 22px 24px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+}
+
+.checkout__summary {
+    padding: 0 16px;
+    border-radius: 8px;
+}
+
+.checkout__summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.checkout__summary-header-title{
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.checkout__summary-header-points {
+    color: white;
+}
+
+.checkout__summary-content-group {
+    margin-bottom: 24px;
+}
+
+.checkout__summary-content-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.checkout__summary-content-group-header .header-title{
+    color: white;
+    text-transform: uppercase;
+}
+
+.checkout__summary-content-group-edit,
+.checkout__summary-content-group-edit-food {
+    background: none;
+    border: none;
+    color: #ea1c24;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.checkout__summary-content-group-edit:hover,
+.checkout__summary-content-group-edit-food:hover{
+    opacity: 0.8;
+}
+
+.checkout__summary-content-group-content-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 16px;
+}
+
+.ticket-type {
+    flex: 2;
+    color: white;
+    font-weight: bold;
+}
+
+.ticket-price,
+.ticket-quantity,
+.ticket-total {
+    flex: 1;
+    text-align: right;
+}
+
+.ticket-quantity{
+    color: white;
+    font-weight: bold;
+}
+
+.ticket-price{
+    color: #b0b0b0;
+}
+
+.ticket-total{
+    color: white;
+    font-weight: bold;
+}
+
+.checkout__summary-content-group-fee {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    padding-top: 8px;
+}
+
+.checkout__details-line {
+    height: 1px;
+    background-color: #b0b0b0;
+    margin: 16px 0;
+}
+
+.checkout__summary-content-group-codes {
+    padding: 22px 16px 20px;
+    background-color: #222222;
+    border-radius: 0 0 8px 8px;
+}
+
+.checkout__summary-content-group-edit-codes {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.checkout__summary-content-group-edit-codes:hover{
+    color: #ea1c24;
+}
+
+.button__content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.button__content img{
+    width: 24px;
+}
+
+.button__content .button-title{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.ticketing-journey-footer_wrapper{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* or match your theme */
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ticketing-journey-footer_inner-seats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticketing-journey-footer_checkout-button {
+    background: linear-gradient(to right, #ff1e1e, #b50000);
+    margin: 0 5px 0;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 8px 25px 8px 25px;
+    transition: all 0.1s ease-in-out;
+}
+
+.ticketing-journey-footer_checkout-button:hover {
+    background: linear-gradient(to right, #b50000, #ff1e1e);
+    color: white;
+}
+
+.button-content{
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.ticketing-journey-footer_checkout-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#countdown-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #fafafa;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px; /* space between timer and button */
+}
+
+.countdown-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.countdown-text {
+    color: #fafafa;
+    text-transform: uppercase;
+}
+
+.countdown-time {
+    color: #f1f1f1;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.swal2-title{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.swal2-title, .swal2-content, .swal2-html-container {
+    color: white !important;
+}
+
+.swal2-confirm {
+    border: none !important;
+    border-radius: 4px 12px !important;
+    background: linear-gradient(to right, #ff1e1e, #b50000) !important;
+    transition: all 0.3s ease-in-out !important;
+    text-transform: uppercase;
+}
+
+.swal2-confirm:hover{
+    background: linear-gradient(to right, #b50000, #ff1e1e) !important;
+}
+
+.swal2-cancel{
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px 12px !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+.swal2-cancel:hover{
+    color: #ff0013;
+    border-color: #ff0013;
+    background-color: rgba(255, 0, 19, 0.2);
+}

@@ -42,11 +42,25 @@ Route::middleware(['web'])->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// --------------------- Protected Routes (Only for Logged-in Users) ------------------ //
+// --------------------- Protected Routes (Only Logged-in Users can Access) ------------------ //
 Route::middleware(['authCheck'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Seats Selection for a movie
+    Route::get('/ticketing-journey/select-seats/{movieSlug}/{showDate}/{id}', [
+        MoviesController::class,
+        'showSeats'
+    ])->name('movies.seats');
+    
+    // Proceed button after seats selection
+    Route::post('/proceed', [MoviesController::class, 'proceed'])->name('proceed');
+    
+    // Display checkout details of a movie
+    Route::get('/ticketing-journey/checkout/{movieSlug}/{showDate}/{id}', [
+        MoviesController::class,
+        'showCheckout'
+    ])->name('movies.checkout');
+
+    // Checkout booking
+    Route::post('/checkout', [MoviesController::class, 'checkout'])->name('checkout');
 });
 
 // --------------------- Movies Routes ------------------ //
@@ -61,6 +75,19 @@ Route::get('/movies/details/{movieSlug}', [
 ])->where('movieSlug', '[A-Za-z0-9\-]+')
     ->name('movies.details');
 
+Route::get('/session/expired', function () {
+    session()->forget([
+        'selected_seats',
+        'ticket_quantity',
+        'ticket_total',
+        'net_total',
+        'seat_selection_time'
+    ]);
+
+    return redirect()->route('movies.listing')
+        ->with('timeout', true);
+})->name('session.expired');
+
 // --------------------- Profile Routes ------------------ //
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
@@ -69,12 +96,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/email',   [ProfileController::class, 'updateEmail']);
 });
 
-// --------------------- Order Routes ------------------ //
-Route::get('/profile/my-orders', function () {
-    return view('profile.my_orders');
-})->name('profile.my_orders');
+Route::get('/my-orders', [OrderController::class, 'index'])->name('profile.my_orders');
 
-Route::get('/profile/my-orders', [OrderController::class, 'index'])->name('profile.my_orders');
 // --------------------- Cinemas Routes ------------------ //
 Route::get('/cinemas', [
     CinemasController::class,
@@ -94,5 +117,5 @@ Route::get('/more/support', function () {
 // --------------------- API Endpoints ------------------ //
 // Dynamic Date Tabs Generated API
 Route::get('/dates', [DateController::class, 'getDates']);
-// Movie Showtimes API
+// Movie Showtimes Filter API
 Route::get('/api/showtimes', [MoviesController::class, 'getShowtimes']);
