@@ -7,6 +7,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\FoodDrinksController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,8 +54,19 @@ Route::get('/movies/details/{movieSlug}', [
 ])->where('movieSlug', '[A-Za-z0-9\-]+')
     ->name('movies.details');
 
-// --------------------- Food and drinks Routes ------------------ //
-Route::get('/food-and-drinks', [
-    FoodDrinksController::class,
-    'showFoodAndDrinks'
-])->name('food-and-drinks');
+
+// --------------------- Food and Drinks Routes ------------------ //
+Route::get('/food-and-drinks', [FoodDrinksController::class, 'showFoodAndDrinks'])->name('food-and-drinks');
+
+// Cart Routes
+Route::post('/cart/add', [FoodDrinksController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [FoodDrinksController::class, 'getCart'])->name('cart.get');
+Route::post('/cart/update', [FoodDrinksController::class, 'updateCart'])->name('cart.update');
+Route::post('/cart/remove', [FoodDrinksController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/cart/edit/{cartItemId}', [FoodDrinksController::class, 'editCartItem'])->name('cart.edit');
+Route::post('/cart/delete-all', [FoodDrinksController::class, 'deleteAll'])->name('cart.deleteAll');
+
+// Checkout Routes
+Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout');
+Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+Route::get('/checkout/success/{orderId}', [CheckoutController::class, 'checkoutSuccess'])->name('checkout.success');
