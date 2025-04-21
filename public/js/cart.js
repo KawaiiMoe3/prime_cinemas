@@ -202,7 +202,7 @@ function proceedToCheckout() {
         .then(res => res.json())
         .then(data => {
             if (data.cart.length === 0) return showError('Oops...', 'Your cart is empty!');
-            window.location.href = '/checkout';
+            window.location.href = '/cart-checkout';
         })
         .catch(() => showError('Failed to check cart for checkout'));
 }
