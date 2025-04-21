@@ -1,4 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+    // Clear Error messages
+    function clearFieldError(input) {
+        input.classList.remove('is-invalid');
+        const fb = input.closest('.mb-3')?.querySelector('.invalid-feedback, .text-danger');
+        if (fb) fb.remove();
+    }
+
+    document.querySelectorAll('#username-input, #email-input, #password1, #password2').forEach(input =>
+        input.addEventListener('input', () => clearFieldError(input))
+    );
+
+    function clearLaravelError(input) {
+        const err = input.closest('.mb-3').querySelector('.text-danger, .invalid-feedback');
+        if (err) err.remove();
+      }
+      
+      document.querySelectorAll('#register-username, #register-email').forEach(input => {
+        input.addEventListener('input', () => clearLaravelError(input));
+    });
+
+    document.querySelectorAll('#register-username, #register-email').forEach(input => {
+        input.addEventListener('input', () => clearLaravelError(input));
+    });
+
     // Password Toggle Function
     function setupPasswordToggle(buttonClass) {
         document.querySelectorAll(buttonClass).forEach(button => {
