@@ -11,11 +11,13 @@ class AddBgMovieToMoviesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('movies', function (Blueprint $table) {
-            // Adding column after poster
-            $table->string('bg_movie')->nullable()->after('poster');
+            // Check if the bg_movie column does not exist before adding it
+            if (!Schema::hasColumn('movies', 'bg_movie')) {
+                $table->string('bg_movie')->nullable()->after('poster');
+            }
         });
     }
 
@@ -24,11 +26,13 @@ class AddBgMovieToMoviesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('movies', function (Blueprint $table) {
-            // Remove column if rolled back
-            $table->dropColumn('bg_movie'); 
+            // Only drop the column if it exists
+            if (Schema::hasColumn('movies', 'bg_movie')) {
+                $table->dropColumn('bg_movie');
+            }
         });
     }
 }

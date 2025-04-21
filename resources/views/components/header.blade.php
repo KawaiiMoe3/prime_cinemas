@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link header-item text-uppercase" href="#services">Food & Drinks</a>
+                        <a class="nav-link header-item text-uppercase" href="#food">Food & Drinks</a>
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link header-item text-uppercase" href="#contact">Shop</a>
