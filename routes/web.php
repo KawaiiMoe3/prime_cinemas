@@ -5,7 +5,6 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MoviesController;
-<<<<<<< HEAD
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\VoucherController;
@@ -14,10 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CinemasController;
 use App\Http\Controllers\DateController;
-=======
 use App\Http\Controllers\FoodDrinksController;
 use App\Http\Controllers\CheckoutController;
->>>>>>> origin/food_drinks
 
 /*
 |--------------------------------------------------------------------------
@@ -80,7 +77,6 @@ Route::get('/movies/details/{movieSlug}', [
 ])->where('movieSlug', '[A-Za-z0-9\-]+')
     ->name('movies.details');
 
-<<<<<<< HEAD
 Route::get('/session/expired', function () {
     session()->forget([
         'selected_seats',
@@ -125,7 +121,6 @@ Route::get('/more/support', function () {
 Route::get('/dates', [DateController::class, 'getDates']);
 // Movie Showtimes Filter API
 Route::get('/api/showtimes', [MoviesController::class, 'getShowtimes']);
-=======
 
 // --------------------- Food and Drinks Routes ------------------ //
 Route::get('/food-and-drinks', [FoodDrinksController::class, 'showFoodAndDrinks'])->name('food-and-drinks');
@@ -142,4 +137,3 @@ Route::post('/cart/delete-all', [FoodDrinksController::class, 'deleteAll'])->nam
 Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout');
 Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
 Route::get('/checkout/success/{orderId}', [CheckoutController::class, 'checkoutSuccess'])->name('checkout.success');
->>>>>>> origin/food_drinks
