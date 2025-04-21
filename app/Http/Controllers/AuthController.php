@@ -24,27 +24,28 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (!$request->username && !$request->email) {
-            return back()->withErrors(['login' => 'Please enter a username or email.']);
+        if (! $request->filled('username') && ! $request->filled('email')) {
+            return back()
+                ->withInput()
+                ->withErrors(['login' => 'Please enter either a username or email.']);
         }
 
-        $user = User::where('username', $request->username)
-                    ->orWhere('email', $request->email)
-                    ->first();
+        $field = $request->filled('username') ? 'username' : 'email';
+        $value = $request->input($field);
 
-        if (!$user) {
-            return back()->withErrors(['login' => 'Invalid Username']);
+        $user = User::where($field, $value)->first();
+        if (! $user) {
+            // attach error to the *same* input name
+            return back()
+                ->withInput()
+                ->withErrors([ $field => "No account found with that {$field}.", ]);
         }
 
-        Log::info('Entered Password:', ['password' => $request->password]);
-        Log::info('Stored Hashed Password:', ['password' => $user->password]);
-
-        if (!Hash::check($request->password, $user->password)) {
-            Log::info('Password check result:', ['result' => false]);
-            return back()->withErrors(['login' => 'Invalid password']);
+        if (! Hash::check($request->password, $user->password)) {
+            return back()
+                ->withInput()
+                ->withErrors(['password' => 'Invalid password.']);
         }
-
-        Log::info('Password check result:', ['result' => true]);
 
         auth()->login($user);
 

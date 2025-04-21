@@ -32,26 +32,26 @@
             <div class="tab-content">
                 <!-- Username Login -->
                 <div class="tab-pane fade show active" id="username-login" role="tabpanel">
-                    <form action="{{ route('login') }}" method="POST">
+                    <form action="{{ route('login') }}" method="POST" novalidate>
                         @csrf
-                        @if ($errors->has('login'))
-                            <div class="alert alert-danger">
-                                {{ $errors->first('login') }}
-                            </div>
-                        @endif
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control login-username" id="username-input" name="username" placeholder="Enter username">
+                            <input type="text" class="form-control login-username @error('username') is-invalid @enderror" id="username-input" name="username" value="{{ old('username') }}" placeholder="Enter username">
+                            @error('username')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password1" class="form-label">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="password1" name="password" placeholder="Enter password">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password1" name="password" placeholder="Enter password">
                                 <button type="button" class="btn btn-outline-secondary toggle-password">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
                             </div>
-                            <div class="error-message" style="color: red;"></div>
+                            @error('password')
+                                <div class="text-danger small">{{ $message }}</div>
+                            @enderror
                         </div>
                         
                         <button type="submit" class="btn btn-danger text-uppercase">Sign In</button>
@@ -63,24 +63,21 @@
                 <div class="tab-pane fade email-form" id="email-login" role="tabpanel">
                     <form action="{{ route('login') }}" method="POST" class="email-login-form">
                         @csrf
-                        @if ($errors->has('login'))
-                            <div class="alert alert-danger">
-                                {{ $errors->first('login') }}
-                            </div>
-                        @endif
                         <div class="mb-3">
                             <label for="email" class="form-label email-label">Email</label>
-                            <input type="email" class="form-control login-email" id="email-input" name="email" placeholder="Enter email">
+                            <input type="email" class="form-control login-email @error('email') is-invalid @enderror" id="email-input" name="email" placeholder="Enter email">
                         </div>
                         <div class="mb-3">
                             <label for="password2" class="form-label">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="password2" name="password" placeholder="Enter password">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password2" name="password" placeholder="Enter password">
                                 <button type="button" class="btn btn-outline-secondary toggle-password">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
                             </div>
-                            <div class="error-message" style="color: red;"></div>
+                            @error('password')
+                                <div class="text-danger small">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-danger text-uppercase email-signin-btn">Sign In</button>
