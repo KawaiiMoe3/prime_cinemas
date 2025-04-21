@@ -134,6 +134,6 @@ Route::get('/cart/edit/{cartItemId}', [FoodDrinksController::class, 'editCartIte
 Route::post('/cart/delete-all', [FoodDrinksController::class, 'deleteAll'])->name('cart.deleteAll');
 
 // Checkout Routes
-Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout');
-Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
-Route::get('/checkout/success/{orderId}', [CheckoutController::class, 'checkoutSuccess'])->name('checkout.success');
+Route::get('/cart-checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+Route::post('/cart-checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+Route::get('/cart-checkout/success/{orderId}', [CheckoutController::class, 'checkoutSuccess'])->name('checkout.success');
