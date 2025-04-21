@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CinemasController;
 use App\Http\Controllers\DateController;
+use App\Http\Controllers\FoodDrinksController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,3 +121,19 @@ Route::get('/more/support', function () {
 Route::get('/dates', [DateController::class, 'getDates']);
 // Movie Showtimes Filter API
 Route::get('/api/showtimes', [MoviesController::class, 'getShowtimes']);
+
+// --------------------- Food and Drinks Routes ------------------ //
+Route::get('/food-and-drinks', [FoodDrinksController::class, 'showFoodAndDrinks'])->name('food-and-drinks');
+
+// Cart Routes
+Route::post('/cart/add', [FoodDrinksController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [FoodDrinksController::class, 'getCart'])->name('cart.get');
+Route::post('/cart/update', [FoodDrinksController::class, 'updateCart'])->name('cart.update');
+Route::post('/cart/remove', [FoodDrinksController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/cart/edit/{cartItemId}', [FoodDrinksController::class, 'editCartItem'])->name('cart.edit');
+Route::post('/cart/delete-all', [FoodDrinksController::class, 'deleteAll'])->name('cart.deleteAll');
+
+// Checkout Routes
+Route::get('/cart-checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+Route::post('/cart-checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+Route::get('/cart-checkout/success/{orderId}', [CheckoutController::class, 'checkoutSuccess'])->name('checkout.success');

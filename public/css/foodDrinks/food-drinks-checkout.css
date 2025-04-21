@@ -1,0 +1,172 @@
+.checkout-wrapper {
+    max-width: 1200px;
+    margin: 120px auto 50px auto;
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+
+.checkout-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.checkout-box {
+    flex: 1;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.movieclub-signin h3,
+.confirmation-form h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.movieclub-signin p,
+.confirmation-form p {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.divider {
+    height: 1px;
+    background-color: #333;
+    margin: 15px 0;
+}
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.btn-movieclub {
+    background-color: #444;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+}
+
+.btn-movieclub:hover {
+    background-color: #555;
+}
+
+.btn-proceed {
+    background-color: #e50914;
+    color: #fff;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+}
+
+.btn-proceed:hover {
+    background-color: #c40812;
+}
+
+/* Confirmation Form */
+.confirmation-form label {
+    font-size: 0.85rem;
+    margin-top: 10px;
+    display: block;
+}
+
+.confirmation-form input[type="email"],
+.confirmation-form input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.terms-checkbox, .opt-in {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+}
+
+.terms-checkbox input,
+.opt-in input {
+    width: 16px;
+    height: 16px;
+}
+
+/* Order Summary */
+.order-summary {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.order-summary h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.order-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-items li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+}
+
+.item-name {
+    flex: 3;
+    font-weight: bold;
+}
+
+.item-quantity {
+    flex: 1;
+    text-align: center;
+}
+
+.item-price {
+    flex: 1;
+    text-align: right;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e50914;
+}
+
+.checkout-wrapper {
+    max-width: 1200px;
+    margin: 120px auto 50px auto; /* Center nicely */
+    padding: 20px;
+}
+
+.divider-line {
+    height: 2px;
+    background-color: #333;
+    margin: 30px 0;
+}
+
+
+

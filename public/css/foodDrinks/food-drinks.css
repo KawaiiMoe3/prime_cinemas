@@ -1,0 +1,400 @@
+/* ==============================
+   General Container Styles
+============================== */
+.food-drinks-container {
+    margin-top: 100px;
+    background: url("/images/starry-background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.food-drinks-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 500px;
+    height: 500px;
+    background: url("/images/moon.png") no-repeat center;
+    background-size: contain;
+    opacity: 0.3;
+}
+
+.view-all-tab {
+    z-index: 10;
+    position: relative;
+    display: flex;
+    gap: 10px;
+    margin-right: 20px;
+}
+
+/* ==============================
+   Buttons
+============================== */
+.btn-viewall, .btn-cart {
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.btn-viewall {
+    background-color: #444;
+    color: #fff;
+}
+
+.btn-viewall:hover {
+    background-color: #555;
+}
+
+.btn-cart {
+    background-color: #e50914;
+    color: #fff;
+    position: relative;
+}
+
+.btn-cart:hover {
+    background-color: #c40812;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #fff;
+    color: #e50914;
+    font-size: 0.75rem;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #e50914;
+    z-index: 11;
+}
+
+/* ==============================
+   Cards
+============================== */
+.c-food-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.c-food-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.c-food-img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+    max-height: 250px;
+}
+
+.c-food-body {
+    padding: 1rem;
+    text-align: center;
+}
+
+.c-food-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.c-food-price {
+    color: #ccc;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* ==============================
+   Cart Modal
+============================== */
+.modal-content {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    min-height: 600px;
+}
+
+.modal-dialog {
+    max-width: 600px;
+}
+
+.modal-header, .modal-footer {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-body table {
+    width: 100%;
+    background: #252525; /* darker but not pure black */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-body thead {
+    background: #333;
+    color: #e50914;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.modal-body tbody tr {
+    border-bottom: 1px solid #444;
+}
+
+.modal-body td, .modal-body th {
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Make Remove button smaller and neater */
+.modal-body button.btn-danger {
+    background: #e50914;
+    border: none;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+}
+
+.modal-body button.btn-danger:hover {
+    background: #c40812;
+}
+
+.modal-footer {
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.btn-secondary, .btn-primary, .btn-primary-enabled {
+    width: 200px;
+    font-weight: bold;
+    padding: 10px 0;
+    border-radius: 8px;
+}
+
+.btn-secondary {
+    background: #444;
+    border-color: #444;
+}
+
+.btn-secondary:hover {
+    background: #555;
+    border-color: #555;
+}
+
+.btn-primary, .btn-primary-enabled {
+    background: #e50914;
+    border-color: #e50914;
+}
+
+.btn-primary:hover, .btn-primary-enabled:hover {
+    background: #c40812;
+    border-color: #c40812;
+}
+
+.cart-total {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 1.4rem;
+}
+
+.cart-total span {
+    font-weight: bold;
+    color: #e50914;
+}
+
+/* ==============================
+   Empty State
+============================== */
+.empty-items {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ccc;
+    padding: 2rem;
+}
+
+/* ==============================
+   Selection Options
+============================== */
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.option-item {
+    background: #fff;
+    color: #000;
+    padding: 10px;
+    border-radius: 5px;
+    flex: 0 0 calc(30% - 10px);
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.option-item:hover {
+    background: #f0f0f0;
+}
+
+.option-item.selected {
+    background: #e50914;
+    color: #fff;
+}
+
+.option-item.sold-out {
+    background: #444;
+    color: #888;
+    cursor: not-allowed;
+}
+
+/* ==============================
+   SweetAlert (Swal) Customization
+============================== */
+.swal2-popup {
+    background: #1a1a1a !important;
+    color: #fff !important;
+    border-radius: 10px !important;
+}
+
+.swal2-title, .swal2-content {
+    color: #fff !important;
+}
+
+.swal2-confirm {
+    background: #e50914 !important;
+    border-color: #e50914 !important;
+}
+
+.swal2-cancel {
+    background: #444 !important;
+    border-color: #444 !important;
+}
+
+.swal2-icon.swal2-success [class^="swal2-success-ring"],
+.swal2-icon.swal2-error, .swal2-icon.swal2-warning {
+    border-color: #e50914 !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-line-tip,
+.swal2-icon.swal2-success .swal2-success-line-long,
+.swal2-icon.swal2-error [class^="swal2-x-mark-line"] {
+    background-color: #e50914 !important;
+}
+
+/* ==============================
+   Scrollbar for Modal
+============================== */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: #e50914;
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: #c40812;
+}
+
+/* =====================================
+   Fix the Popcorn Combo card title color
+====================================== */
+.c-food-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #ffffff; /* Make title text white */
+}
+
+/* =====================================
+   Standardize option buttons for food & drink
+====================================== */
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+}
+
+.option-item {
+    background: #fff;
+    color: #000;
+    padding: 10px;
+    border-radius: 5px;
+    width: 180px; /* Fixed width */
+    height: 50px; /* Fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.option-item:hover {
+    background: #f0f0f0;
+}
+
+.option-item.selected {
+    background: #e50914;
+    color: #fff;
+}
+
+.option-item.sold-out {
+    background: #444;
+    color: #888;
+    cursor: not-allowed;
+}
+
+/* =====================================
+   Extra: Improve text wrapping if too long
+====================================== */
+.option-item span {
+    text-align: center;
+    word-break: break-word;
+    width: 100%;
+}
